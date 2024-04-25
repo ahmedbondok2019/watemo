@@ -1,0 +1,35 @@
+class EndPoints {
+  static const String baseUrl = 'https://atemo.egyptvision.net/api/app-2024/';
+  static const String baseImageUrl = 'https://atemo.egyptvision.net/website/images/';
+  static const String baseServicesUrl = 'https://atemo.egyptvision.net/website/images/services/thumb/';
+  static const String login = 'login';
+  static const String register = 'registerUser';
+  static const String editUser = 'EditUser';
+  static const String deleteAccount = 'deleteAccount';
+  static const String forgetPassword = 'forgetPassword';
+  static const String resetPassword = 'ResetPassword';
+  static const String logOut = 'logout';
+  static const String nationality = 'nationality';
+  static const String residence = 'residence';
+  static const String spokenLanguages = 'spoken_languages';
+  static const String notifications = 'notifications';
+  static const String home = 'home';
+  static const String hadeeth = 'hadeeth';
+  static const String services = 'services?page_number=';
+  static const String offers = 'offers';
+  static const String userData = 'userData';
+  static const String messages = 'messages';
+  static const String wallet = 'wallet?page_number=';
+  static const String getOrders = 'getOrders?status=';
+  static const String getWallet = 'wallet?page_number=';
+  static const String getLastWallet = 'last_wallet';
+  static const String sendMessage = 'send_message';
+  static const String providers = 'search?sex=';
+  static const String about = 'about';
+  static const String terms = 'terms';
+  static const String relations = 'relations';
+  static const String validCouponCode = 'validCouponCode';
+  static const String createOrder = 'createOrder';
+  static const String orderLocation = 'orderLocation';
+  static const String orderMedia = 'website/images/uploads';
+}
