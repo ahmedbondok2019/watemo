@@ -29,7 +29,10 @@ class ChangePaymentTypeLoading extends CheckoutState {}
 class CheckCodeLoading extends CheckoutState {}
 class CreateOrderLoading extends CheckoutState {}
 class CheckCodeSuccess extends CheckoutState {}
-class CreateOrderSuccess extends CheckoutState {}
+class CreateOrderSuccess extends CheckoutState {
+  final String message;
+  CreateOrderSuccess({required this.message});
+}
 class ChangePaymentType extends CheckoutState {
   final int paymentType;
   ChangePaymentType({

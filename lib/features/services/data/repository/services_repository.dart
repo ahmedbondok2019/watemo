@@ -1,3 +1,4 @@
+import '../../../../core/common/models/title_id_model/title_id_model.dart';
 import '../../../../core/src/app_export.dart';
 import '../data_source/services_data_source.dart';
 import '../models/services/services_res_model.dart';
@@ -9,14 +10,26 @@ class ServicesRepository {
   ServicesRepository(this._dataSource);
 
   /// <<--- get All Services request --->>
-  getAllServices(String pageNumber) async {
+  getAllServices({required String id,required String pageNumber}) async {
     try {
-      Response response = await _dataSource.getAllServices(pageNumber);
+      Response response = await _dataSource.getAllServices(
+          id: id, pageNumber: pageNumber);
       ServicesResModel services = ServicesResModel.fromJson(response.data);
       return NetworkService.succeed(services);
     } catch (error) {
       return NetworkService.failure(
           NetworkExceptions.getDioException(error));
+    }
+  }
+
+  /// <<--- get Relations request --->>
+  Future<NetworkService<TitleIdModel>> getRelations() async {
+    try {
+      Response response = await _dataSource.getRelations();
+      TitleIdModel relationsModel = TitleIdModel.fromJson(response.data);
+      return NetworkService.succeed(relationsModel);
+    } catch (error) {
+      return NetworkService.failure(NetworkExceptions.getDioException(error));
     }
   }
 

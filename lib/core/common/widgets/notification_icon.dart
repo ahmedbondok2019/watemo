@@ -1,7 +1,9 @@
 import '../../src/app_export.dart';
 
 class NotificationIcon extends StatelessWidget {
-  const NotificationIcon({Key? key}) : super(key: key);
+  final Color? backgroundColor;
+  const NotificationIcon({
+    Key? key, this.backgroundColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class NotificationIcon extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
           border: Border.all(color: AppColors.cEDEDED),
-          color: AppColors.white.withOpacity(0.13),
+          color: backgroundColor ?? AppColors.white.withOpacity(0.13),
         ),
         child: Stack(
           children: [

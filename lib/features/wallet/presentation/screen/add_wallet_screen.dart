@@ -1,24 +1,35 @@
+import '../../../../core/common/widgets/custom_app_drawer.dart';
 import '../../../../core/src/app_export.dart';
 import '../../cubit/wallet_cubit.dart';
 import '../widgets/select_wallet_type.dart';
 
 class AddWalletScreen extends StatelessWidget {
-  const AddWalletScreen({super.key});
+  AddWalletScreen({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomAppDrawer(),
       body: BackgroundComponent(
         opacity: 0.2,
         child: BlocBuilder<WalletCubit, WalletState>(
           builder: (context, state) {
             return Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   title: "إضافة رصيد",
                   titleSize: 16,
-                  leading: CustomBackButton(),
-                  actions: [NotificationIcon()],
+                  leading: const CustomBackButton(),
+                  actions: [
+                    AppConstants.userType == AppConstants.user ||
+                        AppConstants.userType == AppConstants.company
+                        ? const NotificationIcon()
+                        : CustomDrawerIcon(
+                      onTap: ()=> _scaffoldKey.currentState?.openDrawer(),
+                    ),
+                   ],
                 ),
 
                 Expanded(

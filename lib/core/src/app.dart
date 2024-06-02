@@ -1,7 +1,10 @@
-import 'package:completed/features/services_details/cubit/service_details_cubit.dart';
-
+import 'package:completed/core/common/general_cubit/user/user_cubit.dart';
+import 'package:completed/features/services/cubit/services_cubit.dart';
 import '../../features/checkout/cubit/checkout_cubit.dart';
+import '../../features/orders/cubit/orders_cubit.dart';
 import '../../features/profile/cubit/profile_cubit.dart';
+import '../../features/tracking_order/cubit/tracking_order_cubit.dart';
+import '../common/general_cubit/calendar/calendar_cubit.dart';
 import 'app_export.dart';
 
 class MyApp extends StatelessWidget {
@@ -20,13 +23,17 @@ class MyApp extends StatelessWidget {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: MultiBlocProvider(
             providers: [
-              BlocProvider<LocalizationBloc>(
-                  create: (context) => getIt<LocalizationBloc>()),
+              BlocProvider<LocalizationBloc>(create: (context) => getIt<LocalizationBloc>()),
               BlocProvider(create: (context) => InternetCubit()),
+              BlocProvider<CalendarCubit>(create: (context) => getIt<CalendarCubit>()),
               BlocProvider<AuthCubit>(create: (context) => getIt<AuthCubit>()),
+              BlocProvider<ServicesCubit>(create: (context) => getIt<ServicesCubit>()),
+              BlocProvider<TrackingOrderCubit>(create: (context) => getIt<TrackingOrderCubit>()),
               BlocProvider<ProfileCubit>(create: (context) => getIt<ProfileCubit>()),
-              BlocProvider<ServiceDetailsCubit>(create: (context) => getIt<ServiceDetailsCubit>()),
               BlocProvider<CheckoutCubit>(create: (context) => getIt<CheckoutCubit>()),
+              BlocProvider<OrdersCubit>(create: (context) => getIt<OrdersCubit>()),
+              BlocProvider<UserCubit>(create: (context) => getIt<UserCubit>()..getUser()),
+              BlocProvider<HomeCubit>(create: (context) => getIt<HomeCubit>()),
             ],
             child: BlocBuilder<LocalizationBloc, LocalizationState>(
               buildWhen: (previous, current) => previous != current,

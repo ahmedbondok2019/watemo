@@ -26,8 +26,7 @@ class CustomOffersList extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
           ),
           child: CustomNetworkImage(
-            imageUrl: EndPoints.baseImageUrl +
-                offer.image!,
+            imageUrl: offer.image!,
             fit: BoxFit.fill,
             height: 164.h,
             width: 361.w,

@@ -55,6 +55,7 @@ class OnBoarding extends StatelessWidget {
                     }),
                   ],
                 ),
+
                 Gap(38.h),
                 OnBoardingBody(
                     onChange: onBoardingCubit.updateIndex,
@@ -64,7 +65,7 @@ class OnBoarding extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         onBoardingCubit.pageController.previousPage(
                             duration: const Duration(microseconds: 200),
@@ -82,7 +83,7 @@ class OnBoarding extends StatelessWidget {
                     ),
                     CustomSmoothIndicator(
                         controller: onBoardingCubit.pageController),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         onBoardingCubit.pageController.nextPage(
                             duration: const Duration(microseconds: 200),
@@ -105,7 +106,9 @@ class OnBoarding extends StatelessWidget {
                 onBoardingCubit.currentIndex ==
                         onBoardingCubit.onBoardingData.length - 1
                     ? CustomButtonInternet(
-                        title: "ابدأ الاستخدام الان",
+                        title: AppConstants.userType ==  AppConstants.user
+                            ? "ابدأ التسجيل كطالب خدمة الان"
+                            : "ابدأ الاستخدام الان",
                         horizontal: 0,
                         vertical: 10,
                         width: MediaQuery.of(context).size.width,

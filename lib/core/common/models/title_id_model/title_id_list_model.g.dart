@@ -7,6 +7,8 @@ part of 'title_id_list_model.dart';
 // **************************************************************************
 
 TitleIdListModel _$TitleIdListModelFromJson(Map<String, dynamic> json) => TitleIdListModel(
-  id: json["id"] as int?,
-  title: json["title"] as String?,
+  id: json["id"] as int,
+  title: json["title"] as String,
+  code: json["code"] as String?,
+  flag: json["flag"] as String?,
 );

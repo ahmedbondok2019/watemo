@@ -7,55 +7,58 @@ class CustomContactUsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Gap(8.h),
-        Text(
-          "هل تحتاج المساعدة",
-          style: AppTextStyles.textStyle(
-              weight: FontWeight.w600, color: AppColors.c090909, size: 16),
-        ),
-        Gap(8.h),
-        Text(
-          "خبرائنا علي استعداد دائماً لمساعدتك في اي وقت ولاتتردد في التواصل معنا إن كنت بحاجة الي مساعدة ولن نتأخر عنك ابداً",
-          style: AppTextStyles.textStyle(
-              weight: FontWeight.w400, color: AppColors.c9A9A9A, size: 12),
-        ),
-        Gap(25.h),
-        Text(
-          "نوع الطلب",
-          style: AppTextStyles.textStyle(
-              weight: FontWeight.w600, color: AppColors.c090909, size: 16),
-        ),
-        BlocBuilder<OtherPageCubit, OtherPageState>(builder: (context, state) {
-          return CustomDropDownContactType(
-            buttonWidth: double.infinity,
-            list: context.read<OtherPageCubit>().contactTypeList,
-            selectedItem: context.read<OtherPageCubit>().type ??
-                context.read<OtherPageCubit>().contactTypeList.first,
-            onChanged: context.read<OtherPageCubit>().changeContactType,
-            label: "اختر نوع الطلب",
-          );
-        }),
-        Gap(25.h),
-        Text(
-          "وصف الطلب",
-          style: AppTextStyles.textStyle(
-              weight: FontWeight.w600, color: AppColors.c090909, size: 16),
-        ),
-        Gap(15.h),
-        InputFormField(
-            hint: "قم بوصف ماتريد وسيتم التواصل معك في اقرب وقت .....",
-            maxLines: 10,
-            controller: context.read<OtherPageCubit>().messageController,
-            fillColor: AppColors.white
-        ),
-        Gap(15.h),
+    return Form(
+        key: context.read<OtherPageCubit>().formKey,
+      child:  Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gap(8.h),
+          Text(
+            "هل تحتاج المساعدة",
+            style: AppTextStyles.textStyle(
+                weight: FontWeight.w600,
+                color: AppColors.c090909, size: 16),
+          ),
+          Gap(8.h),
+          Text(
+            "خبرائنا علي استعداد دائماً لمساعدتك في اي وقت ولاتتردد في التواصل معنا إن كنت بحاجة الي مساعدة ولن نتأخر عنك ابداً",
+            style: AppTextStyles.textStyle(
+                weight: FontWeight.w400, color: AppColors.c9A9A9A, size: 12),
+          ),
+          Gap(25.h),
+          Text(
+            "نوع الطلب",
+            style: AppTextStyles.textStyle(
+                weight: FontWeight.w600, color: AppColors.c090909, size: 16),
+          ),
+          BlocBuilder<OtherPageCubit, OtherPageState>(builder: (context, state) {
+            return CustomDropDownContactType(
+              buttonWidth: double.infinity,
+              list: context.read<OtherPageCubit>().contactTypeList,
+              selectedItem: context.read<OtherPageCubit>().type,
+              onChanged: context.read<OtherPageCubit>().changeContactType,
+              label: "اختر نوع الطلب",
+            );
+          }),
+          Gap(25.h),
+          Text(
+            "وصف الطلب",
+            style: AppTextStyles.textStyle(
+                weight: FontWeight.w600, color: AppColors.c090909, size: 16),
+          ),
+          Gap(15.h),
+          InputFormField(
+              hint: "قم بوصف ماتريد وسيتم التواصل معك في اقرب وقت .....",
+              maxLines: 10,
+              controller: context.read<OtherPageCubit>().messageController,
+              fillColor: AppColors.white
+          ),
+          Gap(15.h),
 
-        sendContactButton(),
-      ],
+          sendContactButton(),
+        ],
+      )
     );
   }
 
@@ -80,23 +83,10 @@ class CustomContactUsBody extends StatelessWidget {
       }
     },
         builder: (context, state) {
-      if (state is ContactInitial) {
-        return CustomButtonInternet(
-          height: 48,
-          width: 361,
-          horizontal: 0,
-          title: "ارسال الطلب",
-          onTap: () {
-            if (context.read<AuthCubit>().formKey.currentState!.validate()) {
-              context.read<AuthCubit>().login();
-            }
-          },
-        );
-      }
-      else if (state is ContactLoading) {
-        return const Center(child: CustomLoading());
-      }
-      else {
+          if (state is ContactLoading) {
+            return const Center(child: CustomLoading());
+          }
+          else {
         return CustomButtonInternet(
           height: 48,
           width: 361,
@@ -107,7 +97,8 @@ class CustomContactUsBody extends StatelessWidget {
               CustomMessage.showMessage(context,
                   message: "يجب اختيار نوع الطلب",
                   type: AlertType.failed);
-            }else{
+            }
+            else{
               context.read<OtherPageCubit>().sendContact();
             }
           },

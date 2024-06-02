@@ -1,7 +1,4 @@
-import '../../../../core/common/widgets/InputFormField.dart';
-import '../../../../core/common/widgets/custom_button_internet.dart';
 import '../../../../core/src/app_export.dart';
-import '../../cubit/auth_cubit.dart';
 
 class EnterNewPassword extends StatefulWidget {
   const EnterNewPassword({super.key});

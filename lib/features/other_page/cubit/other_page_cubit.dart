@@ -15,8 +15,13 @@ class OtherPageCubit extends Cubit<OtherPageState> {
   static OtherPageCubit get(context) =>
       BlocProvider.of<OtherPageCubit>(context);
 
+  var formKey = GlobalKey<FormState>();
   TextEditingController messageController = TextEditingController();
-  ContactTypeModel? type;
+  ContactTypeModel type = const ContactTypeModel(
+    id: 1,
+    nameAr: "خطأ في الموقع",
+    nameEn: "website error",
+  );
   String? aboutUsContent;
   String? termsContent;
 
@@ -50,7 +55,7 @@ class OtherPageCubit extends Cubit<OtherPageState> {
 
   void changeContactType(ContactTypeModel? ty) {
     emit(ChangeContactTypeLoading());
-    type = ty;
+    type = ty!;
     emit(ChangeContactType(type: ty));
   }
 
@@ -58,7 +63,7 @@ class OtherPageCubit extends Cubit<OtherPageState> {
   Future sendContact() async {
     emit(ContactLoading());
     final NetworkService<ContactModel> data = await _repository.sendContact(
-      type: type!.id.toString(),
+      type: type.id.toString(),
       message: messageController.text.isEmpty
           ? " "
           : messageController.text.trim(),

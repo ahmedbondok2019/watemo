@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "381255833491",
+    "project_id": "watemo",
+    "storage_bucket": "watemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381255833491:android:4ecd6e81d11e46edcb7a66",
+        "android_client_info": {
+          "package_name": "com.watemo.watemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381255833491-iokomat8r2t45t37up5k58hd1bkfmr16.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.watemo.watemo",
+            "certificate_hash": "f034947a2973317a927ed1fd1a9f0526de8e4779"
+          }
+        },
+        {
+          "client_id": "381255833491-o7l732hhvagli19hifuulq59k41lm38v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7ezBD6wUB0ktp3UwFxABR5AwHPOjNqOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381255833491-o7l732hhvagli19hifuulq59k41lm38v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

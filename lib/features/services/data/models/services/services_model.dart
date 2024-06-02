@@ -1,23 +1,19 @@
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 part 'services_model.g.dart';
 
-@JsonSerializable()
-class ServicesModel extends Equatable {
+class ServicesModel {
   final int? id;
   final String? title;
   final dynamic price;
   final String? image;
+  int counter;
 
-  const ServicesModel({
+  ServicesModel({
     this.id,
     this.title,
     this.price,
     this.image,
+    this.counter = 0,
   });
 
   factory ServicesModel.fromJson(Map<String, dynamic> json) => _$ServicesModelFromJson(json);
-
-  @override
-  List<Object?> get props => [id,title,price,image];
 }

@@ -35,7 +35,6 @@ class CheckoutRepository {
       await _dataSource.createOrder(order: order);
       ResponseModel responseModel = ResponseModel.fromJson(
           responseData.data);
-      log("error =====>>>>>>>${responseModel.error}");
       return NetworkService.succeed(responseModel);
     } on DioException catch (error) {
       log("first step =====>>>>>>>$error");

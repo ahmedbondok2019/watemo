@@ -1,6 +1,6 @@
 import '../../../../core/src/app_export.dart';
 import '../../../../core/utils/custom_message.dart';
-import 'custom_dropDown_select_code.dart';
+import 'custom_drop_down_select_code.dart';
 
 class CustomForgotPassword extends StatelessWidget {
   const CustomForgotPassword({super.key});
@@ -31,8 +31,6 @@ class CustomForgotPassword extends StatelessWidget {
                   validator: (p0) {
                     if (p0 == null || p0.isEmpty) {
                       return "رجاء ادخل رقم الموبايل";
-                    } else if (p0.length < 10) {
-                      return "رجاء اخل رقم الموبايل كامل";
                     } else {
                       return null;
                     }
@@ -49,13 +47,23 @@ class CustomForgotPassword extends StatelessWidget {
                   controller: context.read<AuthCubit>().phoneNumberController,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(10)
+                    LengthLimitingTextInputFormatter(null)
                   ],
                   textAlign: TextAlign.left,
                   fillColor: AppColors.cF5F5F5,
                   hasLabel: true,
                 ),
-                const CustomDropDownSelectCode(),
+
+                SizedBox(
+                  height: 48.h,
+                  width: 132.w,
+                  child: CustomDropDownSelectCode(
+                    list: context.read<AuthCubit>().countriesList,
+                    selectedItem: context.read<AuthCubit>().countryCode,
+                    onChanged: context.read<AuthCubit>().changeCountryCode,
+                    label: "اختر كود الدولة",
+                  ),
+                ),
               ],
             ),
             Gap(20.h),

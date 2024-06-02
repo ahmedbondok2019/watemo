@@ -1,4 +1,6 @@
+import 'package:completed/features/auth/presentation/widgets/create_new_company_account.dart';
 import '../../../../core/src/app_export.dart';
+import '../widgets/create_new_vendor_account.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -80,7 +82,9 @@ class AuthScreen extends StatelessWidget {
                           vertical: 0,
                           height: 40,
                           width: 172,
-                          colorBg: authCubit.isLogin ? AppColors.white : null,
+                          colorBg: authCubit.isLogin
+                              ? AppColors.white
+                              : null,
                           txtColor:
                               authCubit.isLogin
                                   ? AppColors.c090909
@@ -98,7 +102,12 @@ class AuthScreen extends StatelessWidget {
               return Expanded(
                   child: authCubit.isLogin
                       ? const CustomLoginContainer()
-                      : const CreateNewAccount());
+                      : AppConstants.userType ==  AppConstants.user
+                        ? const CreateNewUserAccount()
+                        : AppConstants.userType ==  AppConstants.vendor
+                            ? const CreateNewVendorAccount()
+                            : const CreateNewCompanyAccount()
+              );
             }),
           ],
         ),

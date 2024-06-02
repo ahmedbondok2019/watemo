@@ -1,5 +1,6 @@
 import 'package:completed/core/src/app_export.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:lottie/lottie.dart';
 
 class NoInternetScreen extends StatelessWidget {
   const NoInternetScreen({super.key});

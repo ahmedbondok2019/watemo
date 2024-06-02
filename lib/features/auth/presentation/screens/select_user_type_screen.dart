@@ -1,3 +1,4 @@
+import '../../../../core/helpers/cache_helper.dart';
 import '../../../../core/src/app_export.dart';
 
 class SelectUserTypeScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class SelectUserTypeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            flex: 4,
+              flex: 4,
               child: Container(
                 color: AppColors.cBEA235,
                 width: double.infinity,
@@ -38,9 +39,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                     Gap(50.h),
                   ],
                 ),
-              )
-          ),
-
+              )),
           Expanded(
               flex: 7,
               child: BackgroundComponent(
@@ -61,37 +60,52 @@ class SelectUserTypeScreen extends StatelessWidget {
                     ),
                     Gap(30.h),
                     CustomButtonInternet(
-                      title: "هل أنت طالب خدمة؟ سجل الآن",
+                      title: "سجل كطالب خدمة",
                       vertical: 12,
                       width: MediaQuery.of(context).size.width,
-                      onTap: ()=> Navigator.pushNamed(context,
-                          AppRoutes.onBoarding),
+                      onTap: () {
+                        AppConstants.userType = AppConstants.user;
+                        CacheHelper.saveDate(
+                            key: AppConstants.appType,
+                            value: AppConstants.user);
+                        Navigator.pushNamed(context, AppRoutes.onBoarding);
+                      },
                     ),
                     CustomButtonInternet(
-                      title: "هل ترغب في الربح معنا؟ سجل الآن",
-                      colorBg: Colors.transparent,
-                      txtColor: AppColors.c090909,
-                      borderColor: AppColors.cBEA235,
-                      width: MediaQuery.of(context).size.width,
-                      vertical: 12,
-                      onTap: ()=> Navigator.pushNamed(context,
-                          AppRoutes.onBoarding),
-                    ),
+                        title: "سجل كمقدم خدمة",
+                        colorBg: Colors.transparent,
+                        txtColor: AppColors.c090909,
+                        borderColor: AppColors.cBEA235,
+                        width: MediaQuery.of(context).size.width,
+                        vertical: 12,
+                        onTap: () {
+                          AppConstants.userType = AppConstants.vendor;
+                          CacheHelper.saveDate(
+                              key: AppConstants.appType,
+                              value: AppConstants.vendor);
+                          Navigator.pushNamed(context,
+                              AppRoutes.onBoarding);
+                        }),
                     CustomButtonInternet(
-                      title: "الدخول كشركة",
-                      vertical: 12,
-                      colorBg: Colors.transparent,
-                      txtColor: AppColors.c090909,
-                      width: MediaQuery.of(context).size.width,
-                      onTap: () => Navigator.pushNamed(context,
-                          AppRoutes.onBoarding),
-                    ),
+                        title: "سجل كشركة",
+                        vertical: 12,
+                        colorBg: Colors.transparent,
+                        txtColor: AppColors.c090909,
+                        borderColor: AppColors.cBEA235,
+                        width: MediaQuery.of(context).size.width,
+                        onTap: () {
+                          AppConstants.userType = AppConstants.company;
+                          CacheHelper.saveDate(
+                              key: AppConstants.appType,
+                              value: AppConstants.company);
+                          Navigator.pushNamed(context,
+                              AppRoutes.onBoarding);
+                        }),
                     Gap(20.h),
                     const Spacer(),
                   ],
                 ),
-              )
-          ),
+              )),
         ],
       ),
     );

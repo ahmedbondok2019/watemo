@@ -1,44 +1,43 @@
-import '../../../../core/common/widgets/custom_network_image.dart';
+import '../../../../core/common/widgets/custom_app_drawer.dart';
+import '../../../../core/common/widgets/custom_profile_image.dart';
 import '../../../../core/src/app_export.dart';
-import '../widgets/custom_orders_list.dart';
+import '../../../auth/presentation/widgets/custom_drop_down_nat_res.dart';
+import '../../cubit/orders_cubit.dart';
+import '../widgets/custom_user_orders.dart';
+import '../widgets/custom_vendor_orders.dart';
 
 class OrdersScreen extends StatelessWidget {
-  const OrdersScreen({super.key});
+  OrdersScreen({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     OrdersCubit ordersCubit = BlocProvider.of<OrdersCubit>(context);
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomAppDrawer(),
       body: BackgroundComponent(
-          opacity: 0.2,
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  CustomAppBar(
-                    title: "الطلبات",
-                    titleSize: 16,
-                    leading: Container(
-                      width: 48.w,
-                      height: 48.h,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
+        opacity: 0.2,
+        child: Column(
+          children: [
+            CustomAppBar(
+              title: "الطلبات",
+              titleSize: 16,
+              leading: const CustomProfileImage(),
+              actions: [
+                AppConstants.userType == AppConstants.user ||
+                        AppConstants.userType == AppConstants.company
+                    ? const NotificationIcon()
+                    : CustomDrawerIcon(
+                        onTap: () => _scaffoldKey.currentState?.openDrawer(),
                       ),
-                      child: CustomNetworkImage(
-                        imageUrl: EndPoints.baseImageUrl +
-                            context.read<HomeCubit>()
-                                .user!.image!,
-                        fit: BoxFit.fill,
-                        height: 164.h,
-                        width: 361.w,
-                      ),
-                    ),
-                    actions: const [NotificationIcon()],
-                  ),
-                  Gap(20.h),
-                  BlocBuilder<OrdersCubit, OrdersState>(
-                      builder: (context, state) {
-                    return Container(
+              ],
+            ),
+            Gap(15.h),
+            BlocBuilder<OrdersCubit, OrdersState>(builder: (context, state) {
+              return AppConstants.userType == AppConstants.user ||
+                      AppConstants.userType == AppConstants.company
+                  ? Container(
                       height: 56.h,
                       margin: EdgeInsets.symmetric(horizontal: 10.w),
                       decoration: BoxDecoration(
@@ -63,15 +62,14 @@ class OrdersScreen extends StatelessWidget {
                             vertical: 0,
                             height: 40,
                             width: 115,
-                            colorBg: ordersCubit.orderType == 0
+                            colorBg: ordersCubit.orderType == null
                                 ? null
                                 : AppColors.white,
-                            txtColor: ordersCubit.orderType == 0
+                            txtColor: ordersCubit.orderType == null
                                 ? null
                                 : AppColors.c090909,
-                                // : AppColors.c9A9A9A,
                             onTap: () {
-                              ordersCubit.changeOrderType(0);
+                              ordersCubit.changeOrderType(null);
                             },
                           ),
                           CustomButtonInternet(
@@ -87,7 +85,7 @@ class OrdersScreen extends StatelessWidget {
                             txtColor: ordersCubit.orderType == 1
                                 ? null
                                 : AppColors.c090909,
-                                // : AppColors.c9A9A9A,
+                            // : AppColors.c9A9A9A,
                             onTap: () {
                               ordersCubit.changeOrderType(1);
                             },
@@ -105,33 +103,35 @@ class OrdersScreen extends StatelessWidget {
                             txtColor: ordersCubit.orderType == 2
                                 ? null
                                 : AppColors.c090909,
-                                // : AppColors.c9A9A9A,
+                            // : AppColors.c9A9A9A,
                             onTap: () {
                               ordersCubit.changeOrderType(2);
                             },
                           ),
                         ],
                       ),
+                    )
+                  : CustomDropDownNat(
+                      list: ordersCubit.statusOrders,
+                      selectedItem: ordersCubit.statusOrder,
+                      width: 361,
+                      height: 48,
+                      isDate: false,
+                      borderColor: AppColors.cE3DCC4,
+                      bgColor: AppColors.white,
+                      onChanged: ordersCubit.changeStatusOrder,
+                      label: "كل الطلبات",
                     );
-                  })
-                ],
-              ),
+            }),
+            Gap(5.h),
 
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: BlocBuilder<OrdersCubit, OrdersState>(
-                          builder: (context, state) {
-                        return CustomOrdersList(
-                            ordersDateList: OrdersCubit.get(context).ordersDateList,
-                            ordersList: OrdersCubit.get(context).ordersList,
-                        );
-                      })),
-                ),
-              ),
-            ],
-          )),
+            AppConstants.userType == AppConstants.user ||
+                AppConstants.userType == AppConstants.company
+                ? const CustomUserOrder()
+                : const CustomVendorOrder()
+          ],
+        ),
+      ),
     );
   }
 }

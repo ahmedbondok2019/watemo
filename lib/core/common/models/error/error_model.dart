@@ -3,13 +3,13 @@ part 'error_model.g.dart';
 
 @JsonSerializable()
 class ErrorModel {
-  final dynamic data;
+  final Map<String, dynamic>? errors;
   final String? error;
   final bool? status;
   final String? code;
 
   ErrorModel({
-    this.data,
+    this.errors,
     this.status,
     this.error,
     this.code,

@@ -1,18 +1,23 @@
 import '../../../../core/common/widgets/animated_custom_dialog.dart';
-import '../../../../core/common/widgets/my_dialog.dart';
+import '../../../../core/common/widgets/confirm_order_dialog.dart';
 import '../../../../core/src/app_export.dart';
 import '../../../../core/utils/custom_message.dart';
+import '../../../home/data/models/hajj_model.dart';
 import '../../../services/data/models/services/services_model.dart';
 import '../../cubit/checkout_cubit.dart';
 import '../../data/models/create_order/create_order_req_model.dart';
 import '../widgets/custom_checkout_details_body.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  final ServicesModel service;
+  final ServicesModel? service;
   final CreateOrderReqModel order;
+  final HajjModel? hajj;
+  final List<ServicesModel> selectServicesList;
   const CheckoutScreen({super.key,
     required this.service,
+    required this.hajj,
     required this.order,
+    required this.selectServicesList,
   });
 
   @override
@@ -35,6 +40,8 @@ class CheckoutScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 16.r),
                   child: CustomCheckoutDetailsBody(
                     service: service,
+                    hajj: hajj,
+                    selectServices: selectServicesList,
                   ),
                 ),
               ),
@@ -57,6 +64,9 @@ class CheckoutScreen extends StatelessWidget {
             type: AlertType.failed);
       }
       else if (state is CreateOrderSuccess) {
+        CustomMessage.showMessage(context,
+            message: state.message,
+            type: AlertType.success);
         Navigator.pushNamedAndRemoveUntil(
             context, AppRoutes.mainLayer, (route) => false);
       }
@@ -72,9 +82,25 @@ class CheckoutScreen extends StatelessWidget {
           horizontal: 0,
           title: "متابعة طلب الخدمة",
           onTap: (){
-            order.code = context.read<CheckoutCubit>().codeController.text.trim();
+            print(" selectServicesListselectServicesList =====>>>>>>> ${selectServicesList.length}");
+            List<List<String>>? servicesList = [];
+            if(hajj != null){
+              servicesList.add([hajj!.id.toString(),"1"]);
+            }
+            else{
+              servicesList.add([
+                service!.id.toString(),
+                service!.counter.toString()]);
+            }
+            for (var element in selectServicesList) {
+              servicesList.add([
+                element.id.toString(),
+                element.counter.toString()]);
+            }
+
+            order.services = servicesList;
             showAnimatedDialog(context,
-                MyDialog(
+                ConfirmOrderDialog(
                 description: "تاكيد طلب هذة الخدمة؟",
                 isFailed: false,
                 widthImage: 252,

@@ -12,6 +12,8 @@ TransactionsModel _$TransactionsModelFromJson(Map<String, dynamic> json) =>
       paymentMethod: json['payment_method'] as String?,
       transRef: json['trans_ref'] as String?,
       date: json['date'] as String?,
-      isPluse: json['isPluse'] as int?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      isPlus: json['isPluse'] as int?,
       percentage: json['percentage'] as String?,
     );

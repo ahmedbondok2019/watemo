@@ -40,7 +40,7 @@ class CustomNotificationCard extends StatelessWidget {
                     clipBehavior: Clip.antiAlias,
                     decoration: const BoxDecoration(shape: BoxShape.circle),
                     child: CustomNetworkImage(
-                      imageUrl: EndPoints.baseImageUrl + image,
+                      imageUrl: image,
                       fit: BoxFit.fill,
                         width: 32.w, height: 32.h
                     ),

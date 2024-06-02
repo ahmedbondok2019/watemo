@@ -1,74 +1,67 @@
+import '../../../../core/common/widgets/custom_app_drawer.dart';
+import '../../../../core/common/widgets/custom_no_result.dart';
 import '../../../../core/src/app_export.dart';
 import '../../cubit/wallet_cubit.dart';
 import '../widgets/custom_wallet_list.dart';
 
 class AllWalletScreen extends StatelessWidget {
-  const AllWalletScreen({super.key});
+  AllWalletScreen({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomAppDrawer(),
       body: BackgroundComponent(
         opacity: 0.2,
         child: Column(
           children: [
-            const CustomAppBar(
+            CustomAppBar(
               title: "المحفظة",
               titleSize: 16,
-              leading: CustomBackButton(),
-              actions: [NotificationIcon()],
+              leading: const CustomBackButton(),
+              actions: [
+                AppConstants.userType == AppConstants.user ||
+                    AppConstants.userType == AppConstants.company
+                    ? const NotificationIcon()
+                    : CustomDrawerIcon(
+                  onTap: ()=> _scaffoldKey.currentState?.openDrawer(),
+                ),
+              ],
             ),
 
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.r,
-                      vertical: 10.r,
-                    ),
-                    child: Expanded(
-                      child: SingleChildScrollView(
-                        child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16.r,
-                              vertical: 10.r,
+
+            BlocBuilder<WalletCubit, WalletState>(
+              builder: (context, state) {
+                if (state is LastWalletLoading) {
+                  return const Expanded(
+                    child: CustomLoading());
+                }
+                if (state is LastWalletSuccess) {
+                  return Expanded(
+                    child: context.read<WalletCubit>().lastTransactionsList.isEmpty
+                        ? const Center(child: CustomNoResult(title: "لم تقم باجراء اي عمليات مالية"))
+                        : SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Column(
+                          children: [
+                            Gap(20.h),
+                            CustomWalletList(
+                              transactionsList: context.read<WalletCubit>().lastTransactionsList,
                             ),
-                            child: BlocBuilder<WalletCubit, WalletState>(
-                              builder: (context, state) {
-                                if (state is LastWalletLoading) {
-                                  return const Center(
-                                    child: CustomLoading(),
-                                  );
-                                }
-                                else if (state is LastWalletSuccess) {
-                                  return Column(
-                                    children: [
-                                      Gap(20.h),
-                                      CustomWalletList(
-                                        transactionsList: context.read<WalletCubit>().lastTransactionsList,
-                                      ),
-                                    ],
-                                  );
-                                }
-                                else if (state is LastWalletFailed) {
-                                  return Center(
-                                    child: Text(
-                                      NetworkExceptions.getErrorMessage(state.networkExceptions),
-                                    ),
-                                  );
-                                }
-                                else {
-                                  return const Center(
-                                    child: CustomLoading(),
-                                  );
-                                }
-                              },
-                            )
+                          ],
                         ),
                       ),
                     ),
-                ),
-              ),
+                  );
+                }
+                else {
+                  return const Expanded(
+                      child: CustomLoading());
+                }
+              },
             ),
           ],
         ),

@@ -5,13 +5,10 @@ class TrackingOrderDataSource {
 
   TrackingOrderDataSource(this.baseDioHelper);
 
-  /// <<<---- get Order Location --->>>
-  Future<Response> getOrderLocation(String orderId) async {
-    final Response response = await baseDioHelper.post(
-      endPoint: EndPoints.orderLocation,
-      data: {
-        "order_id": orderId
-      },
+  /// <<<---- get Order Tracking --->>>
+  Future<Response> getOrderTracking(String orderId) async {
+    final Response response = await baseDioHelper.get(
+      endPoint: EndPoints.orderTrack + orderId,
       token: getIt<SharedPreferences>().getString(AppConstants.token)
     );
     return response;

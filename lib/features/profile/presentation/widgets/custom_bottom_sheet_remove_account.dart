@@ -1,5 +1,5 @@
 import '../../../../core/common/widgets/animated_custom_dialog.dart';
-import '../../../../core/common/widgets/my_dialog.dart';
+import '../../../../core/common/widgets/confirm_order_dialog.dart';
 import '../../../../core/src/app_export.dart';
 import '../../cubit/profile_cubit.dart';
 
@@ -128,7 +128,7 @@ class CustomBottomSheetRemoveAccount extends StatelessWidget {
                       showAnimatedDialog(context,
                           BlocBuilder<ProfileCubit, ProfileState>(
                               builder: (context, state) {
-                        return MyDialog(
+                        return ConfirmOrderDialog(
                           description: "هل انت متاكد من انك تريد حذف الحساب",
                           isFailed: false,
                           image: ImageConstants.said,

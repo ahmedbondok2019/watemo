@@ -16,6 +16,7 @@ class CustomMessage {
       Duration? duration}) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      dismissDirection: DismissDirection.up,
       closeIconColor: type == AlertType.success
           ? AppColors.green
           : type == AlertType.failed
@@ -36,7 +37,7 @@ class CustomMessage {
                           ? AppColors.lightOrange
                           : AppColors.blue)),
       behavior: SnackBarBehavior.floating,
-      margin: EdgeInsetsDirectional.only(bottom: 50.h, start: 25.w, end: 25.w),
+      margin: EdgeInsetsDirectional.only(top: 50.h, start: 25.w, end: 25.w),
       padding: EdgeInsetsDirectional.only(
           top: 10.h, bottom: 10.h, start: 10.w, end: 10.w),
       duration: duration ?? const Duration(seconds: 4),
@@ -71,13 +72,6 @@ class CustomMessage {
         ],
       ),
       backgroundColor: AppColors.white,
-      // backgroundColor: (type == AlertType.success
-      //     ? AppColors.baleGreen
-      //     : type == AlertType.failed
-      //         ? AppColors.baleRed
-      //         : type == AlertType.warning
-      //             ? AppColors.baleOrange
-      //             : AppColors.baleBlue),
     ));
   }
 }

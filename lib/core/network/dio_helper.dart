@@ -62,26 +62,21 @@ abstract class BaseDioHelper {
 
 class DioHelper extends BaseDioHelper {
   Dio _dio() {
-    final Dio dio = Dio(
-      BaseOptions(
+    final Dio dio = Dio(BaseOptions(
         baseUrl: EndPoints.baseUrl,
         receiveDataWhenStatusError: true,
         connectTimeout: const Duration(seconds: 50),
         receiveTimeout: const Duration(seconds: 50),
-      ),
-    );
+      ));
 
-    dio.interceptors.add(
-      LogInterceptor(
+    dio.interceptors.add(LogInterceptor(
         requestBody: true,
         error: true,
         requestHeader: true,
         responseHeader: false,
         request: true,
         responseBody: true,
-      ),
-    );
-
+      ));
     return dio;
   }
 
@@ -106,7 +101,7 @@ class DioHelper extends BaseDioHelper {
           if (!isMultipart) 'Content-Type': 'application/json',
           if (!isMultipart) 'Accept': 'application/json',
           if (!isMultipart) 'lang': 'ar',
-          if (!isMultipart) 'user_type': 'user',
+          if (!isMultipart) 'user-type': AppConstants.userType,
           if (token != null) 'authorization': 'Bearer $token',
         },
       ),
@@ -138,7 +133,7 @@ class DioHelper extends BaseDioHelper {
           if (!isMultipart) 'Accept': 'application/json',
           if (!isMultipart) 'X-Requested-With': 'XMLHttpRequest',
           if (!isMultipart) 'lang': 'ar',
-          if (!isMultipart) 'user_type': 'user',
+          if (!isMultipart) 'user-type': AppConstants.userType,
           if (token != null) 'authorization': 'Bearer $token',
         },
       ),
@@ -169,7 +164,7 @@ class DioHelper extends BaseDioHelper {
           if (!isMultipart) 'Content-Type': 'application/json',
           if (!isMultipart) 'Accept': 'application/json',
           if (!isMultipart) 'lang': 'ar',
-          if (!isMultipart) 'user_type': 'user',
+          if (!isMultipart) 'user-type': AppConstants.userType,
           if (token != null) 'authorization': 'Bearer $token',
         },
       ),
@@ -198,7 +193,7 @@ class DioHelper extends BaseDioHelper {
           if (!isMultipart) 'Content-Type': 'application/json',
           if (!isMultipart) 'Accept': 'application/json',
           if (!isMultipart) 'lang': 'ar',
-          if (!isMultipart) 'user_type': 'user',
+          if (!isMultipart) 'user-type': AppConstants.userType,
           if (token != null) 'authorization': 'Bearer $token',
         },
       ),
@@ -228,7 +223,7 @@ class DioHelper extends BaseDioHelper {
           if (!isMultipart) 'Content-Type': 'application/json',
           if (!isMultipart) 'Accept': 'application/json',
           if (!isMultipart) 'lang': 'ar',
-          if (!isMultipart) 'user_type': 'user',
+          if (!isMultipart) 'user-type': AppConstants.userType,
           if (token != null) 'authorization': 'Bearer $token',
         },
       ),

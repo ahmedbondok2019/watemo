@@ -1,21 +1,35 @@
+import '../../../../core/common/widgets/custom_app_drawer.dart';
 import '../../../../core/src/app_export.dart';
 import '../widgets/custom_invite_body.dart';
 
 class InvitationFriendScreen extends StatelessWidget {
-  const InvitationFriendScreen({super.key});
+  InvitationFriendScreen({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: AppConstants.userType == AppConstants.user ||
+          AppConstants.userType == AppConstants.company
+          ? null
+          : const CustomAppDrawer(),
       body: BackgroundComponent(
         opacity: 0.2,
         child: Column(
           children: [
-            const CustomAppBar(
+            CustomAppBar(
               title: "دعوة صديق",
               titleSize: 16,
-              leading: CustomBackButton(),
-              actions: [NotificationIcon()],
+              leading: const CustomBackButton(),
+              actions: [
+                AppConstants.userType == AppConstants.user ||
+                    AppConstants.userType == AppConstants.company
+                    ? const NotificationIcon()
+                    : CustomDrawerIcon(
+                  onTap: ()=> _scaffoldKey.currentState?.openDrawer(),
+                ),
+              ],
             ),
 
             Expanded(

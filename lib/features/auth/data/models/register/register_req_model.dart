@@ -9,14 +9,14 @@ class RegisterReqModel {
   final String? email;
   final String? password;
   final String? countryCode;
-  final String? residencePlace;
-  final String? nationality;
+  final String? city;
+  final String? country;
 
   RegisterReqModel({
     required this.name,
     required this.phone,
-    required this.nationality,
-    required this.residencePlace,
+    required this.country,
+    required this.city,
     required this.password,
     required this.countryCode,
     required this.email,

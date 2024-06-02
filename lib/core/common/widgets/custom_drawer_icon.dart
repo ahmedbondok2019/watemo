@@ -1,17 +1,13 @@
 import '../../src/app_export.dart';
 
 class CustomDrawerIcon extends StatelessWidget {
-  final void Function()? onPress;
-
-  const CustomDrawerIcon(
-      {Key? key,
-      this.onPress,
+  const CustomDrawerIcon({Key? key,
       this.width,
       this.onTap,
       this.backgroundColor,
       this.height,
-      this.imageColor})
-      : super(key: key);
+      this.imageColor
+  }) : super(key: key);
   final double? width;
   final double? height;
   final Color? backgroundColor;

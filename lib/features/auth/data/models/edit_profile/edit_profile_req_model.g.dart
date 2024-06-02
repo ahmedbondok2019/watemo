@@ -10,7 +10,7 @@ FormData _$EditProfileReqModelToJson(EditProfileReqModel instance) =>
     FormData.fromMap({
       'name': instance.name,
       'phone': instance.phone,
-      'email': instance.phone,
+      'email': instance.email,
       'password': instance.password,
       'image': instance.image,
     });

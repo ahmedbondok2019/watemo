@@ -1,4 +1,4 @@
-import '../../../../core/common/widgets/custom_network_image.dart';
+import '../../../../core/common/widgets/custom_profile_image.dart';
 import '../../../../core/src/app_export.dart';
 import '../../cubit/offers_cubit.dart';
 import '../widgets/custom_offers_list.dart';
@@ -21,31 +21,11 @@ class OffersScreen extends StatelessWidget {
             else if (state is OffersSuccess) {
               return Column(
                 children: [
-                  CustomAppBar(
+                  const CustomAppBar(
                     title: "العروض",
                     titleSize: 16,
-                    leading: Container(
-                      width: 48.w,
-                      height: 48.h,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Container(
-                        width: 48.w,height: 48.h,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: CustomNetworkImage(
-                          imageUrl: EndPoints.baseImageUrl +
-                              context.read<HomeCubit>()
-                                  .user!.image!,
-                          fit: BoxFit.fill,
-                          height: 164.h,
-                          width: 361.w,
-                        ),
-                      ),
-                    ),
-                    actions: const [NotificationIcon()],
+                    leading: CustomProfileImage(),
+                    actions: [NotificationIcon()],
                   ),
 
                   Expanded(

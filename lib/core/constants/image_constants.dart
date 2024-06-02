@@ -2,16 +2,15 @@ class ImageConstants {
   static const String arrowRight = "assets/images/arrow_right.png";
   static const String book1 = "assets/images/book1.png";
   static const String bookFilter = "assets/images/bookFilter.png";
-  static const String deleteAccount = "assets/images/deleteAccount.png";
   static const String favorite = "assets/images/favorite.png";
   static const String favoriteBorder = "assets/images/favorite_border.png";
-  static const String deleteIcon = "assets/images/delet.png";
-  static const String delete = 'assets/images/delete.png';
   static const String done = "assets/images/done.png";
   static const String download = "assets/images/download.png";
   static const String downloadsFilled = 'assets/images/downloads_filled.png';
-  static const String downloadsOutlined =
-      'assets/images/downloads_outlined.png';
+  static const String resultImage = "assets/images/result_image.png";
+  static const String circle = "assets/icons/circle.svg";
+  static const String doneStep = "assets/icons/done_step.svg";
+  static const String downloadsOutlined = 'assets/images/downloads_outlined.png';
   static const String editIcon = "assets/images/edit.png";
   static const String englishIcon = "assets/images/english_icon.png";
   static const String favoriteFilled = 'assets/images/favorite_filled.png';
@@ -102,6 +101,7 @@ class ImageConstants {
   static const String dropArrow = "assets/icons/drop_arrow.svg";
   static const String arrowBack = "assets/icons/arrow_back.svg";
   static const String home = "assets/icons/home.svg";
+  static const String emptyWallet = "assets/icons/empty-wallet.svg";
   static const String orders = "assets/icons/orders.svg";
   static const String offers = "assets/icons/offers.svg";
   static const String setting = "assets/icons/setting.svg";
@@ -140,11 +140,35 @@ class ImageConstants {
   static const String gold = "assets/images/gold.png";
   static const String walletUp = "assets/icons/wallet_up.svg";
   static const String walletDown = "assets/icons/wallet_down.svg";
+  static const String camera = "assets/icons/camera.svg";
   static const String edit = "assets/icons/edit.svg";
   static const String mastercard = "assets/images/mastercard.png";
   static const String editPhoto = "assets/images/edit_photo.png";
   static const String said = "assets/images/said.png";
   static const String confirm = "assets/images/confirm.png";
+  static const String noImageAuth = "assets/images/no_image.png";
+  static const String arafat = "assets/images/Arafat.png";
+  static const String kaba = "assets/images/kaba.png";
+  static const String musiq = "assets/images/musiq.png";
+  static const String selectVideo = "assets/images/select_video.png";
+  static const String timeImage = "assets/images/time_image.png";
+  static const String doneImage = "assets/images/done_image.png";
+  static const String errorImage = "assets/images/error_image.png";
+  static const String homeDrawer = "assets/icons/home_drawer.svg";
+  static const String personDrawer = "assets/icons/person_drawer.svg";
+  static const String walletDrawer = "assets/icons/wallet_drawer.svg";
+  static const String notificationDrawer = "assets/icons/notification_drawer.svg";
+  static const String aboutAppDrawer = "assets/icons/about_app_drawer.svg";
+  static const String termDrawer = "assets/icons/term_drawer.svg";
+  static const String contactDrawer = "assets/icons/contact_drawer.svg";
+  static const String logoutDrawer = "assets/icons/logout_drawer.svg";
+  static const String minusIcon = "assets/icons/minus.svg";
+  static const String plusIcon = "assets/icons/plus.svg";
+  static const String deleteIcon = "assets/icons/delete.svg";
+  static const String lineGreen = "assets/images/line_green.png";
+  static const String lineRed = "assets/images/line_red.png";
+  static const String lineGrey = "assets/images/line_grey.png";
+  static const String lineGreenHorizontal = "assets/images/line_green_horizontal.png";
 
   // lottie
   static const String noInternet = 'assets/lottie/noInternet.json';
