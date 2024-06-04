@@ -346,7 +346,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         hint: "phone".tr(context),
                         controller: authCubit.phoneNumberController,
                         suffixIcon: Image.asset(
-                          ImageConstants.phonIcon,
+                          ImageConstants.phoneIcon,
                           height: 12.h,
                           width: 18.w,
                         ),

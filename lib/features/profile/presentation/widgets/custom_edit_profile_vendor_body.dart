@@ -366,7 +366,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                     hint: "phone".tr(context),
                     controller: profile.phoneNumber,
                     suffixIcon: Image.asset(
-                      ImageConstants.phonIcon,
+                      ImageConstants.phoneIcon,
                       height: 12.h,
                       width: 18.w,
                     ),

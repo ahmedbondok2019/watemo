@@ -189,7 +189,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                           hint: 'phone_fax'.tr(context),
                           controller: profile.faxNumberController,
                           suffixIcon: Image.asset(
-                            ImageConstants.phonIcon,
+                            ImageConstants.phoneIcon,
                             height: 12.h,
                             width: 18.w,
                           ),

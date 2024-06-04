@@ -37,7 +37,7 @@ class CustomForgotPassword extends StatelessWidget {
                   },
                   isRTL: false,
                   suffixIcon: Image.asset(
-                    ImageConstants.phonIcon,
+                    ImageConstants.phoneIcon,
                     height: 12.h,
                     width: 18.w,
                   ),
