@@ -12,8 +12,8 @@ class OtpScreen extends StatelessWidget {
         opacity: 0.2,
         child: Column(
           children: [
-            const CustomAppBar(
-              title: "رمز التحقق",
+            CustomAppBar(
+              title: "otp".tr(context),
             ),
             Expanded(
               child: OtpNumber(

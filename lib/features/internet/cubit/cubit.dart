@@ -25,11 +25,11 @@ class InternetCubit extends Cubit<InternetState> {
   }
 
   void connected() {
-    emit(ConnectedState(message: "Connected"));
+    emit(ConnectedState(message: "connected"));
   }
 
   void notConnected() {
-    emit(NotConnectedState(message: "Not Connected"));
+    emit(NotConnectedState(message: "not_connected"));
   }
 
   @override

@@ -86,7 +86,8 @@ class CustomNotificationCard extends StatelessWidget {
             Text(
               date,
               style: AppTextStyles.textStyle(
-                  weight: FontWeight.w400, color: AppColors.c9A9A9A, size: 12),
+                  weight: FontWeight.w400,
+                  color: AppColors.c9A9A9A, size: 12),
             ),
           ],
         ),

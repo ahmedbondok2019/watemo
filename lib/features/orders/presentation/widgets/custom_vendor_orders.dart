@@ -21,8 +21,8 @@ class CustomVendorOrder extends StatelessWidget {
           state is RefuseOrderVendorSuccess
       ) {
         return context.read<OrdersCubit>().ordersVendorList.isEmpty
-            ? const Expanded(
-                child: Center(child: CustomNoResult(title: "لا يوجد طلبات")))
+            ? Expanded(
+                child: Center(child: CustomNoResult(title: "no_orders".tr(context))))
             : Expanded(
                 child: SingleChildScrollView(
                     child: Padding(

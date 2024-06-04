@@ -20,7 +20,7 @@ class ContactUsScreen extends StatelessWidget {
       body: Column(
         children: [
           CustomAppBar(
-            title: "تواصل معنا",
+            title: "contact_us".tr(context),
             titleSize: 16,
             leading: const CustomBackButton(),
             actions: [

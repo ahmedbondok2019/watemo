@@ -11,6 +11,7 @@ class CustomDropDownNatButton extends StatelessWidget {
     this.borderColor,
     this.selectedValueDate,
     required this.isDate,
+    required this.isTrans,
   });
 
   final double? width;
@@ -18,6 +19,7 @@ class CustomDropDownNatButton extends StatelessWidget {
   final Color? borderColor;
   final Color? bgColor;
   final bool isDate;
+  final bool isTrans;
   final TitleIdListModel? selectedValue;
   final String? selectedValueDate;
 
@@ -35,24 +37,33 @@ class CustomDropDownNatButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(child:  Text(
-            isDate
-                ? selectedValueDate == null
-                ? label
-                : selectedValueDate!
-                : selectedValue == null
-                ? label
-                : selectedValue!.title,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.textStyle(
-                weight: FontWeight.w700,
-                color: selectedValue != null || selectedValueDate != null
-                    ? AppColors.c090909
-                    : AppColors.c9A9A9A,
-                size: 14
+          Flexible(
+            child: Text(
+              isTrans
+                  ? (isDate
+                          ? selectedValueDate == null
+                              ? label
+                              : selectedValueDate!
+                          : selectedValue == null
+                              ? label
+                              : selectedValue!.title)
+                      .tr(context)
+                  : isDate
+                      ? selectedValueDate == null
+                          ? label
+                          : selectedValueDate!
+                      : selectedValue == null
+                          ? label
+                          : selectedValue!.title,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.textStyle(
+                  weight: FontWeight.w700,
+                  color: selectedValue != null || selectedValueDate != null
+                      ? AppColors.c090909
+                      : AppColors.c9A9A9A,
+                  size: 14),
             ),
-          ),),
-
+          ),
           SvgPicture.asset(
             ImageConstants.dropArrow,
             height: 8.h,

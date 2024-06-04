@@ -17,7 +17,7 @@ class VideosScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "الفيديوهات",
+              title: "the_videos".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

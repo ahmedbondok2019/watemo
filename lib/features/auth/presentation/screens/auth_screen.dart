@@ -25,7 +25,7 @@ class AuthScreen extends StatelessWidget {
                 Gap(20.h),
                 Center(
                   child: Text(
-                    "مرحباً بكم",
+                    "welcome".tr(context),
                     style: AppTextStyles.textStyle(
                         size: 28,
                         weight: FontWeight.w700,
@@ -35,7 +35,7 @@ class AuthScreen extends StatelessWidget {
                 Gap(10.h),
                 Center(
                   child: Text(
-                    "في تطبيق عمرة للغير لكل من هو غير قادر علي ادائها",
+                    "auth_subtitle".tr(context),
                     style: AppTextStyles.textStyle(
                         size: 15,
                         weight: FontWeight.w400,
@@ -63,7 +63,7 @@ class AuthScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         CustomButtonInternet(
-                          title: "تسجيل الدخول",
+                          title: "logIn".tr(context),
                           horizontal: 0,
                           size: 16,
                           vertical: 0,
@@ -77,7 +77,7 @@ class AuthScreen extends StatelessWidget {
                           onTap: authCubit.changeStatusAuth,
                         ),
                         CustomButtonInternet(
-                          title: "انشاء حساب جديد",
+                          title: "register".tr(context),
                           horizontal: 0,
                           vertical: 0,
                           height: 40,

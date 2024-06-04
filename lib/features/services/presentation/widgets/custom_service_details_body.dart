@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../../core/src/app_export.dart';
 import '../../../auth/presentation/widgets/custom_drop_down_nat_res.dart';
@@ -33,7 +32,7 @@ class CustomServiceDetailsBody extends StatelessWidget {
             ),
             Gap(8.w),
             Text(
-              "تفاصيل الطلب",
+              "order_details".tr(context),
               style: AppTextStyles.textStyle(
                   weight: FontWeight.w500, color: AppColors.c090909, size: 16),
             ),
@@ -41,13 +40,13 @@ class CustomServiceDetailsBody extends StatelessWidget {
         ),
         Gap(15.h),
         Text(
-          "${titleId.title} نيابه عن “اسم الشخص”",
+          "${titleId.title} ${"person_name".tr(context)}",
           style: AppTextStyles.textStyle(
               weight: FontWeight.w600, color: AppColors.c090909, size: 14),
         ),
         Gap(10.h),
         InputFormField(
-          hint: "الاسم هنا",
+          hint: "hint_name".tr(context),
           fillColor: AppColors.cFBFBFB,
           controller: context.read<ServicesCubit>().nameController,
         ),
@@ -55,27 +54,27 @@ class CustomServiceDetailsBody extends StatelessWidget {
         ///relative relation
         Gap(25.h),
         Text(
-          "صلة القرابة",
+          "relation".tr(context),
           style: AppTextStyles.textStyle(
               weight: FontWeight.w600, color: AppColors.c090909, size: 14),
         ),
         Gap(10.h),
         BlocBuilder<ServicesCubit, ServicesState>(builder: (_, state) {
-          log("length 55=====>>>>>>>${context.read<ServicesCubit>().selectServicesList.length}");
           return CustomDropDownNat(
             width: double.infinity,
             list: context.read<ServicesCubit>().relations,
             bgColor: AppColors.cFBFBFB,
             selectedItem: context.read<ServicesCubit>().relation,
             onChanged: context.read<ServicesCubit>().changeRelations,
-            label: "اختر صلة القرابة",
+            label: "select_relation".tr(context),
+            isTrans: false,
           );
         }),
 
         /// notes
         Gap(25.h),
         Text(
-          "اضافة ملاحظات",
+          "add_notes".tr(context),
           style: AppTextStyles.textStyle(
               weight: FontWeight.w600, color: AppColors.c090909, size: 14),
         ),
@@ -93,7 +92,6 @@ class CustomServiceDetailsBody extends StatelessWidget {
 
         titleId.id == 3
             ? BlocBuilder<ServicesCubit, ServicesState>(builder: (_, state) {
-                log("length 55=====>>>>>>>${context.read<ServicesCubit>().selectServicesList.length}");
                 return Container(
                   margin: EdgeInsets.symmetric(vertical: 8.h),
                   padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -152,7 +150,6 @@ class CustomServiceDetailsBody extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       builder: (_) => BlocBuilder<ServicesCubit, ServicesState>(
                               builder: (_, state) {
-                            log("length 55=====>>>>>>>${context.read<ServicesCubit>().selectServicesList.length}");
                             return Container(
                               width: 393.w,
                               decoration: const BoxDecoration(
@@ -223,7 +220,7 @@ class CustomServiceDetailsBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "خدمات اضافية",
+                        "additional_services".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w600,
                             color: AppColors.c090909,

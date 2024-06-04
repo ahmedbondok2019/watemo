@@ -26,7 +26,7 @@ class WalletScreen extends StatelessWidget {
         width: 361,
         horizontal: 0,
         vertical: isHome ? 120 : null,
-        title: "إضافة رصيد",
+        title: "add_money".tr(context),
         onTap: () => Navigator.pushNamed(context, AppRoutes.addWallet),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -35,7 +35,7 @@ class WalletScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomAppBar(
-                title: "المحفظة",
+                title: "wallet".tr(context),
                 titleSize: 16,
                 leading: isHome
                     ? const CustomProfileImage()
@@ -101,7 +101,7 @@ class WalletScreen extends StatelessWidget {
                                       ),
                                       Gap(10.h),
                                       Text(
-                                        "${context.read<WalletCubit>().total} ريال ",
+                                        "${context.read<WalletCubit>().total} ${"rial".tr(context)} ",
                                         style: AppTextStyles.textStyle(
                                             weight: FontWeight.w700,
                                             color: AppColors.white,
@@ -119,7 +119,7 @@ class WalletScreen extends StatelessWidget {
                               vertical: 10.h,
                             ),
                             child: CustomSeeAll(
-                              title: "اخر العمليات",
+                              title: "last_payment".tr(context),
                               onTap: () => Navigator.pushNamed(
                                   context, AppRoutes.lastWallet),
                             )),
@@ -131,8 +131,8 @@ class WalletScreen extends StatelessWidget {
                               ? Column(
                                   children: [
                                     Gap(50.h),
-                                    const CustomNoResult(
-                                        title: "لم تقم باجراء اي عمليات مالية"),
+                                    CustomNoResult(
+                                        title: "no_wallet".tr(context)),
                                   ],
                                 )
                               : SingleChildScrollView(
@@ -151,14 +151,8 @@ class WalletScreen extends StatelessWidget {
                         ),
                       ],
                     ));
-                  } else if (state is WalletFailed) {
-                    return Center(
-                      child: Text(
-                        NetworkExceptions.getErrorMessage(
-                            state.networkExceptions),
-                      ),
-                    );
-                  } else {
+                  }
+                  else {
                     return const Expanded(
                       child: Center(child: CustomLoading()),
                     );

@@ -47,7 +47,7 @@ class ConfirmOrderDialog extends StatelessWidget {
                   height: 48,
                   width: 132.5,
                   horizontal: 0,
-                  title: "تأكيد",
+                  title: "confirm".tr(context),
                   onTap: onTapConfirm,
                 ),
 
@@ -59,7 +59,7 @@ class ConfirmOrderDialog extends StatelessWidget {
                   colorBg: AppColors.transparent,
                   borderColor: AppColors.c090909,
                   txtColor: AppColors.c090909,
-                  title: "الغاء",
+                  title: "cancel".tr(context),
                   onTap: ()=>Navigator.pop(context),
                 ),
               ],

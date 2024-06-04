@@ -77,7 +77,7 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "نيابة عن : ",
+                                "on_behalf_of".tr(context),
                                 style: AppTextStyles.textStyle(
                                     weight: FontWeight.w400,
                                     color: AppColors.c090909,
@@ -127,11 +127,13 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
       }
       else if (state is AcceptHomeOrderVendorSuccess) {
         CustomMessage.showMessage(context,
-            message: "تم قبول الطلب بنجاح", type: AlertType.success);
+            message: "accept_order_successful".tr(context),
+            type: AlertType.success);
       }
       else if (state is RefuseHomeOrderVendorSuccess) {
         CustomMessage.showMessage(context,
-            message: "تم رفض الطلب بنجاح", type: AlertType.success);
+            message: "reject_order_successful".tr(context),
+            type: AlertType.success);
       }
     },
         builder: (context, state) {
@@ -149,7 +151,7 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
               size: 14,
               colorBg: AppColors.white,
               borderColor: AppColors.c090909,
-              title: "رفض",
+              title: "reject".tr(context),
               onTap: () {
                 context
                     .read<HomeCubit>()
@@ -171,7 +173,7 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
               vertical: 0,
               size: 14,
               colorBg: AppColors.primary,
-              title: "قبول",
+              title: "accept".tr(context),
               onTap: () {
                 context
                     .read<HomeCubit>()
@@ -194,7 +196,7 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
                     vertical: 0,
                     size: 14,
                     colorBg: AppColors.primary,
-                    title: "قبول",
+                    title: "accept".tr(context),
                     onTap: () {
                       context
                           .read<HomeCubit>()
@@ -209,7 +211,7 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
                     size: 14,
                     colorBg: AppColors.white,
                     borderColor: AppColors.c090909,
-                    title: "رفض",
+                    title: "reject".tr(context),
                     onTap: () {
                       context
                           .read<HomeCubit>()
@@ -231,8 +233,8 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
                     title: order.dateToStartNumber! > 0
                         ? order.dateToStart!
                         : order.hasSteps!
-                        ? "استكمال بدأ المهمة"
-                        : "بدأ المهمة",
+                        ? "complete_started_task".tr(context)
+                        : "started_task".tr(context),
                     onTap: () {
                       if(order.dateToStartNumber == 0){
                         showModalBottomSheet(

@@ -17,7 +17,7 @@ class HadithScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "أحاديث نبوية",
+              title: "hadith".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

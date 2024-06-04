@@ -102,7 +102,7 @@ class OrderStepScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    "نيابة عن : ",
+                                    "on_behalf_of".tr(context),
                                     style: AppTextStyles.textStyle(
                                         weight: FontWeight.w400,
                                         color: AppColors.c090909,
@@ -132,7 +132,7 @@ class OrderStepScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "الملاحظات",
+                    "notes".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -169,7 +169,7 @@ class OrderStepScreen extends StatelessWidget {
                               : Column(
                                   children: [
                                     CustomSeeAll(
-                                      title: "فيديوهات",
+                                      title: "videos".tr(context),
                                       onTap: () => Navigator.pushNamed(
                                           context, AppRoutes.orderAllVideos,
                                         arguments:  [
@@ -213,9 +213,7 @@ class OrderStepScreen extends StatelessWidget {
                                         ),
                                         Center(
                                           child: GestureDetector(
-                                            onTap: () {
-                                              ordersCubit.playVideo();
-                                            },
+                                            onTap: ordersCubit.playVideo,
                                             child: Container(
                                               width: 50.w,
                                               height: 50.h,
@@ -264,7 +262,7 @@ class OrderStepScreen extends StatelessWidget {
       }
       else if (state is NextStepOrderVendorSuccess) {
         CustomMessage.showMessage(context,
-            message: "تم اتمام هذه المرحلة بنجاح والانتقال الي المرحله التالية",
+            message: "stage_successfully_completed".tr(context),
             type: AlertType.success);
       }
     }, builder: (context, state) {
@@ -278,11 +276,11 @@ class OrderStepScreen extends StatelessWidget {
           vertical: 0,
           size: 14,
           colorBg: AppColors.primary,
-          title: "الانتقال للمرحلة التالية",
+          title: "next_stage".tr(context),
           onTap: () {
             if(context.read<OrdersCubit>().myVideo == null){
               CustomMessage.showMessage(context,
-                  message: "يجب رفع فيديو المرحلة",
+                  message: "must_upload_video".tr(context),
                   type: AlertType.warning);
             }
             else{

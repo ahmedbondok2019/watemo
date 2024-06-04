@@ -22,7 +22,7 @@ class SelectLangScreen extends StatelessWidget {
 
             isEdit
                 ? CustomAppBar(
-              title: "تعديل لغة التطبيق",
+              title: "edit_lang".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [
@@ -50,7 +50,7 @@ class SelectLangScreen extends StatelessWidget {
             Gap(30.h),
             Center(
               child: Text(
-                "اختر لغتك المفضلة",
+                "select_lang".tr(context),
                 style: AppTextStyles.textStyle(
                     size: 24,
                   weight: FontWeight.w700,
@@ -61,7 +61,7 @@ class SelectLangScreen extends StatelessWidget {
             Gap(10.h),
             Center(
               child: Text(
-                "من فضلك اختر لغتك المفضله حتي يمكنك المتابعه للتطبيق",
+                "please_select_lang".tr(context),
                 style: AppTextStyles.textStyle(
                     size: 14,
                     weight: FontWeight.w400,
@@ -75,8 +75,8 @@ class SelectLangScreen extends StatelessWidget {
             const Spacer(),
             CustomButtonInternet(
               title: isEdit
-                  ? "حفظ التعديل"
-                  : "التالي",
+                  ? "save_edit".tr(context)
+                  : "next".tr(context),
               width: MediaQuery.of(context).size.width,
               onTap: ()=> isEdit
                   ? Navigator.pop(context)

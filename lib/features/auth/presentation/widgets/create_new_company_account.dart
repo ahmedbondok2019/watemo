@@ -27,7 +27,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
 
                   /// name for company
                   Text(
-                    'اسم الشركة / الهيئة',
+                    'company_name'.tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -37,14 +37,14 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل اسم (الشركة / الهيئة)";
+                        return "empty_company_name_validation".tr(context);
                       } else if (value.length <= 3) {
-                        return "الاسم يجب ان يكون اكثر من 3 احرف";
+                        return "name_validation".tr(context);
                       }
                       return null;
                     },
                     fillColor: AppColors.transparent,
-                    hint: "اسم الشركة / الهيئة",
+                    hint: "company_name".tr(context),
                     controller: authCubit.companyNameController,
                     height: 48.h,
                   ),
@@ -61,7 +61,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "بلد الاقامة",
+                              "country".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w700,
                                   color: AppColors.c090909,
@@ -75,7 +75,8 @@ class CreateNewCompanyAccount extends StatelessWidget {
                                 authCubit.getCities(countryId: val!.id.toString());
                                 authCubit.changeCountry(val);
                               },
-                              label: "اختر بلد الاقامة",
+                              label: "select_country".tr(context),
+                              isTrans: false,
                             ),
                           ],
                         ),
@@ -87,7 +88,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "مدينة الاقامة",
+                              "city".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w700,
                                   color: AppColors.c090909,
@@ -98,7 +99,8 @@ class CreateNewCompanyAccount extends StatelessWidget {
                               list: authCubit.citiesList,
                               selectedItem: authCubit.city,
                               onChanged: authCubit.changeCity,
-                              label: "اختر مدينة الاقامة",
+                              label: "select_city".tr(context),
+                              isTrans: false,
                             ),
                           ],
                         ),
@@ -109,7 +111,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
 
                   /// address for company
                   Text(
-                    'عنوان الشركه / الهيئة',
+                    'company_address'.tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -119,12 +121,12 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل عنوان (الشركة / الهيئة)";
+                        return "empty_company_address_validation".tr(context);
                       }
                       return null;
                     },
                     fillColor: AppColors.transparent,
-                    hint: "عنوان الشركة / الهيئة",
+                    hint: "company_address".tr(context),
                     controller: authCubit.companyAddressController,
                     height: 48.h,
                   ),
@@ -132,7 +134,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
 
                   /// tax number for company
                   Text(
-                    'الرقم الضريبي',
+                    'tax_number'.tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -142,12 +144,12 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل الرقم الضريبي ل (الشركة / الهيئة)";
+                        return "empty_tax_number_validation".tr(context);
                       }
                       return null;
                     },
                     fillColor: AppColors.transparent,
-                    hint: "الرقم الضريبي",
+                    hint: 'tax_number'.tr(context),
                     controller: authCubit.taxNumberController,
                     isNumber: true,
                     height: 48.h,
@@ -156,7 +158,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
 
                   /// phone number for company
                   Text(
-                    'رقم الهاتف / الفاكس',
+                    'phone_fax'.tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -170,7 +172,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       InputFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "الرجاء ادخل رقم الهاتف / الفاكس";
+                            return "empty_phone_vendor_validation".tr(context);
                           }
                           else {
                             return null;
@@ -178,7 +180,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                         },
                         isRTL: false,
                         fillColor: AppColors.transparent,
-                        hint: "رقم الهاتف / الفاكس",
+                        hint: 'phone_fax'.tr(context),
                         controller: authCubit.faxNumberController,
                         suffixIcon: Image.asset(
                           ImageConstants.phonIcon,
@@ -203,7 +205,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                           list: authCubit.countriesList,
                           selectedItem: authCubit.countryCode,
                           onChanged: authCubit.changeCountryCode,
-                          label: "اختر كود الدولة",
+                          label: "select_country_code".tr(context),
                         ),
                       ),
                     ],
@@ -212,7 +214,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
 
                   /// email
                   Text(
-                    "البريد الالكتروني",
+                    "email".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -222,26 +224,26 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'please enter  email';
+                        return "empty_email_validation".tr(context);
                       }
                       bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(value);
                       if (!emailValid) {
-                        return 'please enter valid email';
+                        return "email_validation".tr(context);
                       }
                       return null;
                     },
                     controller: authCubit.emailAddress,
                     fillColor: AppColors.transparent,
-                    hint: 'البريد هنا',
+                    hint: "hint_email".tr(context),
                     height: 48.h,
                   ),
                   Gap(10.h),
 
                   /// expect count for company
                   Text(
-                    'عدد المعتمرين المتوقع',
+                    "expected_number_pilgrims".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -251,21 +253,21 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل عدد المعتمرين المتوقع";
+                        return "empty_expected_number_pilgrims_validation".tr(context);
                       }
                       return null;
                     },
                     isNumber: true,
                     fillColor: AppColors.transparent,
-                    hint: "عدد المعتمرين المتوقع",
+                    hint: "expected_number_pilgrims".tr(context),
                     controller: authCubit.expectCountController,
                     height: 48.h,
                   ),
                   Gap(15.h),
 
-                  /// expect count for company
+                  /// bank account number for company
                   Text(
-                    'رقم الحساب البنكي',
+                    "bank_account_number".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -275,12 +277,12 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل رقم الحساب البنكي";
+                        return "empty_bank_account_number_validation".tr(context);
                       }
                       return null;
                     },
                     fillColor: AppColors.transparent,
-                    hint: "رقم الحساب البنكي",
+                    hint: "bank_account_number".tr(context),
                     isNumber: true,
                     controller: authCubit.bankNumberController,
                     height: 48.h,
@@ -289,7 +291,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
 
                   /// password && confirm password
                   Text(
-                    "كلمة المرور",
+                    "password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -299,9 +301,9 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   InputFormField(
                     validator: (p0) {
                       if (p0 == null || p0.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (p0.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       }
                       return null;
                     },
@@ -315,7 +317,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
 
                   /// confirm password
                   Text(
-                    "تآكيد كلمة المرور",
+                    "confirm_password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -326,12 +328,12 @@ class CreateNewCompanyAccount extends StatelessWidget {
                     controller: authCubit.confirmPasswordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (value.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       } else if (authCubit.passwordController.text !=
                           authCubit.confirmPasswordController.text) {
-                        return "كلمة المرور غير متطابقة";
+                        return "confirm_password_validation".tr(context);
                       }
                       return null;
                     },
@@ -351,7 +353,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "الرقم الضريبي",
+                                "tax_number".tr(context),
                                 style: AppTextStyles.textStyle(
                                     weight: FontWeight.w700,
                                     color: AppColors.c090909,
@@ -423,7 +425,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "السجل التجاري",
+                                  "commercial_register".tr(context),
                                   style: AppTextStyles.textStyle(
                                       weight: FontWeight.w700,
                                       color: AppColors.c090909,
@@ -519,22 +521,19 @@ class CreateNewCompanyAccount extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'أنا أوافق على ',
+                              "approve".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text(
-                              ' الشروط والأحكام ',
+                            Text("term_condition".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
                             ),
-                            Text(
-                              ' و ',
+                            Text("and".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text(
-                              ' سياسة الخصوصية ',
+                            Text("privacy_policy".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
                             ),
@@ -576,32 +575,32 @@ class CreateNewCompanyAccount extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "إنشاء حساب جديد",
+          title: "register".tr(context),
           onTap: () {
             if (context.read<AuthCubit>().formKey.currentState!.validate()) {
               if (context.read<AuthCubit>().country == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار البلد",
+                    message: "must_select_country".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().city == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار المدينة",
+                    message: "must_select_city".tr(context),
                     type: AlertType.warning);
               }
                if (context.read<AuthCubit>().taxNoImage == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب رفع صورة من الرقم الضريبي",
+                    message: "must_upload_tax_image".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().commercialNoImage == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب رفع صورة من السجل التجاري",
+                    message: "must_upload_commercial_image".tr(context),
                     type: AlertType.warning);
               }
               else if (!context.read<AuthCubit>().termsAndConditionCheckBoxValue) {
                 CustomMessage.showMessage(context,
-                    message: "يجب الموافقة علي الشروط والاحكام",
+                    message: "must_approve_on_term".tr(context),
                     type: AlertType.warning);
               }
               else {

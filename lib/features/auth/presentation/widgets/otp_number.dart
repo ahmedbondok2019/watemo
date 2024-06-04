@@ -28,7 +28,7 @@ class _OtpNumberState extends State<OtpNumber> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'أدخل الرمز الذي أرسلناه إلى رقم الهاتف التالي',
+                      "enter_send_otp".tr(context),
                       style: AppTextStyles.textStyle(
                         size: 16,
                         weight: FontWeight.w500,
@@ -93,7 +93,7 @@ class _OtpNumberState extends State<OtpNumber> {
                   GestureDetector(
                     onTap: () {},
                     child: Text(
-                      'إعاداة إرسال الرمز',
+                      "resend_otp".tr(context),
                       style: AppTextStyles.textStyle(
                           decorationColor: AppColors.primary,
                           decoration: TextDecoration.underline,
@@ -104,12 +104,12 @@ class _OtpNumberState extends State<OtpNumber> {
                   CustomButtonInternet(
                     height: 48,
                     width: 361,
-                    title: 'تحقق من الرمز',
+                    title: "check_otp".tr(context),
                     onTap: () => Navigator.of(context)
                         .pushNamed(AppRoutes.resetPassword),
                   )
                 ],
-              )
+              ),
             ],
           ),
         );

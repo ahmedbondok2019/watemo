@@ -28,7 +28,7 @@ class CustomBottomSheetTracking extends StatelessWidget {
               children: [
                 Gap(55.h),
                 Text(
-                  "حالة الطلب",
+                  "service_status".tr(context),
                   style: AppTextStyles.textStyle(
                     color: AppColors.c090909,
                     size: 16,
@@ -124,7 +124,6 @@ class CustomBottomSheetTracking extends StatelessWidget {
                                       steps[index].description ?? "",
                                       maxLines: 3,
                                       textAlign: TextAlign.start,
-                                      // overflow: TextOverflow.ellipsis,
                                       style: AppTextStyles.textStyle(
                                           weight: FontWeight.w500,
                                           color: steps[index].status!

@@ -87,7 +87,7 @@ class CreateNewVendorAccount extends StatelessWidget {
 
                   /// name for company
                   Text(
-                    'الاسم رباعي',
+                    "name".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -97,14 +97,14 @@ class CreateNewVendorAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل الاسم رباعي";
+                        return "empty_name_validation".tr(context);
                       } else if (value.length <= 3) {
-                        return "الاسم يجب ان يكون اكثر من 3 احرف";
+                        return "name_validation".tr(context);
                       }
                       return null;
                     },
                     fillColor: AppColors.transparent,
-                    hint: "الاسم رباعي",
+                    hint: "name",
                     controller: authCubit.vendorNameController,
                     height: 48.h,
                   ),
@@ -112,7 +112,7 @@ class CreateNewVendorAccount extends StatelessWidget {
 
                   /// birthdate for vendor
                   Text(
-                    'تاريخ الميلاد',
+                    'brith_date'.tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -128,7 +128,8 @@ class CreateNewVendorAccount extends StatelessWidget {
                           isDate: true,
                           width: 130.w,
                           onChangedDate: authCubit.changeDay,
-                          label: "يوم",
+                          label: "day".tr(context),
+                          isTrans: false,
                       ),
 
                       CustomDropDownNat(
@@ -137,7 +138,8 @@ class CreateNewVendorAccount extends StatelessWidget {
                           isDate: true,
                           width: 130.w,
                           onChangedDate: authCubit.changeMonth,
-                          label: "شهر",
+                          label: "month".tr(context),
+                          isTrans: false,
                       ),
 
                       CustomDropDownNat(
@@ -146,7 +148,8 @@ class CreateNewVendorAccount extends StatelessWidget {
                           isDate: true,
                           width: 130.w,
                           onChangedDate: authCubit.changeYear,
-                          label: "سنة",
+                          label: "year".tr(context),
+                        isTrans: false,
                       ),
                     ],
                   ),
@@ -163,7 +166,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "بلد الاقامة",
+                              "country".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w700,
                                   color: AppColors.c090909,
@@ -177,7 +180,8 @@ class CreateNewVendorAccount extends StatelessWidget {
                                 authCubit.getCities(countryId: val!.id.toString());
                                 authCubit.changeCountry(val);
                               },
-                              label: "اختر بلد الاقامة",
+                              label: "select_country".tr(context),
+                              isTrans: false,
                             ),
                           ],
                         ),
@@ -189,7 +193,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "مدينة الاقامة",
+                              "city".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w700,
                                   color: AppColors.c090909,
@@ -200,7 +204,8 @@ class CreateNewVendorAccount extends StatelessWidget {
                               list: authCubit.citiesList,
                               selectedItem: authCubit.city,
                               onChanged: authCubit.changeCity,
-                              label: "اختر مدينة الاقامة",
+                              label: "select_city",
+                              isTrans: false,
                             ),
                           ],
                         ),
@@ -214,7 +219,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "الجنس",
+                        "gender".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
                             color: AppColors.c090909,
@@ -225,8 +230,9 @@ class CreateNewVendorAccount extends StatelessWidget {
                         list: authCubit.genders,
                         selectedItem: authCubit.gender,
                         onChanged: authCubit.changeGender,
-                        label: "اختر الجنس",
+                        label: "select_gender",
                         width: 393.w,
+                        isTrans: true,
                       ),
                     ],
                   ),
@@ -237,7 +243,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "اللغات التي تجيدها",
+                        "lang_vendor".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
                             color: AppColors.c090909,
@@ -251,7 +257,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         selected: authCubit.selectL,
                         selectedLang: authCubit.selectedLang,
                         onChanged: authCubit.changeLang,
-                        label: "اختر اللغات التي تجيدها",
+                        label: "select_lang_vendor".tr(context),
                         buttonWidth: 393.w,
                       ),
                     ],
@@ -263,7 +269,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "الخدمات المقدمة",
+                        "services_provided".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
                             color: AppColors.c090909,
@@ -277,7 +283,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         selected: authCubit.selectS,
                         selectedLang: authCubit.selectedService,
                         onChanged: authCubit.changeServices,
-                        label: "اختر الخدمات التي تقدمها",
+                        label: "select_services_provided",
                         buttonWidth: 393.w,
                       ),
                     ],
@@ -286,7 +292,7 @@ class CreateNewVendorAccount extends StatelessWidget {
 
                   /// email
                   Text(
-                    "البريد الالكتروني",
+                    "email".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -296,26 +302,26 @@ class CreateNewVendorAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'please enter  email';
+                        return 'empty_email_validation'.tr(context);
                       }
                       bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(value);
                       if (!emailValid) {
-                        return 'please enter valid email';
+                        return 'email_validation'.tr(context);
                       }
                       return null;
                     },
                     controller: authCubit.emailAddress,
                     fillColor: AppColors.transparent,
-                    hint: 'البريد هنا',
+                    hint: 'hint_email'.tr(context),
                     height: 48.h,
                   ),
                   Gap(15.h),
 
                   /// phone number for company
                   Text(
-                    'رقم الهاتف',
+                    'phone'.tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -329,7 +335,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                       InputFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "الرجاء ادخل رقم الهاتف / الفاكس";
+                            return "empty_phone_vendor_validation".tr(context);
                           }
                           else {
                             return null;
@@ -337,7 +343,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         },
                         isRTL: false,
                         fillColor: AppColors.transparent,
-                        hint: "رقم الهاتف",
+                        hint: "phone".tr(context),
                         controller: authCubit.phoneNumberController,
                         suffixIcon: Image.asset(
                           ImageConstants.phonIcon,
@@ -362,7 +368,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                           list: authCubit.countriesList,
                           selectedItem: authCubit.countryCode,
                           onChanged: authCubit.changeCountryCode,
-                          label: "اختر كود الدولة",
+                          label: "select_country_code".tr(context),
                         ),
                       ),
                     ],
@@ -371,7 +377,7 @@ class CreateNewVendorAccount extends StatelessWidget {
 
                   /// password && confirm password
                   Text(
-                    "كلمة المرور",
+                    "password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -381,9 +387,9 @@ class CreateNewVendorAccount extends StatelessWidget {
                   InputFormField(
                     validator: (p0) {
                       if (p0 == null || p0.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (p0.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       }
                       return null;
                     },
@@ -397,7 +403,7 @@ class CreateNewVendorAccount extends StatelessWidget {
 
                   /// confirm password
                   Text(
-                    "تآكيد كلمة المرور",
+                    "confirm_password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -408,12 +414,12 @@ class CreateNewVendorAccount extends StatelessWidget {
                     controller: authCubit.confirmPasswordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (value.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       } else if (authCubit.passwordController.text !=
                           authCubit.confirmPasswordController.text) {
-                        return "كلمة المرور غير متطابقة";
+                        return "confirm_password_validation".tr(context);
                       }
                       return null;
                     },
@@ -426,7 +432,7 @@ class CreateNewVendorAccount extends StatelessWidget {
 
                   /// images for tax number && commercial
                   Text(
-                    "صورة الهواية الشخصية",
+                    "photo_personal_id".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -441,7 +447,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "الجانب الامامي",
+                                  "front_side".tr(context),
                                   style: AppTextStyles.textStyle(
                                       weight: FontWeight.w500,
                                       color: AppColors.c090909,
@@ -513,7 +519,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "الجانب الخلفي",
+                                  "back_side",
                                   style: AppTextStyles.textStyle(
                                       weight: FontWeight.w500,
                                       color: AppColors.c090909,
@@ -609,22 +615,22 @@ class CreateNewVendorAccount extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'أنا أوافق على ',
+                              "approve".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
                             Text(
-                              ' الشروط والأحكام ',
+                              "term_condition".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
                             ),
                             Text(
-                              ' و ',
+                              "and".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
                             Text(
-                              ' سياسة الخصوصية ',
+                              'privacy_policy'.tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
                             ),
@@ -684,7 +690,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         Gap(10.h),
 
                         Text(
-                          "سوف يتم مراجعة حسابك خلال الـ 24 ساعه القادمة و يتم ارسال اليك رساله",
+                          "review_your_account".tr(context),
                           textAlign: TextAlign.center,
                           style: AppTextStyles.textStyle(
                             color: AppColors.c090909,
@@ -700,7 +706,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         width: 112.5,
                         horizontal: 0,
                         vertical: 0,
-                        title: "تأكيد",
+                        title: "confirm".tr(context),
                         onTap: (){
                           Navigator.pushNamedAndRemoveUntil(
                               context, AppRoutes.authScreen, (route) => false);
@@ -715,7 +721,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         colorBg: AppColors.transparent,
                         borderColor: AppColors.c090909,
                         txtColor: AppColors.c090909,
-                        title: "الغاء",
+                        title: "cancel".tr(context),
                         onTap: ()=>Navigator.pop(context),
                       ),
                     ],
@@ -753,7 +759,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         Gap(20.h),
 
                         Text(
-                          "تهانينا لقد تم قبول طلبك و تستطيع الأن استقبال الطلبات من العملاء",
+                          "accepted_your_account".tr(context),
                           textAlign: TextAlign.center,
                           style: AppTextStyles.textStyle(
                             color: AppColors.c090909,
@@ -769,7 +775,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         width: 361,
                         horizontal: 0,
                         vertical: 0,
-                        title: "ابدا الاستخدام الان",
+                        title: "Start_using_now".tr(context),
                         onTap: (){
                           getIt<SharedPreferences>()
                               .setBool(AppConstants.isLoggedIn, true);
@@ -782,7 +788,8 @@ class CreateNewVendorAccount extends StatelessWidget {
                         },
                       ),
                     ],
-                  ));
+                  ),
+          );
         }
         else if(state.user!.status == 2){
           await showDialog(
@@ -816,7 +823,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         Gap(20.h),
 
                         Text(
-                          "نأسف لعمد استطاعتنا قبول طلبك لاسباب عدة .. برجاء التواصل مع خدمة العملاء",
+                          "reject_your_account".tr(context),
                           textAlign: TextAlign.center,
                           style: AppTextStyles.textStyle(
                             color: AppColors.c090909,
@@ -832,7 +839,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                         width: 361,
                         horizontal: 0,
                         vertical: 0,
-                        title: "تواصل مع خدمة العملاء",
+                        title: "contact_with_technical".tr(context),
                         onTap: (){
                           Navigator.pop(context);
                           Navigator.pushNamed(
@@ -840,7 +847,8 @@ class CreateNewVendorAccount extends StatelessWidget {
                         },
                       ),
                     ],
-                  ));
+                  ),
+          );
         }
       }
     }, builder: (context, state) {
@@ -852,52 +860,52 @@ class CreateNewVendorAccount extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "إنشاء حساب جديد",
+          title: "register".tr(context),
           onTap: () async {
             if (context.read<AuthCubit>().formKey.currentState!.validate()) {
               if (context.read<AuthCubit>().country == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار البلد",
+                    message: "must_select_country".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().city == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار المدينة",
+                    message: "must_select_city".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().gender == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار الجنس",
+                    message: "must_select_gender".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().selectServices.isEmpty) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار الخدمات التي تقدمها",
+                    message: "must_select_service".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().selectLang.isEmpty) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار اللغات التي تجيدها",
+                    message: "must_select_lang".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().imageVendor == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة الملف الشخصي",
+                    message: "must_select_profile_image".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().identityFace == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة الهواية الجانب الامامي",
+                    message: "must_select_front_side_image".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<AuthCubit>().identityBack == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة الهواية الجانب الخلفي",
+                    message: "must_select_back_side_image".tr(context),
                     type: AlertType.warning);
               }
               else if (!context.read<AuthCubit>().termsAndConditionCheckBoxValue) {
                 CustomMessage.showMessage(context,
-                    message: "يجب الموافقة علي الشروط والاحكام",
+                    message: "must_approve_on_term".tr(context),
                     type: AlertType.warning);
               }
               else {

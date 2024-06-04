@@ -32,7 +32,7 @@ class CustomLogOutButton extends StatelessWidget {
         builder: (context, state) {
         if (state is LogOutLoading) {
           return MoreListTile(
-            title: "تسجيل خروج",
+            title: "log_out".tr(context),
             icon: icon ?? ImageConstants.logOut,
             showArrow: showArrow!,
             onTap: () async {
@@ -41,7 +41,7 @@ class CustomLogOutButton extends StatelessWidget {
                       AuthState>(
                       builder: (context, state) {
                         return ConfirmOrderDialog(
-                          description: "هل انت متاكد من انك تريد تسجيل خروج",
+                          description: "confirm_log_out".tr(context),
                           isFailed: false,
                           image: ImageConstants.said,
                           onTapConfirm: () {
@@ -57,7 +57,7 @@ class CustomLogOutButton extends StatelessWidget {
         }
         else {
           return MoreListTile(
-            title: "تسجيل خروج",
+            title: "log_out".tr(context),
             icon: icon ?? ImageConstants.logOut,
             showArrow: showArrow ?? true,
             onTap: () async {
@@ -66,7 +66,7 @@ class CustomLogOutButton extends StatelessWidget {
                       AuthState>(
                       builder: (context, state) {
                         return ConfirmOrderDialog(
-                          description: "هل انت متاكد من انك تريد تسجيل خروج",
+                          description: "confirm_log_out".tr(context),
                           isFailed: false,
                           image: ImageConstants.said,
                           onTapConfirm: () {

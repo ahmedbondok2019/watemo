@@ -1,5 +1,5 @@
+import '../../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../../core/src/app_export.dart';
-import '../../data/models/support/contact_type_model.dart';
 
 class CustomDropDownContactTypeBt extends StatelessWidget {
   const CustomDropDownContactTypeBt({super.key,
@@ -8,7 +8,7 @@ class CustomDropDownContactTypeBt extends StatelessWidget {
     required this.selectedValue});
   final double? width;
   final String label;
-  final ContactTypeModel selectedValue;
+  final TitleIdListModel selectedValue;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +25,7 @@ class CustomDropDownContactTypeBt extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            selectedValue.nameAr,
+            selectedValue.title.tr(context),
             style: AppTextStyles.textStyle(
                 weight: FontWeight.w700,
                 color: AppColors.c090909, size: 14),
@@ -33,7 +33,7 @@ class CustomDropDownContactTypeBt extends StatelessWidget {
 
           SvgPicture.asset(ImageConstants.dropArrow,
               width: 15.w,height: 7.h
-          )
+          ),
         ],
       ),
     );

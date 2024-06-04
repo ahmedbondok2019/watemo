@@ -21,13 +21,6 @@ class AuthCubit extends Cubit<AuthState> {
   bool isLogin = true;
   bool remember = false;
   bool visibility = true;
-  bool isObscureText = true;
-  bool isRemembered = false;
-  bool isNameValid = true;
-  bool isPhoneNumberValid = false;
-  bool isEmailAddressValid = false;
-  bool isPasswordValid = false;
-  bool isReAddedPasswordValid = false;
   String? otpPhoneNumber;
   TitleIdListModel? gender;
   List<TitleIdListModel> selectLang = [];
@@ -41,22 +34,22 @@ class AuthCubit extends Cubit<AuthState> {
   var formKey = GlobalKey<FormState>();
   List<TitleIdListModel> genders = [
     TitleIdListModel(
-      title: "ذكر",
+      title: "male",
       id: 1,
     ),
     TitleIdListModel(
-      title: "انثي",
+      title: "female",
       id: 2,
     ),
   ];
 
   List<TitleIdListModel> servicesType = [
     TitleIdListModel(
-      title: "حج",
+      title: "hajj",
       id: 1,
     ),
     TitleIdListModel(
-      title: "عمره",
+      title: "amra",
       id: 2,
     ),
   ];
@@ -658,14 +651,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future clearData() async {
     emit(ClearDataLoading());
     emailAddress.clear();
-    isEmailAddressValid = false;
     fullName.clear();
-    isNameValid = false;
     phoneNumberController.clear();
-    isPhoneNumberValid = false;
     passwordController.clear();
     confirmPasswordController.clear();
-    isPasswordValid = false;
     termsAndConditionCheckBoxValue = false;
     country = null;
     city = null;

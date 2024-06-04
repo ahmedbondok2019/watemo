@@ -1,11 +1,5 @@
 import 'package:intl/intl.dart';
 
-// extension DoubleExtensions on double {
-//   String get toPrice {
-//     return '$this ${LocaleKeys.currency.tr}';
-//   }
-// }
-
 extension IntExtensions on int {
   String get getDurationReminder {
     if (toString().length == 1) {

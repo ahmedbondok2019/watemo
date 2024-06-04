@@ -17,7 +17,7 @@ class _EnterNewPasswordState extends State<EnterNewPassword> {
             children: [
               Gap(18.h),
               Text(
-                "قم بإنشاء كلمة مرور جديدة لتسجيل الدخول",
+                "reset_password_title".tr(context),
                 textAlign: TextAlign.center,
                 style: AppTextStyles.textStyle(
                   size: 16,
@@ -35,7 +35,7 @@ class _EnterNewPasswordState extends State<EnterNewPassword> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "كلمة المرور",
+                    "password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909, size: 14),
@@ -45,9 +45,9 @@ class _EnterNewPasswordState extends State<EnterNewPassword> {
                     controller: context.read<AuthCubit>().passwordController,
                     validator: (p0) {
                       if (p0 == null || p0.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (p0.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       }
                       return null;
                     },
@@ -58,7 +58,7 @@ class _EnterNewPasswordState extends State<EnterNewPassword> {
                   Gap(25.h),
 
                   Text(
-                    "تأكيد كلمة المرور",
+                    "confirm_password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909, size: 14),
@@ -68,9 +68,9 @@ class _EnterNewPasswordState extends State<EnterNewPassword> {
                     controller: context.read<AuthCubit>().confirmPasswordController,
                     validator: (p0) {
                       if (p0 == null || p0.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (p0.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       } else if (context
                           .read<AuthCubit>()
                           .passwordController
@@ -79,25 +79,13 @@ class _EnterNewPasswordState extends State<EnterNewPassword> {
                               .read<AuthCubit>()
                               .confirmPasswordController
                               .text) {
-                        return "كلمة المرور غير متطابقة";
+                        return "confirm_password_validation".tr(context);
                       }
                       return null;
                     },
                     hint: "***********",
                     fillColor: AppColors.cF5F5F5,
                     secure: true,
-                    // context.read<AuthCubit>().isObscureText
-                    //     ? Image.asset(
-                    //         ImageConstants.secureIcon,
-                    //         height: 0.h,
-                    //         width: 0.w,
-                    //       )
-                    //     : Image.asset(
-                    //         ImageConstants.hidePassword,
-                    //         height: 5.h,
-                    //         width: 5.w,
-                    //       ),
-                    // hasLabel: true,
                   ),
                 ],
               ),),
@@ -108,7 +96,7 @@ class _EnterNewPasswordState extends State<EnterNewPassword> {
                 height: 48,
                 width: 361,
                 horizontal: 0,
-                title: 'إنشاء كلمة المرور جديدة',
+                title: "create_new_password".tr(context),
                 onTap: () {
                   // if (context
                   //     .read<AuthCubit>()

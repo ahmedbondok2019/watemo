@@ -52,7 +52,7 @@ class CustomSelectLangSignUpDropDown extends StatelessWidget {
              SizedBox(
                width: 95.w,
                child: Text(
-                 item.title,
+                 item.title.tr(context),
                  style: AppTextStyles.textStyle(
                    color: AppColors.c00243C,
                  ),

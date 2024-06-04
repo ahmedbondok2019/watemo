@@ -13,7 +13,9 @@ class CheckoutScreen extends StatelessWidget {
   final CreateOrderReqModel order;
   final HajjModel? hajj;
   final List<ServicesModel> selectServicesList;
-  const CheckoutScreen({super.key,
+
+  const CheckoutScreen({
+    super.key,
     required this.service,
     required this.hajj,
     required this.order,
@@ -23,50 +25,46 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackgroundComponent(
-        opacity: 0.2,
-        child: Column(
-          children: [
-            const CustomAppBar(
-              title: "إتمام الطلب",
-              titleSize: 16,
-              leading: CustomBackButton(),
-              actions: [NotificationIcon()],
-            ),
-
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.r),
-                  child: CustomCheckoutDetailsBody(
-                    service: service,
-                    hajj: hajj,
-                    selectServices: selectServicesList,
+        body: BackgroundComponent(
+            opacity: 0.2,
+            child: Column(
+              children: [
+                CustomAppBar(
+                  title: "confirm_order".tr(context),
+                  titleSize: 16,
+                  leading: const CustomBackButton(),
+                  actions: const [NotificationIcon()],
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.r),
+                      child: CustomCheckoutDetailsBody(
+                        service: service,
+                        hajj: hajj,
+                        selectServices: selectServicesList,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ],
-        )
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: confirmOrder()
-    );
+              ],
+            )),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: confirmOrder());
   }
 
   BlocConsumer<CheckoutCubit, CheckoutState> confirmOrder() {
-    return BlocConsumer<CheckoutCubit, CheckoutState>(listener: (context, state) {
+    return BlocConsumer<CheckoutCubit, CheckoutState>(
+        listener: (context, state) {
       if (state is CreateOrderFailure) {
         CustomMessage.showMessage(context,
             message: NetworkExceptions.getErrorMessage(
               state.networkExceptions,
             ),
             type: AlertType.failed);
-      }
-      else if (state is CreateOrderSuccess) {
+      } else if (state is CreateOrderSuccess) {
         CustomMessage.showMessage(context,
-            message: state.message,
-            type: AlertType.success);
+            message: state.message, type: AlertType.success);
         Navigator.pushNamedAndRemoveUntil(
             context, AppRoutes.mainLayer, (route) => false);
       }
@@ -74,44 +72,40 @@ class CheckoutScreen extends StatelessWidget {
       if (state is CreateOrderLoading) {
         Navigator.pop(context);
         return const Center(child: CustomLoading());
-      }
-      else {
+      } else {
         return CustomButtonInternet(
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "متابعة طلب الخدمة",
-          onTap: (){
-            print(" selectServicesListselectServicesList =====>>>>>>> ${selectServicesList.length}");
+          title: "follow_confirm_order".tr(context),
+          onTap: () {
             List<List<String>>? servicesList = [];
-            if(hajj != null){
-              servicesList.add([hajj!.id.toString(),"1"]);
-            }
-            else{
-              servicesList.add([
-                service!.id.toString(),
-                service!.counter.toString()]);
+            if (hajj != null) {
+              servicesList.add([hajj!.id.toString(), "1"]);
+            } else {
+              servicesList
+                  .add([service!.id.toString(), service!.counter.toString()]);
             }
             for (var element in selectServicesList) {
-              servicesList.add([
-                element.id.toString(),
-                element.counter.toString()]);
+              servicesList
+                  .add([element.id.toString(), element.counter.toString()]);
             }
 
             order.services = servicesList;
-            showAnimatedDialog(context,
+            showAnimatedDialog(
+                context,
                 ConfirmOrderDialog(
-                description: "تاكيد طلب هذة الخدمة؟",
-                isFailed: false,
-                widthImage: 252,
-                heightImage: 164,
-                image: ImageConstants.confirm,
-                onTapConfirm: () {
-              context.read<CheckoutCubit>().createOrder(
-                  order: order);
-            },
-            ),
-                dismissible: false, isFlip: true);
+                  description: "confirm_order_service".tr(context),
+                  isFailed: false,
+                  widthImage: 252,
+                  heightImage: 164,
+                  image: ImageConstants.confirm,
+                  onTapConfirm: () {
+                    context.read<CheckoutCubit>().createOrder(order: order);
+                  },
+                ),
+                dismissible: false,
+                isFlip: true);
           },
         );
       }

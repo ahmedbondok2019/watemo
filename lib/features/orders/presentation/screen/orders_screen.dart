@@ -21,7 +21,7 @@ class OrdersScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "الطلبات",
+              title: "orders".tr(context),
               titleSize: 16,
               leading: const CustomProfileImage(),
               actions: [
@@ -56,7 +56,7 @@ class OrdersScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           CustomButtonInternet(
-                            title: "الكل",
+                            title: "all".tr(context),
                             horizontal: 0,
                             size: 16,
                             vertical: 0,
@@ -73,7 +73,7 @@ class OrdersScreen extends StatelessWidget {
                             },
                           ),
                           CustomButtonInternet(
-                            title: "قيد التنفيذ",
+                            title: "processing".tr(context),
                             horizontal: 0,
                             size: 16,
                             vertical: 0,
@@ -91,7 +91,7 @@ class OrdersScreen extends StatelessWidget {
                             },
                           ),
                           CustomButtonInternet(
-                            title: "اكتملت",
+                            title: "completed".tr(context),
                             horizontal: 0,
                             size: 16,
                             vertical: 0,
@@ -103,7 +103,6 @@ class OrdersScreen extends StatelessWidget {
                             txtColor: ordersCubit.orderType == 2
                                 ? null
                                 : AppColors.c090909,
-                            // : AppColors.c9A9A9A,
                             onTap: () {
                               ordersCubit.changeOrderType(2);
                             },
@@ -120,7 +119,8 @@ class OrdersScreen extends StatelessWidget {
                       borderColor: AppColors.cE3DCC4,
                       bgColor: AppColors.white,
                       onChanged: ordersCubit.changeStatusOrder,
-                      label: "كل الطلبات",
+                      label: "all_orders",
+                      isTrans: true,
                     );
             }),
             Gap(5.h),

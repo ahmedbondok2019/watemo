@@ -15,7 +15,7 @@ class MediaCenterScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "المركز الاعلامي",
+              title: "media_center".tr(context),
               titleSize: 16,
               leading: const CustomProfileImage(),
               actions: [
@@ -44,16 +44,16 @@ class MediaCenterScreen extends StatelessWidget {
                       Gap(30.h),
 
                       _typeWidget(
-                          title: "احاديث نبويه",
+                          title: "hadith".tr(context),
                           onTap: () =>
                               Navigator.pushNamed(context, AppRoutes.hadith)),
 
                       _typeWidget(
-                          title: "فيديوهات",
+                          title: "videos".tr(context),
                           onTap: () =>
                               Navigator.pushNamed(context, AppRoutes.videos)),
 
-                      _typeWidget(title: "اسئلة شائعه",
+                      _typeWidget(title: "common_questions".tr(context),
                           onTap: () => Navigator.pushNamed(context, AppRoutes.faqs)),
                     ],
                   ),

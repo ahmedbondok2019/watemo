@@ -17,8 +17,9 @@ class CustomUserOrder extends StatelessWidget {
       }
       if (state is OrdersSuccess) {
         return context.read<OrdersCubit>().ordersDateList.isEmpty
-            ? const Expanded(
-                child: Center(child: CustomNoResult(title: "لا يوجد طلبات")))
+            ? Expanded(
+                child: Center(
+                    child: CustomNoResult(title: "no_orders".tr(context))))
             : Expanded(
                 child: SingleChildScrollView(
                     child: Padding(

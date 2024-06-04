@@ -1,9 +1,8 @@
 import 'dart:developer';
-
+import '../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../core/src/app_export.dart';
 import '../data/models/about/about_model.dart';
 import '../data/models/support/contact_model.dart';
-import '../data/models/support/contact_type_model.dart';
 part 'other_page_state.dart';
 
 class OtherPageCubit extends Cubit<OtherPageState> {
@@ -17,43 +16,37 @@ class OtherPageCubit extends Cubit<OtherPageState> {
 
   var formKey = GlobalKey<FormState>();
   TextEditingController messageController = TextEditingController();
-  ContactTypeModel type = const ContactTypeModel(
+  TitleIdListModel type = TitleIdListModel(
     id: 1,
-    nameAr: "خطأ في الموقع",
-    nameEn: "website error",
+    title: "website_error",
   );
   String? aboutUsContent;
   String? termsContent;
 
-  List<ContactTypeModel> contactTypeList = [
-    const ContactTypeModel(
+  List<TitleIdListModel> contactTypeList = [
+    TitleIdListModel(
       id: 1,
-      nameAr: "خطأ في الموقع",
-      nameEn: "website error",
+      title: "website_error",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 2,
-      nameAr: "طلب الشريك",
-      nameEn: "partner request",
+      title: "partner_request",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 3,
-      nameAr: "شكوى",
-      nameEn: "complaint",
+      title: "complaint",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 4,
-      nameAr: "سؤال",
-      nameEn: "inqury",
+      title: "question",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 5,
-      nameAr: "اتصال",
-      nameEn: "contact",
+      title: "contact",
     ),
   ];
 
-  void changeContactType(ContactTypeModel? ty) {
+  void changeContactType(TitleIdListModel? ty) {
     emit(ChangeContactTypeLoading());
     type = ty!;
     emit(ChangeContactType(type: ty));

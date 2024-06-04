@@ -23,8 +23,7 @@ class HomeAppBar extends StatelessWidget {
                   width: 220.w,
                   child: Row(
                     children: [
-                      Text(
-                        "اهلا ${context.read<UserCubit>().user!.name ?? ""} ",
+                      Text("${"hello".tr(context)}${context.read<UserCubit>().user!.name ?? ""} ",
                         maxLines: 1,
                         overflow: TextOverflow.clip,
                         style: AppTextStyles.textStyle(
@@ -40,11 +39,10 @@ class HomeAppBar extends StatelessWidget {
             ],
           ),
           subtitle: Text(
-            "سعداء برويتك مرة اخري",
+            "happy_to_see".tr(context),
             style: AppTextStyles.textStyle(
                 weight: FontWeight.w600,
                 color: AppColors.c090909,
-                // color: AppColors.c9A9A9A,
                 size: 12),
           ),
           trailing: AppConstants.userType == AppConstants.user ||

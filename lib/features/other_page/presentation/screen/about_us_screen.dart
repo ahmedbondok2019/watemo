@@ -19,7 +19,7 @@ class AboutUsScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "عن التطبيق",
+              title: "about_app".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

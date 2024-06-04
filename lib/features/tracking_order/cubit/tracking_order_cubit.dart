@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:the_widget_marker/the_widget_marker.dart';
 import '../../../core/src/app_export.dart';
@@ -6,7 +5,6 @@ import 'dart:ui' as ui;
 import '../data/models/steps/steps_model.dart';
 import '../data/models/tracking_data_model.dart';
 import '../data/repository/tracking_order_repository.dart';
-
 part 'tracking_order_state.dart';
 
 class TrackingOrderCubit extends Cubit<TrackingOrderState> {
@@ -44,7 +42,6 @@ class TrackingOrderCubit extends Cubit<TrackingOrderState> {
             infoWindow: InfoWindow(title: stepsList[index].lng.toString())));
         emit(SetMarkerSuccess());
       }
-      log("marker ===========>>>>>>${marker.length}");
       emit(SetMarkerSuccess());
     } catch (e) {
       emit(SetMarkerFailure());
@@ -97,8 +94,7 @@ class TrackingOrderCubit extends Cubit<TrackingOrderState> {
 
   /// <<<---- get Order Tracking --->>>
   Future<void> getOrderTracking(String orderId) async {
-    log("get Order Tracking ======================>>>>>>>>>>>>333");
-    // emit(GetOrderTrackingLoading());
+    emit(GetOrderTrackingLoading());
     final NetworkService<TrackingDataModel> data =
         await _repository.getOrderTracking(orderId);
     switch (data) {

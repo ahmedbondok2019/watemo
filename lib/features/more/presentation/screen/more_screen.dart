@@ -25,13 +25,13 @@ class MoreScreen extends StatelessWidget {
                     children: [
                       Gap(30.h),
                       MoreListTile(
-                        title: "تعديل حسابي",
+                        title: "edit_profile".tr(context),
                         icon: ImageConstants.person,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "لغة التطبيق",
+                        title: "app_lang".tr(context),
                         icon: ImageConstants.lang,
                         onTap: () => Navigator.pushNamed(context,
                             AppRoutes.selectLang,
@@ -40,7 +40,7 @@ class MoreScreen extends StatelessWidget {
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "المحفظة",
+                        title: "wallet".tr(context),
                         icon: ImageConstants.walletMoney,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.wallet),
                       ),
@@ -48,7 +48,7 @@ class MoreScreen extends StatelessWidget {
 
                       /// don't wear ui
                       MoreListTile(
-                        title: "الشهادات",
+                        title: "certificates".tr(context),
                         icon: ImageConstants.certifications,
                         onTap: () {},
                       ),
@@ -56,25 +56,25 @@ class MoreScreen extends StatelessWidget {
 
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "دعوة صديق",
+                        title: "invite_friend".tr(context),
                         icon: ImageConstants.certifications,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.invitationFriend),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "عن التطبيق",
+                        title: "about_app".tr(context),
                         icon: ImageConstants.aboutApp,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.aboutUs),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "الشروط والاحكام",
+                        title: "term&&condition".tr(context),
                         icon: ImageConstants.info,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.termConditions),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "الدعم الفني",
+                        title: "technical_support".tr(context),
                         icon: ImageConstants.support,
                         onTap: () =>
                             Navigator.pushNamed(context, AppRoutes.contactUs),

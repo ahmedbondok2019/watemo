@@ -18,7 +18,7 @@ class AllWalletScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "المحفظة",
+              title: "wallet".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [
@@ -41,7 +41,8 @@ class AllWalletScreen extends StatelessWidget {
                 if (state is LastWalletSuccess) {
                   return Expanded(
                     child: context.read<WalletCubit>().lastTransactionsList.isEmpty
-                        ? const Center(child: CustomNoResult(title: "لم تقم باجراء اي عمليات مالية"))
+                        ? Center(child: CustomNoResult(
+                        title: "no_wallet".tr(context)))
                         : SingleChildScrollView(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.w),

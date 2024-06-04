@@ -106,7 +106,7 @@ class _TrackingOrderScreenState extends State<TrackingOrderScreen> {
                             ),
                             Gap(8.w),
                             Text(
-                              "الفيديوهات",
+                              "the_videos".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w600,
                                   color: AppColors.c090909,
@@ -123,7 +123,7 @@ class _TrackingOrderScreenState extends State<TrackingOrderScreen> {
                           vertical: 0,
                           size: 16,
                           weight: FontWeight.w600,
-                          title: "حالة الخدمة",
+                          title: "service_status".tr(context),
                           onTap: () {
                             showModalBottomSheet(
                               context: context,

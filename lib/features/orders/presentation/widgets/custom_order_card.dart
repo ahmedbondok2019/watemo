@@ -65,7 +65,7 @@ class CustomOrderCard extends StatelessWidget {
                         ),
                         Gap(5.w),
                         Text(
-                          "ريال ",
+                          "rial".tr(context),
                           style: AppTextStyles.textStyle(
                               weight: FontWeight.w400,
                               color: AppColors.c090909,

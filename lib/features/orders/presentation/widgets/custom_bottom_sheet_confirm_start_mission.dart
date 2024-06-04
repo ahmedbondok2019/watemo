@@ -97,7 +97,7 @@ class CustomBottomSheetStartMission extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      "نيابة عن : ",
+                                      "on_behalf_of".tr(context),
                                       style: AppTextStyles.textStyle(
                                           weight: FontWeight.w400,
                                           color: AppColors.c090909,
@@ -145,7 +145,7 @@ class CustomBottomSheetStartMission extends StatelessWidget {
             type: AlertType.failed);
       } else if (state is StartMissionOrderVendorSuccess) {
         CustomMessage.showMessage(context,
-            message: "تم بدا المهمة بنجاح", type: AlertType.success);
+            message: "started_task_successful".tr(context), type: AlertType.success);
         Navigator.pushNamed(
           context,
           AppRoutes.orderStep,
@@ -164,7 +164,9 @@ class CustomBottomSheetStartMission extends StatelessWidget {
           size: 14,
           colorBg: AppColors.primary,
           title:
-              order.hasSteps! ? "تأكيد استكمال بدأ المهمة" : "تأكيد بدأ المهمة",
+              order.hasSteps!
+                  ? "confirm_complete_started_task".tr(context)
+                  : "confirm_started_task".tr(context),
           onTap: () {
             Utils.checkLocationEnabled()
                 .then((value) {
@@ -179,14 +181,14 @@ class CustomBottomSheetStartMission extends StatelessWidget {
                     CustomMessage.showMessage(
                         context,
                         message:
-                        "يجب السماح للوصول الي موقعك الخاص",
+                        "allow_to_access_location".tr(context),
                         type: AlertType.warning);
                   }
                 });
               } else {
                 CustomMessage.showMessage(context,
                     message:
-                    "يجب فتح الموقع للوصول لهذه الصفحة",
+                    "must_open_location".tr(context),
                     type: AlertType.warning);
               }
             });

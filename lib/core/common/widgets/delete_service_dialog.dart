@@ -37,7 +37,7 @@ class DeleteServiceDialog extends StatelessWidget {
             )),
         Gap(10.h),
         Text(
-          "هل انت متاكد من حذف هذه الخدمة؟",
+          "delete_service".tr(context),
           textAlign: TextAlign.center,
           style: AppTextStyles.textStyle(
             color: AppColors.c090909,
@@ -52,7 +52,7 @@ class DeleteServiceDialog extends StatelessWidget {
               height: 48,
               width: 132.5,
               horizontal: 0,
-              title: "تأكيد",
+              title: "confirm".tr(context),
               onTap: onTapConfirm,
             ),
             CustomButtonInternet(
@@ -63,7 +63,7 @@ class DeleteServiceDialog extends StatelessWidget {
               colorBg: AppColors.transparent,
               borderColor: AppColors.c090909,
               txtColor: AppColors.c090909,
-              title: "الغاء",
+              title: "cancel".tr(context),
               onTap: () => Navigator.pop(context),
             ),
           ],

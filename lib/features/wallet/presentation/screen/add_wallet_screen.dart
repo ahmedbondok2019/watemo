@@ -19,7 +19,7 @@ class AddWalletScreen extends StatelessWidget {
             return Column(
               children: [
                 CustomAppBar(
-                  title: "إضافة رصيد",
+                  title: "add_money".tr(context),
                   titleSize: 16,
                   leading: const CustomBackButton(),
                   actions: [
@@ -36,8 +36,8 @@ class AddWalletScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 16.r,
-                          vertical: 10.r,
+                          horizontal: 16.w,
+                          vertical: 10.h,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,7 @@ class AddWalletScreen extends StatelessWidget {
                           children: [
                             Gap(20.h),
                             Text(
-                              "اختر بوابة الدفع",
+                              "select_payment_method".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 16, weight: FontWeight.w600,
                                   color: AppColors.c090909),
@@ -55,26 +55,24 @@ class AddWalletScreen extends StatelessWidget {
 
                             Gap(20.h),
                             Text(
-                              "بيانات بطاقة الدفع",
+                              "card_payment_details".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 16, weight: FontWeight.w600,
                                   color: AppColors.c090909),
                             ),
                             Gap(20.h),
                             Text(
-                              "رقم البطاقة",
+                              "card_number".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, weight: FontWeight.w600,
                                   color: AppColors.c090909),
                             ),
                             Gap(10.h),
                             InputFormField(
-                              // controller: authCubit.confirmPasswordController,
                               validator: (value) {
                                 return null;
                               },
                               fillColor: AppColors.white,
-                              // hint: "***********",
                               suffixIcon: Image.asset(ImageConstants.mastercard,
                                 width: 25.w,height: 16.h,),
                             ),
@@ -95,7 +93,6 @@ class AddWalletScreen extends StatelessWidget {
                                    Gap(5.h),
                                    InputFormField(
                                      width: 173.w,
-                                     // controller: authCubit.confirmPasswordController,
                                      validator: (value) {
                                        return null;
                                      },
@@ -117,7 +114,6 @@ class AddWalletScreen extends StatelessWidget {
                                    Gap(5.h),
                                    InputFormField(
                                      width: 173.w,
-                                     // controller: authCubit.confirmPasswordController,
                                      validator: (value) {
                                        return null;
                                      },
@@ -133,7 +129,7 @@ class AddWalletScreen extends StatelessWidget {
                               height: 48,
                               width: 361,
                               horizontal: 0,
-                              title: "التالي",
+                              title: "next".tr(context),
                               onTap: () {},
                               // onTap: () => Navigator.pushNamed(context, AppRoutes.addWallet),
                             ),

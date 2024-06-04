@@ -35,7 +35,7 @@ class OnBoarding extends StatelessWidget {
                               AppRoutes.authScreen,
                             ),
                             child: Text(
-                              "تخطي",
+                              "skip".tr(context),
                               style: AppTextStyles.textStyle(
                                 color: AppColors.c090909,
                                 weight: FontWeight.w700,
@@ -71,8 +71,7 @@ class OnBoarding extends StatelessWidget {
                             duration: const Duration(microseconds: 200),
                             curve: Curves.bounceIn);
                       },
-                      child: Text(
-                        "السابق",
+                      child: Text("previous".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
                             color: onBoardingCubit.currentIndex == 0
@@ -90,7 +89,7 @@ class OnBoarding extends StatelessWidget {
                             curve: Curves.bounceIn);
                       },
                       child: Text(
-                        "التالي",
+                        "next".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
                             color: onBoardingCubit.currentIndex ==
@@ -107,8 +106,8 @@ class OnBoarding extends StatelessWidget {
                         onBoardingCubit.onBoardingData.length - 1
                     ? CustomButtonInternet(
                         title: AppConstants.userType ==  AppConstants.user
-                            ? "ابدأ التسجيل كطالب خدمة الان"
-                            : "ابدأ الاستخدام الان",
+                            ? "onBoardButton".tr(context)
+                            : "Start_using_now".tr(context),
                         horizontal: 0,
                         vertical: 10,
                         width: MediaQuery.of(context).size.width,

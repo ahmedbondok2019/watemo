@@ -19,6 +19,7 @@ class CustomDropDownNat extends StatelessWidget {
     this.width,
     this.borderColor,
     this.bgColor,
+    required this.isTrans ,
     this.isDate = false,
     this.selectedItemDate,
   });
@@ -31,6 +32,7 @@ class CustomDropDownNat extends StatelessWidget {
   final Function(String? value)? onChangedDate;
   final String label;
   final bool isDate;
+  final bool isTrans;
   final Color? borderColor;
   final Color? bgColor;
   final double? dropDownWidth;
@@ -47,6 +49,7 @@ class CustomDropDownNat extends StatelessWidget {
               customButton: CustomDropDownNatButton(
                 width: width,
                 label: label,
+                isTrans: isTrans,
                 selectedValueDate: selectedItemDate,
                 isDate: isDate,
               ),
@@ -119,6 +122,7 @@ class CustomDropDownNat extends StatelessWidget {
                 label: label,
                 selectedValue: selectedItem,
                 isDate: isDate,
+                isTrans: isTrans,
                 borderColor: borderColor,
                 bgColor: bgColor,
               ),
@@ -129,7 +133,9 @@ class CustomDropDownNat extends StatelessWidget {
                       DropdownMenuItem<TitleIdListModel>(
                         value: item,
                         child: Text(
-                          item.title,
+                            isTrans
+                                ? item.title.tr(context)
+                                : item.title,
                           style: AppTextStyles.textStyle(
                             color: AppColors.c00243C,
                           ),
@@ -137,7 +143,6 @@ class CustomDropDownNat extends StatelessWidget {
                         ),
                       ))
                   .toList(),
-              // value: selectedItem,
               onChanged: onChanged,
               buttonStyleData: ButtonStyleData(
                 height: 54.h,

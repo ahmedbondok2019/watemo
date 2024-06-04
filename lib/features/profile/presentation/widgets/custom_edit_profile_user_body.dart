@@ -28,7 +28,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                   children: [
                     Gap(10.h),
                     Text(
-                      'الاسم ثلاثي',
+                      'name'.tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -39,14 +39,14 @@ class CustomEditProfileUserBody extends StatelessWidget {
                       height: 48.h,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "الرجاء ادخل الاسم";
+                          return "empty_name_validation".tr(context);
                         } else if (value.length <= 3) {
-                          return "الاسم يجب ان يكون اكثر من 3 احرف";
+                          return "name_validation".tr(context);
                         }
                         return null;
                       },
                       fillColor: AppColors.cF5F5F5,
-                      hint: "الاسم هنا",
+                      hint: "hint_name".tr(context),
                       controller: profile.fullName,
                       suffixIcon: Image.asset(
                         ImageConstants.profileIcon,
@@ -57,7 +57,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
 
                     /// phone
                     Text(
-                      "رقم الهاتف",
+                      "phone".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -72,7 +72,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                           height: 75.h,
                           validator: (p0) {
                             if (p0 == null || p0.isEmpty) {
-                              return "رجاء ادخل رقم الموبايل";
+                              return "empty_phone_validation".tr(context);
                             } else {
                               return null;
                             }
@@ -103,7 +103,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                             list: profile.countriesList,
                             selectedItem: profile.countryCode,
                             onChanged: profile.changeCountryCode,
-                            label: "اختر كود الدولة",
+                            label: "select_country_code".tr(context),
                           ),
                         ),
                       ],
@@ -112,7 +112,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
 
                     /// email
                     Text(
-                      "البريد الالكتروني",
+                      "email".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -122,19 +122,19 @@ class CustomEditProfileUserBody extends StatelessWidget {
                     InputFormField(
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
-                          return 'please enter email';
+                          return 'empty_email_validation'.tr(context);
                         }
                         bool emailValid = RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                             .hasMatch(value);
                         if (!emailValid) {
-                          return 'please enter valid email';
+                          return 'email_validation'.tr(context);
                         }
                         return null;
                       },
                       controller: profile.emailAddress,
                       fillColor: AppColors.cF5F5F5,
-                      hint: 'البريد هنا',
+                      hint: 'hint_email'.tr(context),
                       suffixIcon: Image.asset(
                         ImageConstants.emailIcon,
                         height: 20.h,
@@ -146,7 +146,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
 
                     /// password
                     Text(
-                      "كلمة المرور",
+                      "password".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -156,9 +156,9 @@ class CustomEditProfileUserBody extends StatelessWidget {
                     InputFormField(
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return "رجاء ادخل كلمة المرور";
+                          return "empty_password_validation".tr(context);
                         } else if (p0.length < 8) {
-                          return "كلمة المرور اكثر من 8 احرف";
+                          return "password_validation".tr(context);
                         }
                         return null;
                       },
@@ -169,7 +169,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                     ),
                     Gap(10.h),
                     Text(
-                      "تآكيد كلمة المرور",
+                      "confirm_password".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -180,12 +180,12 @@ class CustomEditProfileUserBody extends StatelessWidget {
                       controller: profile.confirmPassword,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "رجاء ادخل كلمة المرور";
+                          return "empty_password_validation".tr(context);
                         } else if (value.length < 8) {
-                          return "كلمة المرور اكثر من 8 احرف";
+                          return "password_validation".tr(context);
                         } else if (profile.password.text !=
                             profile.confirmPassword.text) {
-                          return "كلمة المرور غير متطابقة";
+                          return "confirm_password_validation".tr(context);
                         }
                         return null;
                       },
@@ -209,18 +209,16 @@ class CustomEditProfileUserBody extends StatelessWidget {
                       borderColor: AppColors.transparent,
                       colorBg: AppColors.transparent,
                       txtColor: AppColors.cE74C3C,
-                      title: "حذف الحساب",
+                      title: "remove_account".tr(context),
                       onTap: () {
                         showAnimatedDialog(context,
                             BlocBuilder<CheckoutCubit, CheckoutState>(
                                 builder: (context, state) {
                                   return ConfirmOrderDialog(
-                                    description: "هل انت متاكد من انك تريد حذف الحساب",
+                                    description: "confirm_remove_account".tr(context),
                                     isFailed: false,
                                     image: ImageConstants.said,
-                                    onTapConfirm: () {
-                                      context.read<ProfileCubit>().removeAccount();
-                                    },
+                                    onTapConfirm: context.read<ProfileCubit>().removeAccount,
                                   );
                                 }),
                             dismissible: false, isFlip: true);
@@ -247,39 +245,20 @@ class CustomEditProfileUserBody extends StatelessWidget {
         );
       }
     }, builder: (context, state) {
-      if (state is ProfileInitial) {
-        return CustomButtonInternet(
-          height: 48,
-          width: 361,
-          horizontal: 0,
-          title: "حفظ التعديل",
-          onTap: () {
-            if (context.read<ProfileCubit>().formKey.currentState!.validate()) {
-              if (context.read<ProfileCubit>().imageProfileNet == null &&
-                  context.read<ProfileCubit>().myImage == null) {
-                CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة للملف الشخصي",
-                    type: AlertType.warning);
-              } else {
-                context.read<ProfileCubit>().editProfile();
-              }
-            }
-          },
-        );
-      } else if (state is ProfileLoading) {
+      if (state is ProfileLoading) {
         return const Center(child: CustomLoading());
       } else {
         return CustomButtonInternet(
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "حفظ التعديل",
+          title: "save_edit".tr(context),
           onTap: () {
             if (context.read<ProfileCubit>().formKey.currentState!.validate()) {
               if (context.read<ProfileCubit>().myImage == null &&
                   context.read<ProfileCubit>().imageProfileNet == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة للملف الشخصي",
+                    message: "set_profile_image".tr(context),
                     type: AlertType.warning);
               } else {
                 context.read<ProfileCubit>().editProfile();

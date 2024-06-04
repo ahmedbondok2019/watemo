@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
@@ -12,7 +11,6 @@ import '../../auth/data/models/user/user_model.dart';
 import '../data/models/edit_company_profile/edit_company_profile_req_model.dart';
 import '../data/models/edit_vendor_profile/edit_vendor_profile_req_model.dart';
 import '../data/repository/profile_repository.dart';
-
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
@@ -93,10 +91,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   File? identityBack;
   String? imageIdentityBack;
   List<String> reasons = [
-    "هل لديك حساب اخر بالفعل؟",
-    "لم اعُد استخدم هذا الحساب مرة اخري",
-    "اسباب امنيه",
-    "اسباب اخري"
+    "have_another_account",
+    "no_use_account",
+    "security_reasons",
+    "other_reasons"
   ];
 
   /// <<--- get User --->>
@@ -104,9 +102,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(LoadUserDataLoading());
     user = UserModel.fromJson(json
         .decode(getIt<SharedPreferences>().getString(AppConstants.userData)!));
-
-    // print("services000 ======>>>>>> ${user!.services}");
-    // print("services000 ======>>>>>> ${AppConstants.userType}");
     if(AppConstants.userType == AppConstants.user){
       imageProfileNet = user!.image;
       fullName.text = user!.name ?? "";
@@ -148,7 +143,6 @@ class ProfileCubit extends Cubit<ProfileState> {
         );
       }
 
-      print("services000 ======>>>>>> ${user!.services}");
       if (user!.services != null && user!.services!.isNotEmpty) {
         selectedIdServices = user!.services!;
         List<String> ids = user!.services!.split(',');
@@ -371,7 +365,6 @@ class ProfileCubit extends Cubit<ProfileState> {
   /// <<<-------- countries && cities -------------->>>
   late List<TitleIdListModel> _countriesList = [];
   TitleIdListModel? countryCode;
-
   void changeCountryCode(TitleIdListModel? val) {
     emit(ChangeCountryCodeLoading());
     countryCode = val;
@@ -382,11 +375,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   TitleIdListModel? gender;
   List<TitleIdListModel> genders = [
     TitleIdListModel(
-      title: "ذكر",
+      title: "male",
       id: 1,
     ),
     TitleIdListModel(
-      title: "انثي",
+      title: "female",
       id: 2,
     ),
   ];
@@ -395,7 +388,6 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   /// <<--- get Countries request --->>
   Future<void> getCountries() async {
-    log("getCountries ======================>>>>>>>>>>>>333");
     emit(GetCountriesLoading());
     final NetworkService<TitleIdModel> data = await _authRepo.getCountries();
     switch (data) {
@@ -421,7 +413,6 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   /// <<--- get Cities request --->>
   Future<void> getCities({required String countryId}) async {
-    log("getCities ======================>>>>>>>>>>>>333");
     emit(GetCitiesLoading());
     final NetworkService<TitleIdModel> data =
         await _authRepo.getCities(countryId: countryId);
@@ -439,11 +430,11 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   List<TitleIdListModel> servicesType = [
     TitleIdListModel(
-      title: "حج",
+      title: "hajj",
       id: 1,
     ),
     TitleIdListModel(
-      title: "عمره",
+      title: "amra",
       id: 2,
     ),
   ];
@@ -482,7 +473,6 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   /// <<<--- get Spoken Languages --->>>
   Future<void> getSpokenLanguages() async {
-    log("getSpokenLanguages ======================>>>>>>>>>>>>333");
     emit(SpokenLanguagesLoading());
     final NetworkService<TitleIdModel> data =
         await _authRepo.getSpokenLanguages();
@@ -521,12 +511,10 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void changeLang(TitleIdListModel? val) {
     emit(ChangeLangLoading());
-    log("message change Lang ===========>> ${val!.title}");
-    log("message change Lang ===========>> ${val.id}");
     if (selectLang.isEmpty) {
-      selectLang.add(val);
+      selectLang.add(val!);
     } else {
-      int index = selectLang.indexOf(val);
+      int index = selectLang.indexOf(val!);
       if (index == -1) {
         selectLang.add(val);
       } else {

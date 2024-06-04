@@ -32,7 +32,8 @@ class OnBoardingBody extends StatelessWidget {
                 ),
               ),
               Text(
-                OnBoardingCubit.get(context).onBoardingData[index].title,
+                OnBoardingCubit.get(context)
+                    .onBoardingData[index].title.tr(context),
                 style: AppTextStyles.textStyle(
                   color: AppColors.c090909,
                   weight: FontWeight.w700,
@@ -41,7 +42,8 @@ class OnBoardingBody extends StatelessWidget {
               ),
               Gap(20.h),
               Text(
-                OnBoardingCubit.get(context).onBoardingData[index].subTitle,
+                OnBoardingCubit.get(context).
+                onBoardingData[index].subTitle.tr(context),
                 textAlign: TextAlign.center,
                 style: AppTextStyles.textStyle(
                   size: 16,

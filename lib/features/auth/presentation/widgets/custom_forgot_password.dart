@@ -14,7 +14,7 @@ class CustomForgotPassword extends StatelessWidget {
           child: Column(children: [
             Gap(10.h),
             Text(
-              'لا تقلق ، ما عليك سوى كتابة رقم هاتفك وسنرسل رمز التحقق.',
+              "forget_password_title".tr(context),
               style: AppTextStyles.textStyle(
                 size: 17,
                 weight: FontWeight.w500,
@@ -30,7 +30,7 @@ class CustomForgotPassword extends StatelessWidget {
                 InputFormField(
                   validator: (p0) {
                     if (p0 == null || p0.isEmpty) {
-                      return "رجاء ادخل رقم الموبايل";
+                      return "empty_phone_validation".tr(context);
                     } else {
                       return null;
                     }
@@ -61,7 +61,7 @@ class CustomForgotPassword extends StatelessWidget {
                     list: context.read<AuthCubit>().countriesList,
                     selectedItem: context.read<AuthCubit>().countryCode,
                     onChanged: context.read<AuthCubit>().changeCountryCode,
-                    label: "اختر كود الدولة",
+                    label: "select_country_code".tr(context),
                   ),
                 ),
               ],
@@ -78,9 +78,7 @@ class CustomForgotPassword extends StatelessWidget {
         listener: (context, state) {
           if (state is ForgetPasswordFailure) {
             CustomMessage.showMessage(context,
-                message: NetworkExceptions.getErrorMessage(
-                  state.networkExceptions,
-                ) == "401"
+                message: NetworkExceptions.getErrorMessage(state.networkExceptions,) == "401"
                     ? "unauthorized".tr(context)
                     : NetworkExceptions.getErrorMessage(
                   state.networkExceptions,
@@ -94,25 +92,14 @@ class CustomForgotPassword extends StatelessWidget {
             );
           }
         }, builder: (context, state) {
-      if (state is ForgetPasswordInitial) {
-        return CustomButtonInternet(
-            height: 52,
-            width: 361,
-            horizontal: 0,
-            title: 'نسيت كلمة المرور',
-            onTap: () {
-              if (context.read<AuthCubit>().formKey.currentState!.validate()) {
-                  context.read<AuthCubit>().forgetPassword();
-              }
-            });
-      } else if (state is ForgetPasswordLoading) {
+     if (state is ForgetPasswordLoading) {
         return const Center(child: CustomLoading());
       } else {
         return CustomButtonInternet(
             height: 52,
             width: 361,
             horizontal: 0,
-            title: 'نسيت كلمة المرور',
+            title: "forget_password".tr(context),
             onTap: () {
               if (context.read<AuthCubit>().formKey.currentState!.validate()) {
                 context.read<AuthCubit>().forgetPassword();

@@ -29,7 +29,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                     Gap(30.h),
                     Center(
                       child: Text(
-                        "تطبيق واتموا لخدمات الحج والعمرة للغير",
+                        "title_select_user".tr(context),
                         style: AppTextStyles.textStyle(
                             size: 20,
                             weight: FontWeight.w700,
@@ -51,7 +51,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                     Gap(40.h),
                     Center(
                       child: Text(
-                        "برجاء اختيار طريقة الدخول",
+                        "select_user".tr(context),
                         style: AppTextStyles.textStyle(
                             size: 20,
                             weight: FontWeight.w700,
@@ -60,7 +60,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                     ),
                     Gap(30.h),
                     CustomButtonInternet(
-                      title: "سجل كطالب خدمة",
+                      title: "user_register".tr(context),
                       vertical: 12,
                       width: MediaQuery.of(context).size.width,
                       onTap: () {
@@ -72,7 +72,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                       },
                     ),
                     CustomButtonInternet(
-                        title: "سجل كمقدم خدمة",
+                        title: "vendor_register".tr(context),
                         colorBg: Colors.transparent,
                         txtColor: AppColors.c090909,
                         borderColor: AppColors.cBEA235,
@@ -87,7 +87,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                               AppRoutes.onBoarding);
                         }),
                     CustomButtonInternet(
-                        title: "سجل كشركة",
+                        title: "company_register".tr(context),
                         vertical: 12,
                         colorBg: Colors.transparent,
                         txtColor: AppColors.c090909,

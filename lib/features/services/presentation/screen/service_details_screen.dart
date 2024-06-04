@@ -15,7 +15,8 @@ class ServiceDetailsScreen extends StatelessWidget {
   final ServicesModel? service;
 
   const ServiceDetailsScreen({
-    super.key, required this.hajj,
+    super.key,
+    required this.hajj,
     required this.titleId,
     required this.service,
   });
@@ -25,132 +26,157 @@ class ServiceDetailsScreen extends StatelessWidget {
     return PopScope(
       onPopInvoked: (didPop) => ServicesCubit.get(context).clearData(),
       child: Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          /// button
-          CustomButtonInternet(
-              height: 48,
-              width: 240,
-              horizontal: 0,
-              title: "التالي",
-              onTap: () {
-                if (context
-                    .read<ServicesCubit>()
-                    .nameController
-                    .text
-                    .isEmpty) {
-                  CustomMessage.showMessage(context,
-                      message: "يجب كتابة اسم الشخص", type: AlertType.warning);
-                }
-                else if (context.read<ServicesCubit>().relation == null) {
-                  CustomMessage.showMessage(context,
-                      message: "يجب اختيار صلة القرابة",
-                      type: AlertType.warning);
-                }
-                else {
-                  if(titleId.id == 3){
-                    service!.counter = context.read<ServicesCubit>().counter;
-                  }
-                  else{
-                    if(service != null){
-                      service!.counter = 1;
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            /// button
+            CustomButtonInternet(
+                height: 48,
+                width: 240,
+                horizontal: 0,
+                title: "next".tr(context),
+                onTap: () {
+                  if (context
+                      .read<ServicesCubit>()
+                      .nameController
+                      .text
+                      .isEmpty) {
+                    CustomMessage.showMessage(context,
+                        message: "must_write_name".tr(context),
+                        type: AlertType.warning);
+                  } else if (context.read<ServicesCubit>().relation == null) {
+                    CustomMessage.showMessage(context,
+                        message: "must_select_relation".tr(context),
+                        type: AlertType.warning);
+                  } else {
+                    if (titleId.id == 3) {
+                      service!.counter = context.read<ServicesCubit>().counter;
+                    } else {
+                      if (service != null) {
+                        service!.counter = 1;
+                      }
+                    }
+
+                    if (titleId.id == 3) {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.checkout,
+                        arguments: [
+                          service,
+                          hajj,
+                          CreateOrderReqModel(
+                            onBehalfOf: context
+                                .read<ServicesCubit>()
+                                .nameController
+                                .text
+                                .trim(),
+                            userRelation: context
+                                .read<ServicesCubit>()
+                                .relation!
+                                .id
+                                .toString(),
+                            notes: context
+                                .read<ServicesCubit>()
+                                .noteController
+                                .text
+                                .trim(),
+                            languages: null,
+                            sex: "0",
+                          ),
+                          context.read<ServicesCubit>().selectServicesList,
+                        ],
+                      );
+                    } else {
+                      showModalBottomSheet(
+                        context: context,
+                        enableDrag: false,
+                        backgroundColor: Colors.transparent,
+                        builder: (cont) => BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+                          child: BlocBuilder<ServicesCubit, ServicesState>(
+                              builder: (cont, state) {
+                            return CustomBottomSheetProvider(
+                              service: service,
+                              hajj: hajj,
+                              languages:
+                                  context.read<ServicesCubit>().languages,
+                              onBehalfOf: context
+                                  .read<ServicesCubit>()
+                                  .nameController
+                                  .text
+                                  .trim(),
+                              userRelation: context
+                                  .read<ServicesCubit>()
+                                  .relation!
+                                  .id
+                                  .toString(),
+                              notes: context
+                                  .read<ServicesCubit>()
+                                  .noteController
+                                  .text
+                                  .trim(),
+                              selectServicesList: context
+                                  .read<ServicesCubit>()
+                                  .selectServicesList,
+                            );
+                          }),
+                        ),
+                      );
                     }
                   }
+                }),
 
-                  if(titleId.id == 3){
-                    Navigator.pushNamed(
-                      context,
-                      AppRoutes.checkout,
-                      arguments: [
-                        service,
-                        hajj,
-                        CreateOrderReqModel(
-                          onBehalfOf: context.read<ServicesCubit>().nameController.text.trim(),
-                          userRelation: context.read<ServicesCubit>().relation!.id.toString(),
-                          notes: context.read<ServicesCubit>().noteController.text.trim(),
-                          languages: null,
-                          sex: "0",
-                        ),
-                        context.read<ServicesCubit>().selectServicesList,
-                      ],
-                    );
-                  }
-                  else{
-                    showModalBottomSheet(
-                      context: context,
-                      enableDrag: false,
-                      backgroundColor: Colors.transparent,
-                      builder: (cont) => BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                        child: BlocBuilder<ServicesCubit,
-                            ServicesState>(builder: (cont, state) {
-                          return CustomBottomSheetProvider(
-                            service: service,
-                            hajj: hajj,
-                            languages: context.read<ServicesCubit>().languages,
-                            onBehalfOf: context.read<ServicesCubit>().nameController.text.trim(),
-                            userRelation: context.read<ServicesCubit>().relation!.id.toString(),
-                            notes: context.read<ServicesCubit>().noteController.text.trim(),
-                            selectServicesList: context.read<ServicesCubit>().selectServicesList,
-                          );
-                        }),),
-                    );
-                  }
-                }
-              }),
-
-          /// total service
-          SizedBox(
-            width: 100.w,
-            height: 48.h,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "سعر الخدمة",
-                  style: AppTextStyles.textStyle(
-                      weight: FontWeight.w500,
-                      color: AppColors.c090909,
-                      size: 14),
-                ),
-                Gap(5.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      hajj != null
-                          ? hajj!.price.toString()
-                          : service!.price.toString(),
-                      style: AppTextStyles.textStyle(
-                          weight: FontWeight.w700,
-                          color: AppColors.c090909,
-                          size: 13),
-                    ),
-                    Gap(5.w),
-                    Text(
-                      "ريال",
-                      style: AppTextStyles.textStyle(
-                          weight: FontWeight.w500,
-                          color: AppColors.c090909,
-                          size: 13),
-                    ),
-                  ],
-                ),
-              ],
+            /// total service
+            SizedBox(
+              width: 100.w,
+              height: 48.h,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "service_price".tr(context),
+                    style: AppTextStyles.textStyle(
+                        weight: FontWeight.w500,
+                        color: AppColors.c090909,
+                        size: 14),
+                  ),
+                  Gap(5.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        hajj != null
+                            ? hajj!.price.toString()
+                            : service!.price.toString(),
+                        style: AppTextStyles.textStyle(
+                            weight: FontWeight.w700,
+                            color: AppColors.c090909,
+                            size: 13),
+                      ),
+                      Gap(5.w),
+                      Text(
+                        "rial".tr(context),
+                        style: AppTextStyles.textStyle(
+                            weight: FontWeight.w500,
+                            color: AppColors.c090909,
+                            size: 13),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-      body: BackgroundComponent(
+          ],
+        ),
+        body: BackgroundComponent(
           opacity: 0.2,
           child: Column(
             children: [
               CustomAppBar(
-                title: "خدمة ${titleId.title}",
+                title: "${"service".tr(context)} ${titleId.title}",
                 titleSize: 16,
                 leading: const CustomBackButton(),
                 actions: const [NotificationIcon()],
@@ -168,8 +194,8 @@ class ServiceDetailsScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
       ),
-    ),
     );
   }
 }

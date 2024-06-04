@@ -21,7 +21,7 @@ class OrderAllVideosScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "فيديوهات المراحل",
+              title: "stage_videos".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [
@@ -49,8 +49,9 @@ class OrderAllVideosScreen extends StatelessWidget {
                       Gap(25.h),
                     ],
                   ),
-                )
-            )),
+                ),
+            ),
+            ),
           ],
         ),
       ),

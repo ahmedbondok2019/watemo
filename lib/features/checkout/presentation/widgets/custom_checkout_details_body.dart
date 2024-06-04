@@ -29,7 +29,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
         /// details
         Gap(20.h),
         Text(
-          "تفاصيل الطلب",
+          "order_details".tr(context),
           style: AppTextStyles.textStyle(
               weight: FontWeight.w600, color: AppColors.c090909, size: 16),
         ),
@@ -98,15 +98,14 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                               size: 16),
                         ),
                         Gap(5.w),
-                        Text(
-                          "ريال ",
+                        Text("rial".tr(context),
                           style: AppTextStyles.textStyle(
                               weight: FontWeight.w400,
                               color: AppColors.c090909,
                               size: 13),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ]),
@@ -178,7 +177,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                                   ),
                                   Gap(5.w),
                                   Text(
-                                    "ريال ",
+                                    "rial".tr(context),
                                     style: AppTextStyles.textStyle(
                                         weight: FontWeight.w400,
                                         color: AppColors.c090909,
@@ -234,7 +233,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
             children: [
               Gap(10.h),
               Text(
-                "تفاصيل سعر الطلب",
+                "price_order_details".tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w600,
                     color: AppColors.c090909,
@@ -245,7 +244,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "خدمة اساسية",
+                    "basic_service".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w500,
                         color: AppColors.c636363,
@@ -261,7 +260,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                             size: 12),
                       ),
                       Gap(5.w),
-                      Text("ريال",
+                      Text("rial".tr(context),
                         textDirection: TextDirection.ltr,
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
@@ -278,7 +277,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "خدمات اضافية",
+                    "additional_services".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w500,
                         color: AppColors.c636363,
@@ -294,7 +293,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                             size: 12),
                       ),
                       Gap(5.w),
-                      Text("ريال",
+                      Text("rial".tr(context),
                         textDirection: TextDirection.ltr,
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
@@ -311,13 +310,12 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "الاجمالي",
+                    "total".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w600,
                         color: AppColors.c090909,
                         size: 14),
                   ),
-
 
                   Row(
                     children: [
@@ -333,7 +331,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
                             size: 12),
                       ),
                       Gap(5.w),
-                      Text("ريال",
+                      Text("rial".tr(context),
                         textDirection: TextDirection.ltr,
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
@@ -351,7 +349,7 @@ class _CustomCheckoutDetailsBodyState extends State<CustomCheckoutDetailsBody> {
         ),
         Gap(20.h),
         Text(
-          "طريقة الدفع",
+          "payment_method".tr(context),
           style: AppTextStyles.textStyle(
               weight: FontWeight.w600, color: AppColors.c090909, size: 16),
         ),

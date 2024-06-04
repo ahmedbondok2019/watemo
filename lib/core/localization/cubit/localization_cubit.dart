@@ -12,7 +12,7 @@ class LocalizationBloc extends Cubit<LocalizationState> {
   List<LangModel> langList = [
     LangModel(name: "عربي", code: "ar",image: ImageConstants.arabic),
     LangModel(name: "English", code: "en",image: ImageConstants.english),
-    LangModel(name: "Franch", code: "fr",image: ImageConstants.france),
+    LangModel(name: "French", code: "fr",image: ImageConstants.france),
     LangModel(name: "Türkiye", code: "tur",image: ImageConstants.turkiye),
     LangModel(name: "Urdu", code: "urd",image: ImageConstants.urdu),
     LangModel(name: "Hausa", code: "hau",image: ImageConstants.hausa),

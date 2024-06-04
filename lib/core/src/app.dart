@@ -4,7 +4,6 @@ import '../../features/checkout/cubit/checkout_cubit.dart';
 import '../../features/orders/cubit/orders_cubit.dart';
 import '../../features/profile/cubit/profile_cubit.dart';
 import '../../features/tracking_order/cubit/tracking_order_cubit.dart';
-import '../common/general_cubit/calendar/calendar_cubit.dart';
 import 'app_export.dart';
 
 class MyApp extends StatelessWidget {
@@ -25,7 +24,6 @@ class MyApp extends StatelessWidget {
             providers: [
               BlocProvider<LocalizationBloc>(create: (context) => getIt<LocalizationBloc>()),
               BlocProvider(create: (context) => InternetCubit()),
-              BlocProvider<CalendarCubit>(create: (context) => getIt<CalendarCubit>()),
               BlocProvider<AuthCubit>(create: (context) => getIt<AuthCubit>()),
               BlocProvider<ServicesCubit>(create: (context) => getIt<ServicesCubit>()),
               BlocProvider<TrackingOrderCubit>(create: (context) => getIt<TrackingOrderCubit>()),

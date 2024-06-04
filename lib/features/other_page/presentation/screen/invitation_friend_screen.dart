@@ -19,7 +19,7 @@ class InvitationFriendScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "دعوة صديق",
+              title: "invite_friend".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

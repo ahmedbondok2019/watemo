@@ -1,4 +1,5 @@
 import 'dart:math';
+import '../src/app_export.dart';
 
 extension StringReverse on String {
   String reverse() {
@@ -103,5 +104,11 @@ extension StringCapitalize on String {
 extension StringAscii on String {
   bool isAscii() {
     return RegExp(r'^[\x00-\x7F]+$').hasMatch(this);
+  }
+}
+
+extension Navigation on BuildContext {
+  Future<dynamic> pushName(String routeName, {Object? arguments}){
+    return Navigator.of(this).pushNamed(routeName,arguments: arguments);
   }
 }

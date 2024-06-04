@@ -17,7 +17,7 @@ class FaqsScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "الاسئلة الشائعه",
+              title: "common_questions".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

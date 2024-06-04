@@ -16,7 +16,7 @@ class NotificationsScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "الاشعارات",
+              title: "notifications".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../core/common/models/title_id_model/title_id_model.dart';
 import '../../../core/src/app_export.dart';
@@ -70,7 +69,6 @@ class ServicesCubit extends Cubit<ServicesState> {
 
   /// <<--- get relations request --->>
   Future<void> getRelations() async {
-    log("getRelations ======================>>>>>>>>>>>>333");
     emit(RelationsLoading());
     final NetworkService<TitleIdModel> data = await _repository.getRelations();
     switch (data) {
@@ -98,7 +96,6 @@ class ServicesCubit extends Cubit<ServicesState> {
 
   /// <<--- get spoken Languages request --->>
   Future<void> getSpokenLanguages() async {
-    log("getSpokenLanguages ======================>>>>>>>>>>>>333");
     emit(SpokenLanguagesLoading());
     final NetworkService<SpeakLangModel> data =
     await _repository.getSpokenLanguages();
@@ -115,7 +112,6 @@ class ServicesCubit extends Cubit<ServicesState> {
 
   /// <<--- get All Services request --->>
   Future<void> getAllServices({required String id}) async {
-    log("getAllServices ======================>>>>>>>>>>>>$id");
     emit(ServicesLoading());
     final NetworkService<ServicesResModel> data =
     await _repository.getAllServices(

@@ -12,21 +12,21 @@ class CustomTotalOrderHome extends StatelessWidget {
           typeWidget(
             color: AppColors.primary,
             txtColor: AppColors.white,
-            title: "${context.read<HomeCubit>().totalOrders} \n كل الطلبات",
+            title: "${context.read<HomeCubit>().totalOrders} ${"total_all_orders".tr(context)}",
             onTap: () {},
           ),
 
           typeWidget(
             color: AppColors.cF6F4EC,
             txtColor: AppColors.primary,
-            title: "${context.read<HomeCubit>().currentOrders} \n الطلبات الجارية",
+            title: "${context.read<HomeCubit>().currentOrders} ${"total_current_all_orders".tr(context)}",
             onTap: () {},
           ),
 
           typeWidget(
             color: AppColors.cF6F4EC,
             txtColor: AppColors.c00D261,
-            title: "${context.read<HomeCubit>().vendorTotalProfit} \n الأرباح",
+            title: "${context.read<HomeCubit>().vendorTotalProfit} ${"total_profits".tr(context)}",
             onTap: () {},
           ),
         ],

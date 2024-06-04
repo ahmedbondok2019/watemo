@@ -1,5 +1,4 @@
 import 'package:completed/core/common/general_cubit/user/user_cubit.dart';
-
 import '../../src/app_export.dart';
 import 'custom_log_out_button.dart';
 import 'custom_profile_image.dart';
@@ -31,7 +30,7 @@ class CustomAppDrawer extends StatelessWidget {
                       SizedBox(
                           width: 160.w,
                           child: Text(
-                            "اهلا ${context.read<UserCubit>().user!.name ?? ""} ",
+                            "${"hello".tr(context)} ${context.read<UserCubit>().user!.name ?? ""} ",
                             maxLines: 1,
                             overflow: TextOverflow.clip,
                             style: AppTextStyles.textStyle(
@@ -43,7 +42,7 @@ class CustomAppDrawer extends StatelessWidget {
                     ],
                   ),
                   subtitle: Text(
-                    "سعداء برويتك مرة اخري",
+                    "happy_to_see".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w600,
                         color: AppColors.c090909,
@@ -56,7 +55,7 @@ class CustomAppDrawer extends StatelessWidget {
               children: [
                 /// home
                 ListTileDrawer(
-                  title: "الرئيسية",
+                  title: "main".tr(context),
                   icon: ImageConstants.homeDrawer,
                   onTap: () => Navigator.pushNamed(context,
                       AppRoutes.homeScreen),
@@ -64,7 +63,7 @@ class CustomAppDrawer extends StatelessWidget {
 
                 /// edit profile
                 ListTileDrawer(
-                  title: "تعديل حسابي",
+                  title: "edit_profile".tr(context),
                   icon: ImageConstants.personDrawer,
                   onTap: () => Navigator.pushNamed(context,
                       AppRoutes.profile),
@@ -72,7 +71,7 @@ class CustomAppDrawer extends StatelessWidget {
 
                 /// wallet
                 ListTileDrawer(
-                  title: "المحفظة",
+                  title: "wallet".tr(context),
                   icon: ImageConstants.walletDrawer,
                   onTap: () => Navigator.pushNamed(context,
                       AppRoutes.wallet),
@@ -80,7 +79,7 @@ class CustomAppDrawer extends StatelessWidget {
 
                 /// notification
                 ListTileDrawer(
-                  title: "الإشعارات",
+                  title: "notifications".tr(context),
                   icon: ImageConstants.notificationDrawer,
                   onTap: () => Navigator.pushNamed(context,
                       AppRoutes.notifications),
@@ -88,7 +87,7 @@ class CustomAppDrawer extends StatelessWidget {
 
                 /// aboutApp
                 ListTileDrawer(
-                  title: "عن التطبيق",
+                  title: "about_app".tr(context),
                   icon: ImageConstants.aboutAppDrawer,
                   onTap: () => Navigator.pushNamed(context,
                       AppRoutes.aboutUs),
@@ -96,7 +95,7 @@ class CustomAppDrawer extends StatelessWidget {
 
                 /// term use
                 ListTileDrawer(
-                  title: "شروط الاستخدام",
+                  title: "term_use".tr(context),
                   icon: ImageConstants.termDrawer,
                   onTap: () => Navigator.pushNamed(context,
                       AppRoutes.termConditions),
@@ -104,7 +103,7 @@ class CustomAppDrawer extends StatelessWidget {
 
                 /// term use
                 ListTileDrawer(
-                  title: "تواصل معانا",
+                  title: "contact_us".tr(context),
                   icon: ImageConstants.contactDrawer,
                   onTap: () => Navigator.pushNamed(context,
                       AppRoutes.contactUs),

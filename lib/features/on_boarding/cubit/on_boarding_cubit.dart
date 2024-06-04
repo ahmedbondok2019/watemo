@@ -10,17 +10,17 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   List<OnBoardingModel> onBoardingData = [
     OnBoardingModel(
         imagePath: ImageConstants.onboarding1,
-        title: "مرحباً بكم في واتموا",
-        subTitle: "تطبيق واتموا احدث تطبيق عمرة او حج للغير حتي يتمكن غير القتدرين من اداء المناسك والحصول علي اجرها طبقا لما يسمح به ديناً الاسلامي الحنيف من اداء مناسك الحج والعمره لمن فارقوا الحياه او من لا يستطيع ادائها ويقوم مؤدي الخدمة بادائها"),
+        title: "onBoardHeader1",
+        subTitle: "onBoardBody1"),
     OnBoardingModel(
         imagePath: ImageConstants.onboarding2,
-        title: "يمكنك تتبع أداء المناسك",
-        subTitle: "يمكنك معنا الان تتبع كل خطوة من خطوات اداء العمره علي جوالك."
+        title: "onBoardHeader2",
+        subTitle: "onBoardBody2"
     ),
     OnBoardingModel(
         imagePath: ImageConstants.onboarding3,
-        title: "ابدأ الأن واختر بديلك المناسب",
-        subTitle: "وفرنالك بدلاء علي معرفة كبيرة بالامور الفقهية والشرعية ومناسك الحج والعمرة"),
+        title: "onBoardHeader3",
+        subTitle: "onBoardBody3"),
   ];
 
   void updateIndex(int newIndex) {

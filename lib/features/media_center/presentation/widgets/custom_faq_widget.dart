@@ -97,7 +97,6 @@ class _CustomFaqWidgetState extends State<CustomFaqWidget> {
                       fontSize: FontSize(14),
                       fontWeight: FontWeight.w500,
                       fontFamily: "NeoSansArabic",
-                      // backgroundColor: AppColors.white,
                     ),
                   },
                 ),

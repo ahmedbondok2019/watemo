@@ -15,20 +15,20 @@ class CustomContactUsBody extends StatelessWidget {
         children: [
           Gap(8.h),
           Text(
-            "هل تحتاج المساعدة",
+            "need_help".tr(context),
             style: AppTextStyles.textStyle(
                 weight: FontWeight.w600,
                 color: AppColors.c090909, size: 16),
           ),
           Gap(8.h),
           Text(
-            "خبرائنا علي استعداد دائماً لمساعدتك في اي وقت ولاتتردد في التواصل معنا إن كنت بحاجة الي مساعدة ولن نتأخر عنك ابداً",
+            "subtitle_need_help".tr(context),
             style: AppTextStyles.textStyle(
                 weight: FontWeight.w400, color: AppColors.c9A9A9A, size: 12),
           ),
           Gap(25.h),
           Text(
-            "نوع الطلب",
+            "order_type".tr(context),
             style: AppTextStyles.textStyle(
                 weight: FontWeight.w600, color: AppColors.c090909, size: 16),
           ),
@@ -38,18 +38,18 @@ class CustomContactUsBody extends StatelessWidget {
               list: context.read<OtherPageCubit>().contactTypeList,
               selectedItem: context.read<OtherPageCubit>().type,
               onChanged: context.read<OtherPageCubit>().changeContactType,
-              label: "اختر نوع الطلب",
+              label: "select_order_type".tr(context),
             );
           }),
           Gap(25.h),
           Text(
-            "وصف الطلب",
+            "order_description".tr(context),
             style: AppTextStyles.textStyle(
                 weight: FontWeight.w600, color: AppColors.c090909, size: 16),
           ),
           Gap(15.h),
           InputFormField(
-              hint: "قم بوصف ماتريد وسيتم التواصل معك في اقرب وقت .....",
+              hint: "help_description".tr(context),
               maxLines: 10,
               controller: context.read<OtherPageCubit>().messageController,
               fillColor: AppColors.white
@@ -74,7 +74,7 @@ class CustomContactUsBody extends StatelessWidget {
       }
       else if (state is ContactSuccess) {
         CustomMessage.showMessage(context,
-            message: "تم ارسال طلبك وسوف يتم التواصل معك في اقرب وقت ممكن",
+            message: "help_send_successful".tr(context),
             type: AlertType.success);
         Navigator.pushReplacementNamed(
           context,
@@ -91,17 +91,8 @@ class CustomContactUsBody extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "ارسال الطلب",
-          onTap: () {
-            if (context.read<OtherPageCubit>().type == null) {
-              CustomMessage.showMessage(context,
-                  message: "يجب اختيار نوع الطلب",
-                  type: AlertType.failed);
-            }
-            else{
-              context.read<OtherPageCubit>().sendContact();
-            }
-          },
+          title: "send_help".tr(context),
+          onTap: context.read<OtherPageCubit>().sendContact,
         );
       }
     });

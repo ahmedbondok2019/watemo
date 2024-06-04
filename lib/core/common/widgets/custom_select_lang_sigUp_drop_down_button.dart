@@ -25,9 +25,9 @@ class CustomSelectLangSignUpDropDownButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(selectedValue == null || selectedValue!.isEmpty
+          Text((selectedValue == null || selectedValue!.isEmpty
                 ? label
-                : selectedValue!,
+                : selectedValue!).tr(context),
             style: AppTextStyles.textStyle(
                 weight: FontWeight.w700,
                 color: selectedValue == null || selectedValue!.isEmpty

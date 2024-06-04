@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
              CustomAppBar(
-              title: "تعديل الحساب",
+              title: "edit_profile".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

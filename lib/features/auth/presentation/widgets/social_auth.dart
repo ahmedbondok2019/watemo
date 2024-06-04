@@ -53,20 +53,20 @@ class SocialAuth extends StatelessWidget {
             Platform.isIOS
                 ? CustomSocialLoginBt(
               onTap: () {},
-              title: "تسجيل بواسطة جوجل",
+              title: "apple_auth".tr(context),
               image: ImageConstants.google,
             )
                 : const SizedBox(),
 
             CustomSocialLoginBt(
               onTap: context.read<AuthCubit>().googleLogin,
-              title: "تسجيل بواسطة جوجل",
+              title: "google_auth".tr(context),
               image: ImageConstants.google,
             ),
 
             CustomSocialLoginBt(
               onTap: () {},
-              title: "تسجيل بواسطة فيسبوك",
+              title: "facebook_auth".tr(context),
               image: ImageConstants.facebook,
             ),
           ],

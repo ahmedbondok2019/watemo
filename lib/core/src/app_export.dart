@@ -56,7 +56,6 @@ export 'package:completed/features/auth/presentation/screens/reset_password.dart
 export 'package:completed/features/auth/presentation/screens/select_user_type_screen.dart';
 export '../../../../core/common/widgets/InputFormField.dart';
 export '../../../../core/common/widgets/custom_loading.dart';
-export '../../../../core/utils/custom_toast.dart';
 export 'package:completed/features/auth/cubit/auth_state.dart';
 export 'package:completed/features/auth/presentation/widgets/custom_login_container.dart';
 export 'package:flutter_svg/svg.dart';

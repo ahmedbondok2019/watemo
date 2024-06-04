@@ -19,7 +19,7 @@ class TermConditionsScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              title: "الشروط والاحكام",
+              title: "term&&condition".tr(context),
               titleSize: 16,
               leading: const CustomBackButton(),
               actions: [

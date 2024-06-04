@@ -100,7 +100,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
 
               /// name for company
               Text(
-                'الاسم رباعي',
+                'name'.tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w700,
                     color: AppColors.c090909,
@@ -110,14 +110,14 @@ class CustomEditProfileVendorBody extends StatelessWidget {
               InputFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "الرجاء ادخل الاسم رباعي";
+                    return "empty_name_validation".tr(context);
                   } else if (value.length <= 3) {
-                    return "الاسم يجب ان يكون اكثر من 3 احرف";
+                    return "name_validation".tr(context);
                   }
                   return null;
                 },
                 fillColor: AppColors.transparent,
-                hint: "الاسم رباعي",
+                hint: 'name'.tr(context),
                 controller: profile.fullName,
                 height: 48.h,
               ),
@@ -125,7 +125,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
 
               /// birthdate for vendor
               Text(
-                'تاريخ الميلاد',
+                'brith_date'.tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w700,
                     color: AppColors.c090909,
@@ -143,7 +143,8 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                       selectedItemDate: profile.day.toString(),
                       isDate: true,
                       onChangedDate: profile.changeDay,
-                      label: "يوم",
+                      label: "day".tr(context),
+                      isTrans: false,
                     ),
                   ),
 
@@ -155,7 +156,8 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                       selectedItemDate: profile.month.toString(),
                       isDate: true,
                       onChangedDate: profile.changeMonth,
-                      label: "شهر",
+                      label: "month".tr(context),
+                      isTrans: false,
                     ),
                   ),
 
@@ -167,7 +169,8 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                       selectedItemDate: profile.year.toString(),
                       isDate: true,
                       onChangedDate: profile.changeYear,
-                      label: "سنة",
+                      label: "year".tr(context),
+                      isTrans: false,
                     ),
                   ),
                 ],
@@ -185,7 +188,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "البلد",
+                          "country".tr(context),
                           style: AppTextStyles.textStyle(
                               weight: FontWeight.w700,
                               color: AppColors.c090909,
@@ -199,7 +202,8 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                             profile.getCities(countryId: val!.id.toString());
                             profile.changeCountry(val);
                           },
-                          label: "اختر البلد",
+                          label: "select_country".tr(context),
+                          isTrans: false,
                         ),
                       ],
                     ),
@@ -211,7 +215,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "المدينة",
+                          "city".tr(context),
                           style: AppTextStyles.textStyle(
                               weight: FontWeight.w700,
                               color: AppColors.c090909,
@@ -222,7 +226,8 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                           list: profile.citiesList,
                           selectedItem: profile.city,
                           onChanged: profile.changeCity,
-                          label: "اختر المدينة",
+                          label: "select_city".tr(context),
+                          isTrans: false,
                         ),
                       ],
                     ),
@@ -236,7 +241,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "الجنس",
+                    "gender".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -247,8 +252,9 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                     list: profile.genders,
                     selectedItem: profile.gender,
                     onChanged: profile.changeGender,
-                    label: "اختر الجنس",
+                    label: "select_gender",
                     width: 393.w,
+                    isTrans: true,
                   ),
                 ],
               ),
@@ -259,7 +265,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "اللغات التي تجيدها",
+                    "lang_vendor".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -272,7 +278,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                     selected: profile.selectL,
                     selectedLang: profile.selectedLang,
                     onChanged: profile.changeLang,
-                    label: "اختر اللغات التي تجيدها",
+                    label: "select_lang_vendor".tr(context),
                     buttonWidth: 393.w,
                   ),
                 ],
@@ -284,7 +290,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "الخدمات المقدمة",
+                    "services_provided".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -298,7 +304,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                     selected: profile.selectS,
                     selectedLang: profile.selectedService,
                     onChanged: profile.changeServices,
-                    label: "اختر الخدمات التي تقدمها",
+                    label: "select_services_provided".tr(context),
                     buttonWidth: 393.w,
                   ),
                 ],
@@ -307,7 +313,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
 
               /// email
               Text(
-                "البريد الالكتروني",
+                "email".tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w700,
                     color: AppColors.c090909,
@@ -317,26 +323,26 @@ class CustomEditProfileVendorBody extends StatelessWidget {
               InputFormField(
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'please enter  email';
+                    return "empty_email_validation".tr(context);
                   }
                   bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                       .hasMatch(value);
                   if (!emailValid) {
-                    return 'please enter valid email';
+                    return "email_validation".tr(context);
                   }
                   return null;
                 },
                 controller: profile.emailAddress,
                 fillColor: AppColors.transparent,
-                hint: 'البريد هنا',
+                hint: 'hint_email'.tr(context),
                 height: 48.h,
               ),
               Gap(15.h),
 
               /// phone number for company
               Text(
-                'رقم الهاتف',
+                'phone'.tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w700,
                     color: AppColors.c090909,
@@ -350,14 +356,14 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل رقم الهاتف / الفاكس";
+                        return "empty_phone_vendor_validation".tr(context);
                       } else {
                         return null;
                       }
                     },
                     isRTL: false,
                     fillColor: AppColors.transparent,
-                    hint: "رقم الهاتف",
+                    hint: "phone".tr(context),
                     controller: profile.phoneNumber,
                     suffixIcon: Image.asset(
                       ImageConstants.phonIcon,
@@ -382,7 +388,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                       list: profile.countriesList,
                       selectedItem: profile.countryCode,
                       onChanged: profile.changeCountryCode,
-                      label: "اختر كود الدولة",
+                      label: "select_country_code".tr(context),
                     ),
                   ),
                 ],
@@ -391,7 +397,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
 
               /// password && confirm password
               Text(
-                "كلمة المرور",
+                "password".tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w700,
                     color: AppColors.c090909,
@@ -401,9 +407,9 @@ class CustomEditProfileVendorBody extends StatelessWidget {
               InputFormField(
                 validator: (p0) {
                   if (p0 == null || p0.isEmpty) {
-                    return "رجاء ادخل كلمة المرور";
+                    return "empty_password_validation".tr(context);
                   } else if (p0.length < 8) {
-                    return "كلمة المرور اكثر من 8 احرف";
+                    return "password_validation".tr(context);
                   }
                   return null;
                 },
@@ -417,7 +423,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
 
               /// confirm password
               Text(
-                "تآكيد كلمة المرور",
+                "confirm_password".tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w700,
                     color: AppColors.c090909,
@@ -428,12 +434,12 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 controller: profile.confirmPassword,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "رجاء ادخل كلمة المرور";
+                    return "empty_password_validation".tr(context);
                   } else if (value.length < 8) {
-                    return "كلمة المرور اكثر من 8 احرف";
+                    return "password_validation".tr(context);
                   } else if (profile.password.text !=
                       profile.confirmPassword.text) {
-                    return "كلمة المرور غير متطابقة";
+                    return "confirm_password_validation".tr(context);
                   }
                   return null;
                 },
@@ -446,7 +452,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
 
               /// images for tax number && commercial
               Text(
-                "صورة الهواية الشخصية",
+                "photo_personal_id".tr(context),
                 style: AppTextStyles.textStyle(
                     weight: FontWeight.w700,
                     color: AppColors.c090909,
@@ -461,7 +467,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "الجانب الامامي",
+                            "front_side".tr(context),
                             style: AppTextStyles.textStyle(
                                 weight: FontWeight.w500,
                                 color: AppColors.c090909,
@@ -543,7 +549,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "الجانب الخلفي",
+                            "back_side".tr(context),
                             style: AppTextStyles.textStyle(
                                 weight: FontWeight.w500,
                                 color: AppColors.c090909,
@@ -636,18 +642,16 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 borderColor: AppColors.transparent,
                 colorBg: AppColors.transparent,
                 txtColor: AppColors.cE74C3C,
-                title: "حذف الحساب",
+                title: "remove_account".tr(context),
                 onTap: () {
                   showAnimatedDialog(context,
                       BlocBuilder<CheckoutCubit, CheckoutState>(
                           builder: (context, state) {
                     return ConfirmOrderDialog(
-                      description: "هل انت متاكد من انك تريد حذف الحساب",
+                      description: "confirm_remove_account".tr(context),
                       isFailed: false,
                       image: ImageConstants.said,
-                      onTapConfirm: () {
-                        context.read<ProfileCubit>().removeAccount();
-                      },
+                      onTapConfirm: context.read<ProfileCubit>().removeAccount,
                     );
                   }), dismissible: false, isFlip: true);
                 },
@@ -672,26 +676,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
         );
       }
     }, builder: (context, state) {
-      if (state is ProfileInitial) {
-        return CustomButtonInternet(
-          height: 48,
-          width: 361,
-          horizontal: 0,
-          title: "حفظ التعديل",
-          onTap: () {
-            if (context.read<ProfileCubit>().formKey.currentState!.validate()) {
-              if (context.read<ProfileCubit>().imageProfileNet == null &&
-                  context.read<ProfileCubit>().myImage == null) {
-                CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة للملف الشخصي",
-                    type: AlertType.warning);
-              } else {
-                context.read<ProfileCubit>().editProfile();
-              }
-            }
-          },
-        );
-      } else if (state is ProfileLoading) {
+      if (state is ProfileLoading) {
         return const Center(child: CustomLoading());
       }
       else {
@@ -699,65 +684,65 @@ class CustomEditProfileVendorBody extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "حفظ التعديل",
+          title: "save_edit".tr(context),
           onTap: () {
             if (context.read<ProfileCubit>().formKey.currentState!.validate()) {
               if (context.read<ProfileCubit>().myImage == null
               && context.read<ProfileCubit>().imageProfileNet == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة للملف الشخصي",
+                    message: "set_profile_image".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().day == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار اليوم",
+                    message: "must_select_day".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().month == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار الشهر",
+                    message: "must_select_month".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().year == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار السنه",
+                    message: "must_select_year".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().country == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار البلد",
+                    message: "must_select_country".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().city == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار المدينة",
+                    message: "must_select_city".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().gender == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار الجنس",
+                    message: "must_select_gender".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().selectLang.isEmpty) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار اللغات التي تجيدها",
+                    message: "must_select_lang".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().selectServices.isEmpty) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار اللغات التي تجيدها",
+                    message: "must_select_service".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().identityFace == null
                   && context.read<ProfileCubit>().imageIdentityFace == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة الهواية الشخصية للجانب الامامي",
+                    message: "must_select_front_side_image".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().identityBack == null
                   && context.read<ProfileCubit>().imageIdentityBack == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة الهواية الشخصية للجانب الخلفي",
+                    message: "must_select_back_side_image".tr(context),
                     type: AlertType.warning);
               }
               else {

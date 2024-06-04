@@ -58,15 +58,15 @@ class OrdersCubit extends Cubit<OrdersState> {
   TitleIdListModel? statusOrder;
   List<TitleIdListModel> statusOrders = [
     TitleIdListModel(
-      title: "كل الطلبات",
+      title: "all_orders",
       id: 0,
     ),
     TitleIdListModel(
-      title: "قيد التنفيذ",
+      title: "processing",
       id: 1,
     ),
     TitleIdListModel(
-      title: "اكتملت",
+      title: "completed",
       id: 2,
     ),
   ];

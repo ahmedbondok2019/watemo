@@ -1,6 +1,5 @@
 import '../../../../core/common/general_cubit/user/user_cubit.dart';
 import '../../../../core/src/app_export.dart';
-import '../../../more/cubit/more_cubit.dart';
 import '../../../orders/cubit/orders_cubit.dart';
 import '../../../orders/presentation/screen/orders_screen.dart';
 import '../../../wallet/cubit/wallet_cubit.dart';
@@ -44,8 +43,6 @@ class MainTabs extends StatelessWidget {
                   : MultiBlocProvider(providers: [
                       BlocProvider<UserCubit>(
                           create: (context) => getIt<UserCubit>()..getUser()),
-                      BlocProvider<MoreCubit>(
-                          create: (context) => getIt<MoreCubit>()),
                     ], child: MoreScreen());
     }
     else {
@@ -78,8 +75,6 @@ class MainTabs extends StatelessWidget {
                   : MultiBlocProvider(providers: [
                       BlocProvider<UserCubit>(
                           create: (context) => getIt<UserCubit>()..getUser()),
-                      BlocProvider<MoreCubit>(
-                          create: (context) => getIt<MoreCubit>()),
                     ], child: MoreScreen());
     }
   }

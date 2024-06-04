@@ -42,7 +42,7 @@ class OtherPageError extends OtherPageState {
 
 class ChangeContactTypeLoading extends OtherPageState {}
 class ChangeContactType extends OtherPageState {
-  final ContactTypeModel? type;
+  final TitleIdListModel? type;
   ChangeContactType({
     required this.type,
   });

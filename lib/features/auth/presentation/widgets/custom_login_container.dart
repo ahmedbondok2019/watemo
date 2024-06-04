@@ -21,7 +21,7 @@ class CustomLoginContainer extends StatelessWidget {
                 /// phone
                 Gap(10.h),
                 Text(
-                  "رقم الهاتف",
+                  "phone".tr(context),
                   style: AppTextStyles.textStyle(
                       weight: FontWeight.w700,
                       color: AppColors.c090909,
@@ -35,7 +35,7 @@ class CustomLoginContainer extends StatelessWidget {
                     InputFormField(
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return "رجاء ادخل رقم الموبايل";
+                          return "empty_phone_validation".tr(context);
                         } else {
                           return null;
                         }
@@ -62,7 +62,7 @@ class CustomLoginContainer extends StatelessWidget {
                       list: authCubit.countriesList,
                       selectedItem: authCubit.countryCode,
                       onChanged: authCubit.changeCountryCode,
-                      label: "اختر كود الدولة",
+                      label: "select_country_code".tr(context),
                     ),
                   ],
                 ),
@@ -70,7 +70,7 @@ class CustomLoginContainer extends StatelessWidget {
 
                 /// password
                 Text(
-                  "كلمة المرور",
+                  "password".tr(context),
                   style: AppTextStyles.textStyle(
                       weight: FontWeight.w700,
                       color: AppColors.c090909,
@@ -80,9 +80,9 @@ class CustomLoginContainer extends StatelessWidget {
                 InputFormField(
                   validator: (p0) {
                     if (p0 == null || p0.isEmpty) {
-                      return "رجاء ادخل كلمة المرور";
+                      return "empty_password_validation".tr(context);
                     } else if (p0.length < 8) {
-                      return "كلمة المرور اكثر من 8 احرف";
+                      return "password_validation".tr(context);
                     }
                     return null;
                   },
@@ -122,7 +122,7 @@ class CustomLoginContainer extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'تذكرني',
+                      "remember".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w600,
                           size: 14,
@@ -132,8 +132,7 @@ class CustomLoginContainer extends StatelessWidget {
                     GestureDetector(
                       onTap: () => Navigator.of(context)
                           .pushNamed(AppRoutes.forgotPassword),
-                      child: Text(
-                        'هل نسيت كلمة المرور؟',
+                      child: Text("forget_password?".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w600,
                             size: 14,
@@ -155,8 +154,7 @@ class CustomLoginContainer extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        'أو',
+                      child: Text("or".tr(context),
                         style: AppTextStyles.textStyle(
                           size: 16,
                           weight: FontWeight.w500,
@@ -236,7 +234,7 @@ class CustomLoginContainer extends StatelessWidget {
                           ),
                           Gap(10.h),
                           Text(
-                            "سوف يتم مراجعة حسابك خلال الـ 24 ساعه القادمة و يتم ارسال اليك رساله",
+                            "review_your_account".tr(context),
                             textAlign: TextAlign.center,
                             style: AppTextStyles.textStyle(
                               color: AppColors.c090909,
@@ -252,7 +250,7 @@ class CustomLoginContainer extends StatelessWidget {
                           width: 112.5,
                           horizontal: 0,
                           vertical: 0,
-                          title: "تأكيد",
+                          title: "confirm".tr(context),
                           onTap: () => Navigator.pop(context),
                         ),
                         CustomButtonInternet(
@@ -263,7 +261,7 @@ class CustomLoginContainer extends StatelessWidget {
                           colorBg: AppColors.transparent,
                           borderColor: AppColors.c090909,
                           txtColor: AppColors.c090909,
-                          title: "الغاء",
+                          title: "cancel".tr(context),
                           onTap: () => Navigator.pop(context),
                         ),
                       ],
@@ -300,7 +298,7 @@ class CustomLoginContainer extends StatelessWidget {
                     ),
                     Gap(20.h),
                     Text(
-                      "تهانينا لقد تم قبول طلبك و تستطيع الأن استقبال الطلبات من العملاء",
+                      "accepted_your_account".tr(context),
                       textAlign: TextAlign.center,
                       style: AppTextStyles.textStyle(
                         color: AppColors.c090909,
@@ -316,7 +314,7 @@ class CustomLoginContainer extends StatelessWidget {
                     width: 361,
                     horizontal: 0,
                     vertical: 0,
-                    title: "ابدا الاستخدام الان",
+                    title: "Start_using_now".tr(context),
                     onTap: () {
                       getIt<SharedPreferences>()
                           .setBool(AppConstants.isLoggedIn, true);
@@ -374,7 +372,7 @@ class CustomLoginContainer extends StatelessWidget {
                           ),
                           Gap(20.h),
                           Text(
-                            "نأسف لعمد استطاعتنا قبول طلبك لاسباب عدة .. برجاء التواصل مع خدمة العملاء",
+                            "reject_your_account".tr(context),
                             textAlign: TextAlign.center,
                             style: AppTextStyles.textStyle(
                               color: AppColors.c090909,
@@ -390,7 +388,7 @@ class CustomLoginContainer extends StatelessWidget {
                           width: 361,
                           horizontal: 0,
                           vertical: 0,
-                          title: "تواصل مع خدمة العملاء",
+                          title: "contact_with_technical".tr(context),
                           onTap: () {
                             Navigator.pop(context);
                             Navigator.pushNamed(context,
@@ -411,7 +409,7 @@ class CustomLoginContainer extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "تسجيل الدخول",
+          title: "logIn".tr(context),
           onTap: () {
             if (context.read<AuthCubit>().formKey.currentState!.validate()) {
               context.read<AuthCubit>().login();

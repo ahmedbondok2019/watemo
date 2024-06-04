@@ -33,7 +33,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     Gap(10.h),
                     /// name for company
                     Text(
-                      'اسم الشركة / الهيئة',
+                      "company_name".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -43,14 +43,14 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     InputFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "الرجاء ادخل اسم (الشركة / الهيئة)";
+                          return "empty_company_name_validation".tr(context);
                         } else if (value.length <= 3) {
-                          return "الاسم يجب ان يكون اكثر من 3 احرف";
+                          return "name_validation".tr(context);
                         }
                         return null;
                       },
                       fillColor: AppColors.transparent,
-                      hint: "اسم الشركة / الهيئة",
+                      hint: "company_name".tr(context),
                       controller: profile.companyNameController,
                       height: 48.h,
                     ),
@@ -67,7 +67,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "بلد الاقامة",
+                                "country".tr(context),
                                 style: AppTextStyles.textStyle(
                                     weight: FontWeight.w700,
                                     color: AppColors.c090909,
@@ -81,7 +81,8 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                                   profile.getCities(countryId: val!.id.toString());
                                   profile.changeCountry(val);
                                 },
-                                label: "اختر بلد الاقامة",
+                                label: "select_country".tr(context),
+                                isTrans: false,
                               ),
                             ],
                           ),
@@ -93,7 +94,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "مدينة الاقامة",
+                                "city".tr(context),
                                 style: AppTextStyles.textStyle(
                                     weight: FontWeight.w700,
                                     color: AppColors.c090909,
@@ -104,7 +105,8 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                                 list: profile.citiesList,
                                 selectedItem: profile.city,
                                 onChanged: profile.changeCity,
-                                label: "اختر مدينة الاقامة",
+                                label: "select_city".tr(context),
+                                isTrans: false,
                               ),
                             ],
                           ),
@@ -115,7 +117,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
 
                     /// address for company
                     Text(
-                      'عنوان الشركه / الهيئة',
+                      'company_address'.tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -125,12 +127,12 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     InputFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "الرجاء ادخل عنوان (الشركة / الهيئة)";
+                          return "empty_company_address_validation".tr(context);
                         }
                         return null;
                       },
                       fillColor: AppColors.transparent,
-                      hint: "عنوان الشركة / الهيئة",
+                      hint: 'company_address'.tr(context),
                       controller: profile.companyAddressController,
                       height: 48.h,
                     ),
@@ -138,7 +140,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
 
                     /// tax number for company
                     Text(
-                      'الرقم الضريبي',
+                      'tax_number'.tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -148,12 +150,12 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     InputFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "الرجاء ادخل الرقم الضريبي ل (الشركة / الهيئة)";
+                          return "empty_tax_number_validation".tr(context);
                         }
                         return null;
                       },
                       fillColor: AppColors.transparent,
-                      hint: "الرقم الضريبي",
+                      hint: 'tax_number'.tr(context),
                       controller: profile.taxNumberController,
                       isNumber: true,
                       height: 48.h,
@@ -162,7 +164,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
 
                     /// phone number for company
                     Text(
-                      'رقم الهاتف / الفاكس',
+                      'phone_fax'.tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -176,7 +178,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                         InputFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "الرجاء ادخل رقم الهاتف / الفاكس";
+                              return "empty_phone_vendor_validation".tr(context);
                             }
                             else {
                               return null;
@@ -184,7 +186,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                           },
                           isRTL: false,
                           fillColor: AppColors.transparent,
-                          hint: "رقم الهاتف / الفاكس",
+                          hint: 'phone_fax'.tr(context),
                           controller: profile.faxNumberController,
                           suffixIcon: Image.asset(
                             ImageConstants.phonIcon,
@@ -209,7 +211,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                             list: profile.countriesList,
                             selectedItem: profile.countryCode,
                             onChanged: profile.changeCountryCode,
-                            label: "اختر كود الدولة",
+                            label: "select_country_code".tr(context),
                           ),
                         ),
                       ],
@@ -218,7 +220,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
 
                     /// email
                     Text(
-                      "البريد الالكتروني",
+                      "email".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -228,26 +230,26 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     InputFormField(
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
-                          return 'please enter  email';
+                          return 'empty_email_validation'.tr(context);
                         }
                         bool emailValid = RegExp(
-                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                             .hasMatch(value);
                         if (!emailValid) {
-                          return 'please enter valid email';
+                          return 'email_validation'.tr(context);
                         }
                         return null;
                       },
                       controller: profile.emailAddress,
                       fillColor: AppColors.transparent,
-                      hint: 'البريد هنا',
+                      hint: 'hint_email'.tr(context),
                       height: 48.h,
                     ),
                     Gap(10.h),
 
                     /// expect count for company
                     Text(
-                      'عدد المعتمرين المتوقع',
+                      'expected_number_pilgrims'.tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -257,13 +259,13 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     InputFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "الرجاء ادخل عدد المعتمرين المتوقع";
+                          return "empty_expected_number_pilgrims_validation".tr(context);
                         }
                         return null;
                       },
                       isNumber: true,
                       fillColor: AppColors.transparent,
-                      hint: "عدد المعتمرين المتوقع",
+                      hint: 'expected_number_pilgrims'.tr(context),
                       controller: profile.expectCountController,
                       height: 48.h,
                     ),
@@ -271,7 +273,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
 
                     /// expect count for company
                     Text(
-                      'رقم الحساب البنكي',
+                      'bank_account_number'.tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -281,12 +283,12 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     InputFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "الرجاء ادخل رقم الحساب البنكي";
+                          return "empty_bank_account_number_validation".tr(context);
                         }
                         return null;
                       },
                       fillColor: AppColors.transparent,
-                      hint: "رقم الحساب البنكي",
+                      hint: 'bank_account_number'.tr(context),
                       isNumber: true,
                       controller: profile.bankNumberController,
                       height: 48.h,
@@ -295,7 +297,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
 
                     /// password && confirm password
                     Text(
-                      "كلمة المرور",
+                      "password".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -305,9 +307,9 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     InputFormField(
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return "رجاء ادخل كلمة المرور";
+                          return "empty_password_validation".tr(context);
                         } else if (p0.length < 8) {
-                          return "كلمة المرور اكثر من 8 احرف";
+                          return "password_validation".tr(context);
                         }
                         return null;
                       },
@@ -321,7 +323,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
 
                     /// confirm password
                     Text(
-                      "تآكيد كلمة المرور",
+                      "confirm_password".tr(context),
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w700,
                           color: AppColors.c090909,
@@ -332,12 +334,12 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                       controller: profile.confirmPassword,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "رجاء ادخل كلمة المرور";
+                          return "empty_password_validation".tr(context);
                         } else if (value.length < 8) {
-                          return "كلمة المرور اكثر من 8 احرف";
+                          return "password_validation".tr(context);
                         } else if (profile.password.text !=
                             profile.confirmPassword.text) {
-                          return "كلمة المرور غير متطابقة";
+                          return "confirm_password_validation".tr(context);
                         }
                         return null;
                       },
@@ -357,7 +359,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "الرقم الضريبي",
+                                    "tax_number".tr(context),
                                     style: AppTextStyles.textStyle(
                                         weight: FontWeight.w700,
                                         color: AppColors.c090909,
@@ -437,7 +439,7 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "السجل التجاري",
+                                    "commercial_register".tr(context),
                                     style: AppTextStyles.textStyle(
                                         weight: FontWeight.w700,
                                         color: AppColors.c090909,
@@ -528,18 +530,16 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                       borderColor: AppColors.transparent,
                       colorBg: AppColors.transparent,
                       txtColor: AppColors.cE74C3C,
-                      title: "حذف الحساب",
+                      title: "remove_account".tr(context),
                       onTap: () {
                         showAnimatedDialog(context,
                             BlocBuilder<CheckoutCubit, CheckoutState>(
                                 builder: (context, state) {
                                   return ConfirmOrderDialog(
-                                    description: "هل انت متاكد من انك تريد حذف الحساب",
+                                    description: "confirm_remove_account".tr(context),
                                     isFailed: false,
                                     image: ImageConstants.said,
-                                    onTapConfirm: () {
-                                      context.read<ProfileCubit>().removeAccount();
-                                    },
+                                    onTapConfirm: context.read<ProfileCubit>().removeAccount,
                                   );
                                 }),
                             dismissible: false, isFlip: true);
@@ -576,35 +576,35 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "حفظ التعديل",
+          title: "save_edit".tr(context),
           onTap: () {
             if (context.read<ProfileCubit>().formKey.currentState!.validate()) {
               if (context.read<ProfileCubit>().myImage == null
                   && context.read<ProfileCubit>().imageProfileNet == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب وضع صورة للملف الشخصي",
+                    message: "set_profile_image".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().country == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار البلد",
+                    message: "must_select_country".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().city == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار المدينة",
+                    message: "must_select_city".tr(context),
                     type: AlertType.warning);
               }
               if (context.read<ProfileCubit>().taxNoImage == null
                   && context.read<ProfileCubit>().taxNoImageNet == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب رفع صورة من الرقم الضريبي",
+                    message: "must_upload_tax_image".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().commercialNoImage == null
                   && context.read<ProfileCubit>().commercialNoImageNet == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب رفع صورة من السجل التجاري",
+                    message: "must_upload_commercial_image".tr(context),
                     type: AlertType.warning);
               }
               else {

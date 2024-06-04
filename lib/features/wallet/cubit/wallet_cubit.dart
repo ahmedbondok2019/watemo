@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../../core/src/app_export.dart';
 import '../data/models/transactions_model.dart';
 import '../data/models/wallet_res_model.dart';
@@ -34,7 +33,6 @@ class WalletCubit extends Cubit<WalletState> {
 
   /// <<--- get Wallet --->>
   Future<void> getWallet() async {
-    log("message ======================>>>>>>>>>>>>333");
     emit(WalletLoading());
     final NetworkService<WalletResModel> data = await _repository.getWallet();
     switch (data) {
@@ -51,7 +49,6 @@ class WalletCubit extends Cubit<WalletState> {
 
   /// <<--- get last wallet --->>
   Future<void> getLastWallet() async {
-    log("message ======================>>>>>>>>>>>>333");
     emit(LastWalletLoading());
     final NetworkService<WalletResModel> data = await _repository.getLastWallet();
     switch (data) {

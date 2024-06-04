@@ -19,7 +19,7 @@ class HomeVendorBody extends StatelessWidget {
                 const CustomTotalOrderHome(),
                 Gap(25.h),
                 CustomSeeAll(
-                  title: "الطلبات",
+                  title: "orders".tr(context),
                   onTap: () => Navigator.pushNamed(
                       context, AppRoutes.orders),
                 ),
@@ -44,14 +44,15 @@ class HomeVendorBody extends StatelessWidget {
                 const CustomTotalOrderHome(),
                 Gap(25.h),
                 CustomSeeAll(
-                  title: "الطلبات",
+                  title: "orders".tr(context),
                   onTap: () => Navigator.pushNamed(
                       context, AppRoutes.orders),
                 ),
 
                 Expanded(
                   child: context.read<HomeCubit>().orders.isEmpty
-                      ? const Center(child: CustomNoResult(title: "لا يوجد طلبات جديدة"))
+                      ? Center(
+                      child: CustomNoResult(title: "no_new_orders".tr(context)))
                       : SingleChildScrollView(
                     child: Column(
                       children: [
@@ -79,7 +80,7 @@ class HomeVendorBody extends StatelessWidget {
                 const CustomTotalOrderHome(),
                 Gap(25.h),
                 CustomSeeAll(
-                  title: "الطلبات",
+                  title: "orders".tr(context),
                   onTap: () => Navigator.pushNamed(
                       context, AppRoutes.orders),
                 ),

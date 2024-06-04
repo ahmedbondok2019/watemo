@@ -12,13 +12,13 @@ class CustomSelectServiceTypeHome extends StatelessWidget {
       children: [
         typeWidget(
           image: ImageConstants.arafat,
-          title: "الحج",
+          title: "the_hajj".tr(context),
           width: 90.w,
           height: 65.h,
           onTap: (){
             if(context.read<HomeCubit>().hajj == null){
               CustomMessage.showMessage(context,
-                  message: "خدمة الحج غير متاحه الان",
+                  message: "hajj_service_not_available_now".tr(context),
                   type: AlertType.warning);
             }
             else{
@@ -28,7 +28,7 @@ class CustomSelectServiceTypeHome extends StatelessWidget {
                   arguments: [
                     context.read<HomeCubit>().hajj,
                     TitleIdListModel(
-                      id: 0,title: "الحج"
+                      id: 0,title: "the_hajj".tr(context),
                   ),
                     null]
               );
@@ -37,25 +37,25 @@ class CustomSelectServiceTypeHome extends StatelessWidget {
         ),
         typeWidget(
           image: ImageConstants.kaba,
-          title: "العمرة",
+          title: "the_amra".tr(context),
           width: 65.w,
           height: 72.h,
           onTap: () => Navigator.pushNamed(context,
               AppRoutes.servicesScreen,
             arguments: TitleIdListModel(
-              id: 1,title: "العمرة"
+              id: 1,title: "the_amra".tr(context),
             ),
           ),
         ),
         typeWidget(
           image: ImageConstants.musiq,
-          title: "خدمات اضافية",
+          title: "additional_services".tr(context),
           width: 40.w,
           height: 72.h,
           onTap: () => Navigator.pushNamed(context,
             AppRoutes.servicesScreen,
             arguments: TitleIdListModel(
-                id: 3,title: "خدمات اضافية"
+                id: 3,title: "additional_services".tr(context),
             ),
           ),
         ),

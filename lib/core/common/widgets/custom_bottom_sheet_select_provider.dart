@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../../features/checkout/data/models/create_order/create_order_req_model.dart';
 import '../../../features/home/data/models/hajj_model.dart';
 import '../../../features/services/cubit/services_cubit.dart';
@@ -66,7 +65,7 @@ class CustomBottomSheetProvider extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "جنس مقدم الخدمة",
+                        "vendor_gender".tr(context),
                         textAlign: TextAlign.center,
                         style: AppTextStyles.textStyle(
                           color: AppColors.c090909,
@@ -94,7 +93,7 @@ class CustomBottomSheetProvider extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             CustomButtonInternet(
-                              title: "ذكر",
+                              title: "male".tr(context),
                               horizontal: 0,
                               size: 16,
                               vertical: 0,
@@ -108,7 +107,7 @@ class CustomBottomSheetProvider extends StatelessWidget {
                               onTap: servicesCubit.changeStatusGender,
                             ),
                             CustomButtonInternet(
-                              title: "انثي",
+                              title: "female".tr(context),
                               horizontal: 0,
                               vertical: 0,
                               height: 40,
@@ -125,7 +124,7 @@ class CustomBottomSheetProvider extends StatelessWidget {
                       ),
                       Gap(15.h),
                       Text(
-                        "اللغات مقدم الخدمة",
+                        "vendor_lang".tr(context),
                         textAlign: TextAlign.center,
                         style: AppTextStyles.textStyle(
                           color: AppColors.c090909,
@@ -167,9 +166,6 @@ class CustomBottomSheetProvider extends StatelessWidget {
                                 : AppColors.cEAEAEA,
                             title: languages[index].title ?? "",
                             onTap: () {
-                              print("selectLang ====>>>> ${servicesCubit.selectLang}");
-                              print("selectLang ====>>>> ${servicesCubit.selectLang.contains(languages[index].id)}");
-                              print("index ====>>>> $index");
                               if (servicesCubit.selectLang.contains(languages[index].id)) {
                                 int ind = servicesCubit.selectLang.indexOf(languages[index].id!);
                                 if(ind != -1){
@@ -192,19 +188,18 @@ class CustomBottomSheetProvider extends StatelessWidget {
                             height: 48,
                             width: 172,
                             horizontal: 0,
-                            title: "التالي",
+                            title: "next".tr(context),
                             onTap: () {
-                              print("lang ======>>>> ${servicesCubit.selectLang}");
                               if(servicesCubit.selectLang.isEmpty){
                                 CustomMessage.showMessage(context,
-                                    message: "يجب اختيار لغات مقدم الخدمة", type: AlertType.warning);
+                                    message: "must_select_vendor_lang".tr(context),
+                                    type: AlertType.warning);
                               }
                               else{
                                 String lang = "";
                                 for (var element in servicesCubit.selectLang) {
                                   lang += "$element,";
                                 }
-                                print("lang ======>>>> $lang");
                                 lang = lang.substring(0,lang.length -1);
 
                                 Navigator.pushNamed(
@@ -233,7 +228,7 @@ class CustomBottomSheetProvider extends StatelessWidget {
                             colorBg: AppColors.white,
                             txtColor: AppColors.c090909,
                             borderColor: AppColors.c090909,
-                            title: "الغاء",
+                            title: "cancel".tr(context),
                             onTap: () => Navigator.pop(context),
                           ),
                         ],

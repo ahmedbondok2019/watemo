@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../../../core/common/widgets/custom_network_image.dart';
 import '../../../../core/src/app_export.dart';
 import '../../cubit/services_cubit.dart';
@@ -99,8 +98,7 @@ class _CustomBottomSheetListServiceState extends State<CustomBottomSheetListServ
                                       size: 16),
                                 ),
                                 Gap(5.w),
-                                Text(
-                                  "ريال ",
+                                Text("rial".tr(context),
                                   style: AppTextStyles.textStyle(
                                       weight: FontWeight.w400,
                                       color: AppColors.c090909,
@@ -117,7 +115,6 @@ class _CustomBottomSheetListServiceState extends State<CustomBottomSheetListServ
                       InkWell(
                         onTap: (){
                           if(selectServicesList.isEmpty){
-                            log("if ========>>>>>>>>> ");
                             widget.servicesList[i].counter += 1;
                             selectServicesList.add(widget.servicesList[i]);
                           }
@@ -128,7 +125,6 @@ class _CustomBottomSheetListServiceState extends State<CustomBottomSheetListServ
                               selectServicesList.add(widget.servicesList[i]);
                             }else{
                               widget.servicesList[i].counter = widget.servicesList[i].counter + 1;
-                              log("else counter========>>>>>>>>>${widget.servicesList[i].counter} ");
                             }
                           }
                           setState(() {});
@@ -189,7 +185,7 @@ class _CustomBottomSheetListServiceState extends State<CustomBottomSheetListServ
                 height: 48,
                 width: 172,
                 horizontal: 0,
-                title: "التالي",
+                title: "next".tr(context),
                 onTap: () {
                   ServicesCubit.get(context).changeSelectService(
                       selectServicesList);
@@ -203,7 +199,7 @@ class _CustomBottomSheetListServiceState extends State<CustomBottomSheetListServ
               colorBg: AppColors.white,
               txtColor: AppColors.c090909,
               borderColor: AppColors.c090909,
-              title: "الغاء",
+              title: "cancel".tr(context),
               onTap: () => Navigator.pop(context),
             ),
           ],

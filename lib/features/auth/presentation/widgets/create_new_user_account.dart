@@ -21,7 +21,7 @@ class CreateNewUserAccount extends StatelessWidget {
                 children: [
                   Gap(10.h),
                   Text(
-                    'الاسم ثلاثي',
+                    'name'.tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -31,14 +31,14 @@ class CreateNewUserAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "الرجاء ادخل الاسم";
+                        return "empty_name_validation".tr(context);
                       } else if (value.length <= 3) {
-                        return "الاسم يجب ان يكون اكثر من 3 احرف";
+                        return "name_validation".tr(context);
                       }
                       return null;
                     },
                     fillColor: AppColors.cF5F5F5,
-                    hint: "الاسم هنا",
+                    hint: "hint_name".tr(context),
                     controller: authCubit.fullName,
                     suffixIcon: Image.asset(
                       ImageConstants.profileIcon,
@@ -49,7 +49,7 @@ class CreateNewUserAccount extends StatelessWidget {
 
                   /// phone
                   Text(
-                    "رقم الهاتف",
+                    "phone".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -63,7 +63,7 @@ class CreateNewUserAccount extends StatelessWidget {
                       InputFormField(
                         validator: (p0) {
                           if (p0 == null || p0.isEmpty) {
-                            return "رجاء ادخل رقم الموبايل";
+                            return "empty_phone_validation".tr(context);
                           } else {
                             return null;
                           }
@@ -91,7 +91,7 @@ class CreateNewUserAccount extends StatelessWidget {
                         list: authCubit.countriesList,
                         selectedItem: authCubit.countryCode,
                         onChanged: authCubit.changeCountryCode,
-                        label: "اختر كود الدولة",
+                        label: "select_country_code".tr(context),
                       ),
                     ],
                   ),
@@ -99,7 +99,7 @@ class CreateNewUserAccount extends StatelessWidget {
 
                   /// email
                   Text(
-                    "البريد الالكتروني",
+                    "email".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -109,19 +109,19 @@ class CreateNewUserAccount extends StatelessWidget {
                   InputFormField(
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'please enter  email';
+                        return "empty_email_validation".tr(context);
                       }
                       bool emailValid = RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(value);
                       if (!emailValid) {
-                        return 'please enter valid email';
+                        return 'email_validation'.tr(context);
                       }
                       return null;
                     },
                     controller: authCubit.emailAddress,
                     fillColor: AppColors.cF5F5F5,
-                    hint: 'البريد هنا',
+                    hint: 'hint_email'.tr(context),
                     suffixIcon: Image.asset(
                       ImageConstants.emailIcon,
                       height: 20.h,
@@ -142,7 +142,7 @@ class CreateNewUserAccount extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "بلد الاقامة",
+                              "country".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w700,
                                   color: AppColors.c090909,
@@ -156,7 +156,8 @@ class CreateNewUserAccount extends StatelessWidget {
                                     countryId: val!.id.toString());
                                 authCubit.changeCountry(val);
                               },
-                              label: "اختر بلد الاقامة",
+                              label: "select_country".tr(context),
+                              isTrans: false,
                             ),
                           ],
                         ),
@@ -168,7 +169,7 @@ class CreateNewUserAccount extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "مدينة الاقامة",
+                              "city".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w700,
                                   color: AppColors.c090909,
@@ -178,7 +179,8 @@ class CreateNewUserAccount extends StatelessWidget {
                               list: authCubit.citiesList,
                               selectedItem: authCubit.city,
                               onChanged: authCubit.changeCity,
-                              label: "اختر مدينة الاقامة",
+                              label: "select_city".tr(context),
+                              isTrans: false,
                             ),
                           ],
                         ),
@@ -190,7 +192,7 @@ class CreateNewUserAccount extends StatelessWidget {
 
                   /// password
                   Text(
-                    "كلمة المرور",
+                    "password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -200,9 +202,9 @@ class CreateNewUserAccount extends StatelessWidget {
                   InputFormField(
                     validator: (p0) {
                       if (p0 == null || p0.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (p0.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       }
                       return null;
                     },
@@ -213,7 +215,7 @@ class CreateNewUserAccount extends StatelessWidget {
                   ),
                   Gap(10.h),
                   Text(
-                    "تآكيد كلمة المرور",
+                    "confirm_password".tr(context),
                     style: AppTextStyles.textStyle(
                         weight: FontWeight.w700,
                         color: AppColors.c090909,
@@ -224,12 +226,12 @@ class CreateNewUserAccount extends StatelessWidget {
                     controller: authCubit.confirmPasswordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "رجاء ادخل كلمة المرور";
+                        return "empty_password_validation".tr(context);
                       } else if (value.length < 8) {
-                        return "كلمة المرور اكثر من 8 احرف";
+                        return "password_validation".tr(context);
                       } else if (authCubit.passwordController.text !=
                           authCubit.confirmPasswordController.text) {
-                        return "كلمة المرور غير متطابقة";
+                        return "confirm_password_validation".tr(context);
                       }
                       return null;
                     },
@@ -259,29 +261,26 @@ class CreateNewUserAccount extends StatelessWidget {
                             activeColor: AppColors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6.r),
-                            )),
+                            ),
+                        ),
                       ),
                       Gap(5.w),
                       Expanded(
                         child: Row(
                           children: [
-                            Text(
-                              'أنا أوافق على ',
+                            Text("approve".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text(
-                              ' الشروط والأحكام ',
+                            Text("term_condition".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
                             ),
-                            Text(
-                              ' و ',
+                            Text("and".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text(
-                              ' سياسة الخصوصية ',
+                            Text("privacy_policy".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
                             ),
@@ -319,20 +318,24 @@ class CreateNewUserAccount extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "إنشاء حساب جديد",
+          title: "register".tr(context),
           onTap: () {
             if (context.read<AuthCubit>().formKey.currentState!.validate()) {
               if (context.read<AuthCubit>().country == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار الجنسية", type: AlertType.warning);
-              } else if (context.read<AuthCubit>().city == null) {
+                    message: "must_select_country".tr(context),
+                    type: AlertType.warning);
+              }
+              else if (context.read<AuthCubit>().city == null) {
                 CustomMessage.showMessage(context,
-                    message: "يجب اختيار محل الاقامة", type: AlertType.warning);
-              } else if (!context
+                    message: "must_select_city".tr(context),
+                    type: AlertType.warning);
+              }
+              else if (!context
                   .read<AuthCubit>()
                   .termsAndConditionCheckBoxValue) {
                 CustomMessage.showMessage(context,
-                    message: "يجب الموافقة علي الشروط والاحكام",
+                    message: "must_approve_on_term".tr(context),
                     type: AlertType.warning);
               } else {
                 context.read<AuthCubit>().registerUser();

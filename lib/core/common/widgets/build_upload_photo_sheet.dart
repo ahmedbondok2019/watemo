@@ -25,7 +25,7 @@ class BuildUploadPhotoSheet extends StatelessWidget {
               InkWell(
                 onTap: onCameraTap,
                 child: Text(
-                  "Take Photo",
+                  "take_photo".tr(context),
                   style: AppTextStyles.textStyle(
                     size: 16,
                   ),
@@ -41,7 +41,7 @@ class BuildUploadPhotoSheet extends StatelessWidget {
               InkWell(
                 onTap: onGalleryTap,
                 child: Text(
-                  "Gallery",
+                  "Gallery".tr(context),
                   style: AppTextStyles.textStyle(
                     size: 16,
                   ),
@@ -59,7 +59,7 @@ class BuildUploadPhotoSheet extends StatelessWidget {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Cancel",
+                  "cancel".tr(context),
                   style: AppTextStyles.textStyle(
                     size: 16,
                     color: AppColors.c1B273A,

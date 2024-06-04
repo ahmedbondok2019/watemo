@@ -115,12 +115,12 @@ class _MainLayerState extends State<MainLayer>
                     ? AppColors.primary
                     : AppColors.c090909,
                 label: index == 0
-                    ? "الرئيسيه"
+                    ? "main".tr(context)
                     : index == 1
-                       ? "الطلبات"
+                       ? "orders".tr(context)
                        : index == 2
-                          ? "المحفظة"
-                          : "المزيد",
+                          ? "wallet".tr(context)
+                          : "more".tr(context),
                 icon: iconList[index],
               );
             },
