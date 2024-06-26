@@ -57,10 +57,11 @@ class OnBoarding extends StatelessWidget {
                 ),
 
                 Gap(38.h),
+
                 OnBoardingBody(
                     onChange: onBoardingCubit.updateIndex,
                     pageController: onBoardingCubit.pageController),
-                Gap(20.h),
+
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

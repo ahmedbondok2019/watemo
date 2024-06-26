@@ -132,6 +132,32 @@ class CreateNewUserAccount extends StatelessWidget {
 
                   /// national
                   Gap(10.h),
+                  SizedBox(
+                    height: 76.h,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "original_nationality".tr(context),
+                          style: AppTextStyles.textStyle(
+                              weight: FontWeight.w700,
+                              color: AppColors.c090909,
+                              size: 14),
+                        ),
+                        Gap(5.h),
+                        CustomDropDownNat(
+                          list: authCubit.countriesList,
+                          width: 400.w,
+                          selectedItem: authCubit.nationality,
+                          onChanged: authCubit.changeNationality,
+                          label: "select_original_nationality".tr(context),
+                          isTrans: false,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(10.h),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -272,18 +298,24 @@ class CreateNewUserAccount extends StatelessWidget {
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text("term_condition".tr(context),
+                            InkWell(
+                                onTap: ()=>
+                                    Navigator.pushNamed(context, AppRoutes.termConditions),
+                                child: Text("term_condition".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
-                            ),
+                            )),
                             Text("and".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text("privacy_policy".tr(context),
+                            InkWell(
+                                onTap: ()=>
+                                    Navigator.pushNamed(context, AppRoutes.privacy),
+                                child: Text("privacy_policy".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
-                            ),
+                            )),
                           ],
                         ),
                       ),
@@ -321,7 +353,12 @@ class CreateNewUserAccount extends StatelessWidget {
           title: "register".tr(context),
           onTap: () {
             if (context.read<AuthCubit>().formKey.currentState!.validate()) {
-              if (context.read<AuthCubit>().country == null) {
+              if (context.read<AuthCubit>().nationality == null) {
+                CustomMessage.showMessage(context,
+                    message: "must_select_nationality".tr(context),
+                    type: AlertType.warning);
+              }
+              else if (context.read<AuthCubit>().country == null) {
                 CustomMessage.showMessage(context,
                     message: "must_select_country".tr(context),
                     type: AlertType.warning);

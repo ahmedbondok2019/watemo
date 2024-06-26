@@ -118,6 +118,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 },
                 fillColor: AppColors.transparent,
                 hint: 'name'.tr(context),
+                textColor: AppColors.c090909,
                 controller: profile.fullName,
                 height: 48.h,
               ),
@@ -178,6 +179,31 @@ class CustomEditProfileVendorBody extends StatelessWidget {
               Gap(10.h),
 
               /// country && city
+              SizedBox(
+                height: 76.h,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "original_nationality".tr(context),
+                      style: AppTextStyles.textStyle(
+                          weight: FontWeight.w700,
+                          color: AppColors.c090909,
+                          size: 14),
+                    ),
+                    Gap(5.h),
+                    CustomDropDownNat(
+                      list: profile.countriesList,
+                      width: 400.w,
+                      selectedItem: profile.nationality,
+                      onChanged: profile.changeNationality,
+                      label: "select_original_nationality".tr(context),
+                      isTrans: false,
+                    ),
+                  ],
+                ),
+              ),
+              Gap(10.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -335,6 +361,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 },
                 controller: profile.emailAddress,
                 fillColor: AppColors.transparent,
+                textColor: AppColors.c090909,
                 hint: 'hint_email'.tr(context),
                 height: 48.h,
               ),
@@ -364,6 +391,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                     isRTL: false,
                     fillColor: AppColors.transparent,
                     hint: "phone".tr(context),
+                    textColor: AppColors.c090909,
                     controller: profile.phoneNumber,
                     suffixIcon: Image.asset(
                       ImageConstants.phoneIcon,
@@ -416,6 +444,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 hint: "***********",
                 fillColor: AppColors.cF5F5F5,
                 controller: profile.password,
+                textColor: AppColors.c090909,
                 secure: true,
                 height: 48.h,
               ),
@@ -445,6 +474,7 @@ class CustomEditProfileVendorBody extends StatelessWidget {
                 },
                 fillColor: AppColors.cF5F5F5,
                 hint: "***********",
+                textColor: AppColors.c090909,
                 secure: true,
                 height: 48.h,
               ),
@@ -669,7 +699,8 @@ class CustomEditProfileVendorBody extends StatelessWidget {
               state.networkExceptions,
             ),
             type: AlertType.failed);
-      } else if (state is ProfileSuccess) {
+      }
+      else if (state is ProfileSuccess) {
         Navigator.pushReplacementNamed(
           context,
           AppRoutes.mainLayer,
@@ -706,6 +737,11 @@ class CustomEditProfileVendorBody extends StatelessWidget {
               else if (context.read<ProfileCubit>().year == null) {
                 CustomMessage.showMessage(context,
                     message: "must_select_year".tr(context),
+                    type: AlertType.warning);
+              }
+              else if (context.read<ProfileCubit>().nationality == null) {
+                CustomMessage.showMessage(context,
+                    message: "must_select_nationality".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().country == null) {

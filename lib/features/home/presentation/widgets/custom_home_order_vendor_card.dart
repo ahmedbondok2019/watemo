@@ -13,7 +13,7 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.h),
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
-      height: order.statusId == 2 ? null : 160.h,
+      height: order.statusId == 2 ? null : 185.h,
       width: 361.w,
       decoration: BoxDecoration(
           color: AppColors.cF6F4EC,
@@ -31,7 +31,7 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
                     imageUrl: order.image ?? "",
                     fit: BoxFit.cover,
                     width: 82.w,
-                    height: 80.h,
+                    height: 95.h,
                   ),
                 ),
                 Gap(8.w),
@@ -90,6 +90,51 @@ class CustomHomeOrderVendorCard extends StatelessWidget {
                                     weight: FontWeight.w400,
                                     color: AppColors.c090909,
                                     size: 14),
+                              ),
+                            ],
+                          ),
+
+                          Gap(8.w),
+                          Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "date_from".tr(context),
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 14),
+                                  ),
+                                  Text(
+                                    order.dateFrom ?? "",
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 12),
+                                  ),
+                                ],
+                              ),
+
+                              Gap(8.w),
+
+                              Row(
+                                children: [
+                                  Text(
+                                    "to".tr(context),
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 14),
+                                  ),
+                                  Text(
+                                    order.dateTo ?? "",
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 12),
+                                  ),
+                                ],
                               ),
                             ],
                           ),

@@ -227,7 +227,9 @@ class CustomServiceDetailsBody extends StatelessWidget {
                             size: 16),
                       ),
                       SvgPicture.asset(
-                        ImageConstants.arrowBackLeft,
+                        !LocalizationBloc.get(context).isLtr
+                            ? ImageConstants.arrowBackLeft
+                            : ImageConstants.arrowBack,
                         height: 16.h,
                         width: 16.w,
                       ),

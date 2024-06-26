@@ -29,10 +29,12 @@ class EndPoints {
   static const String getOrders = 'getOrders?status=';
   static const String getWallet = 'wallet?page_number=';
   static const String getLastWallet = 'last_wallet';
+  static const String addBalance = 'addBalance';
   static const String sendMessage = 'send_message';
   static const String providers = 'search?sex=';
   static const String about = 'about';
   static const String terms = 'terms';
+  static const String privacy = 'privacy';
   static const String relations = 'relations';
   static const String validCouponCode = 'validCouponCode';
   static const String createOrder = 'createOrder';

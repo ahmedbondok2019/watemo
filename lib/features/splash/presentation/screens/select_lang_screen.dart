@@ -62,6 +62,7 @@ class SelectLangScreen extends StatelessWidget {
             Center(
               child: Text(
                 "please_select_lang".tr(context),
+                textAlign: TextAlign.center,
                 style: AppTextStyles.textStyle(
                     size: 14,
                     weight: FontWeight.w400,

@@ -189,7 +189,10 @@ class OrderStepScreen extends StatelessWidget {
                                   ],
                                 ),
                           Gap(15.h),
-                          InkWell(
+
+                          context.read<OrdersCubit>().isLastStep
+                              ? const SizedBox()
+                              : InkWell(
                             onTap: ordersCubit.recordVideo,
                             child: Container(
                               width: 361.w,
@@ -269,7 +272,9 @@ class OrderStepScreen extends StatelessWidget {
       if (state is NextStepOrderVendorLoading) {
         return const Center(child: CustomLoading(width: 345, height: 48));
       } else {
-        return CustomButtonInternet(
+        return context.read<OrdersCubit>().isLastStep
+            ? const SizedBox()
+            : CustomButtonInternet(
           height: 48,
           width: 345,
           horizontal: 0,

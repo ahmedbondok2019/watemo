@@ -19,8 +19,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ??
-              () => Navigator.pop(context),
+      onTap: onTap ?? () => Navigator.pop(context),
       child: Container(
         width: 40.w,
         height: 40.h,
@@ -31,7 +30,9 @@ class CustomBackButton extends StatelessWidget {
           color: backgroundColor ?? AppColors.white.withOpacity(0.13),
         ),
         child: SvgPicture.asset(
-          ImageConstants.arrowBack,
+          LocalizationBloc.get(context).isLtr
+              ? ImageConstants.arrowBackLeft
+              : ImageConstants.arrowBack,
           color: AppColors.black,
           width: 5.w,height: 1.h,
         ),

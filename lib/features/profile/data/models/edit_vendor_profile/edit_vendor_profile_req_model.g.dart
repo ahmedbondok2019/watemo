@@ -20,6 +20,7 @@ FormData _$EditVendorProfileReqModelToJson(EditVendorProfileReqModel instance) =
       'month': instance.month,
       'year': instance.year,
       'languages': instance.languages,
+      'original_nationality': instance.nationality,
       'services': instance.services,
       'sex': instance.sex,
       'identity_face': instance.identityFace,

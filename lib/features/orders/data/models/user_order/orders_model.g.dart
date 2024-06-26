@@ -16,6 +16,8 @@ OrdersModel _$OrdersModelFromJson(Map<String, dynamic> json) => OrdersModel(
       total: json['total'] as dynamic,
       serviceId: json['service_id'] as int?,
       serviceTypeId: json['service_type_id'] as int?,
+      dateTo: json['date_to'] as String?,
+      dateFrom: json['date_from'] as String?,
       dateToStart: json['date_to_start'] as String?,
       serviceType: json['service_type'] as String?,
       serviceDescription: json['service_description'] as String?,

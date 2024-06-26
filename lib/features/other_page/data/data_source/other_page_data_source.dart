@@ -37,4 +37,13 @@ class OtherPageDataSource {
     );
     return response;
   }
+
+  /// <<--- get Privacy request --->>
+  Future<Response> getPrivacy() async {
+    final Response response = await baseDioHelper.get(
+        endPoint: EndPoints.privacy,
+        token: getIt<SharedPreferences>().getString(AppConstants.token)
+    );
+    return response;
+  }
 }

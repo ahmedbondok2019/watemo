@@ -39,7 +39,7 @@ dependencies:
   geocoding: null
   geolocator: null
   get_it: null
-  intl: null
+  intl:
   json_annotation: null
   lottie: ^3.1.0
   macos_ui: null
@@ -75,6 +75,7 @@ dependencies:
   awesome_notifications:
   firebase_messaging:
   firebase_core:
+  webview_flutter:
 
 dev_dependencies:
   build_runner: null

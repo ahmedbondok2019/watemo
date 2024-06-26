@@ -1,6 +1,7 @@
 import '../../../../core/common/widgets/custom_network_image.dart';
 import '../../../../core/src/app_export.dart';
 import '../../../../core/utils/custom_message.dart';
+import '../../../../core/utils/utils.dart';
 import '../../cubit/orders_cubit.dart';
 import '../../data/models/user_order/orders_model.dart';
 import 'custom_bottom_sheet_confirm_start_mission.dart';
@@ -14,7 +15,7 @@ class CustomOrderVendorCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.h),
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
-      height: order.statusId == 2 ? null : 160.h,
+      height: order.statusId == 2 ? null : 185.h,
       width: 361.w,
       decoration: BoxDecoration(
           color: AppColors.cF6F4EC,
@@ -32,7 +33,7 @@ class CustomOrderVendorCard extends StatelessWidget {
                     imageUrl: order.image ?? "",
                     fit: BoxFit.cover,
                     width: 82.w,
-                    height: 80.h,
+                    height: 95.h,
                   ),
                 ),
                 Gap(8.w),
@@ -74,7 +75,7 @@ class CustomOrderVendorCard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Gap(10.w),
+                          Gap(8.w),
                           Row(
                             children: [
                               Text(
@@ -91,6 +92,50 @@ class CustomOrderVendorCard extends StatelessWidget {
                                     weight: FontWeight.w400,
                                     color: AppColors.c090909,
                                     size: 14),
+                              ),
+                            ],
+                          ),
+                          Gap(8.w),
+                          Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "date_from".tr(context),
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 14),
+                                  ),
+                                  Text(
+                                    order.dateFrom ?? "",
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 12),
+                                  ),
+                                ],
+                              ),
+
+                              Gap(8.w),
+
+                              Row(
+                                children: [
+                                  Text(
+                                    "to".tr(context),
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 14),
+                                  ),
+                                  Text(
+                                    order.dateTo ?? "",
+                                    style: AppTextStyles.textStyle(
+                                        weight: FontWeight.w400,
+                                        color: AppColors.c090909,
+                                        size: 12),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -236,17 +281,38 @@ class CustomOrderVendorCard extends StatelessWidget {
                         : "started_task".tr(context),
                     onTap: () {
                       if(order.dateToStartNumber == 0){
-                        showModalBottomSheet(
-                          context: context,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) =>
-                              BlocBuilder<OrdersCubit, OrdersState>(
-                                  builder: (context, state) {
-                                    return CustomBottomSheetStartMission(
-                                      order: order,
-                                    );
-                                  }),
-                        );
+                        Utils.checkLocationEnabled()
+                            .then((value) {
+                          if (value) {
+                            Utils.checkLocationPermission()
+                                .then((value) {
+                              if (value) {
+                                showModalBottomSheet(
+                                  context: context,
+                                  backgroundColor: Colors.transparent,
+                                  builder: (context) =>
+                                      BlocBuilder<OrdersCubit, OrdersState>(
+                                          builder: (context, state) {
+                                            return CustomBottomSheetStartMission(
+                                              order: order,
+                                            );
+                                          }),
+                                );
+                              } else {
+                                CustomMessage.showMessage(
+                                    context,
+                                    message:
+                                    "must_allow_location".tr(context),
+                                    type: AlertType.warning);
+                              }
+                            });
+                          } else {
+                            CustomMessage.showMessage(context,
+                                message:
+                                "must_allow_permission_loc".tr(context),
+                                type: AlertType.warning);
+                          }
+                        });
                       }
                     },
                   )

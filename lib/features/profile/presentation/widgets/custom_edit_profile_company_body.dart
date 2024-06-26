@@ -57,6 +57,31 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                     Gap(15.h),
 
                     /// country && city
+                    SizedBox(
+                      height: 76.h,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "original_nationality".tr(context),
+                            style: AppTextStyles.textStyle(
+                                weight: FontWeight.w700,
+                                color: AppColors.c090909,
+                                size: 14),
+                          ),
+                          Gap(5.h),
+                          CustomDropDownNat(
+                            list: profile.countriesList,
+                            width: 400.w,
+                            selectedItem: profile.nationality,
+                            onChanged: profile.changeNationality,
+                            label: "select_original_nationality".tr(context),
+                            isTrans: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Gap(10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -583,6 +608,11 @@ class CustomEditProfileCompanyBody extends StatelessWidget {
                   && context.read<ProfileCubit>().imageProfileNet == null) {
                 CustomMessage.showMessage(context,
                     message: "set_profile_image".tr(context),
+                    type: AlertType.warning);
+              }
+              else if (context.read<ProfileCubit>().nationality == null) {
+                CustomMessage.showMessage(context,
+                    message: "must_select_nationality".tr(context),
                     type: AlertType.warning);
               }
               else if (context.read<ProfileCubit>().country == null) {

@@ -64,7 +64,7 @@ class InputFormField extends StatefulWidget {
     this.verticalMargin = 7,
     this.multiLine = false,
     this.fillColor,
-    this.textColor = Colors.grey,
+    this.textColor = AppColors.c090909,
     this.labelColor,
     this.radius = 10,
     this.iconColor = Colors.white,

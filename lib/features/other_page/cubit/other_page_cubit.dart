@@ -22,6 +22,7 @@ class OtherPageCubit extends Cubit<OtherPageState> {
   );
   String? aboutUsContent;
   String? termsContent;
+  String? privacyContent;
 
   List<TitleIdListModel> contactTypeList = [
     TitleIdListModel(
@@ -100,6 +101,22 @@ class OtherPageCubit extends Cubit<OtherPageState> {
           networkExceptions: NetworkExceptions error
       ):
         emit(TermsFailure(networkExceptions: error));
+    }
+  }
+
+  /// <<--- get privacy --->>
+  Future<void> getPrivacy() async {
+    log("getPrivacy ======================>>>>>>>>>>>>333");
+    emit(PrivacyLoading());
+    final NetworkService<AboutModel> data = await _repository.getPrivacy();
+    switch (data) {
+      case Succeed<AboutModel>(data: AboutModel data):
+        emit(PrivacySuccess());
+        privacyContent = data.data.content;
+      case Failure<AboutModel>(
+          networkExceptions: NetworkExceptions error
+      ):
+        emit(PrivacyFailure(networkExceptions: error));
     }
   }
 }

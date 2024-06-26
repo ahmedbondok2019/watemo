@@ -15,6 +15,7 @@ FormData _$RegisterCompanyReqModelToJson(RegisterCompanyReqModel instance) =>
       'tax_id': instance.taxId,
       'email': instance.email,
       'password': instance.password,
+      'original_nationality': instance.nationality,
       'country': instance.country,
       'city': instance.city,
       'iban_number': instance.ibanNumber,

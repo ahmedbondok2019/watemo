@@ -30,6 +30,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                     Center(
                       child: Text(
                         "title_select_user".tr(context),
+                        textAlign: TextAlign.center,
                         style: AppTextStyles.textStyle(
                             size: 20,
                             weight: FontWeight.w700,
@@ -52,6 +53,7 @@ class SelectUserTypeScreen extends StatelessWidget {
                     Center(
                       child: Text(
                         "select_user".tr(context),
+                        textAlign: TextAlign.center,
                         style: AppTextStyles.textStyle(
                             size: 20,
                             weight: FontWeight.w700,

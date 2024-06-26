@@ -12,6 +12,7 @@ class RegisterCompanyReqModel {
   final String? password;
   final String? country;
   final String? city;
+  final String? nationality;
   final String? ibanNumber;
   final String? expectCount;
   final MultipartFile? taxImage;
@@ -27,6 +28,7 @@ class RegisterCompanyReqModel {
     required this.country,
     required this.password,
     required this.countryCode,
+    required this.nationality,
     required this.email,
     required this.ibanNumber,
     required this.expectCount,

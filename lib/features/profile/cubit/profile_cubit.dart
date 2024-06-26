@@ -38,6 +38,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   int? year;
   TitleIdListModel? country;
   TitleIdListModel? city;
+  TitleIdListModel? nationality;
   List<String> days = [
     "1",
     "2",
@@ -255,6 +256,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       phone: faxNumberController.text.trim(),
       password: password.text.trim(),
       email: emailAddress.text.trim(),
+      nationality: nationality!.id.toString(),
       countryCode: countryCode!.code.toString(),
       country: country!.id.toString(),
       city: city!.id.toString(),
@@ -318,6 +320,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         password: password.text.trim(),
         email: emailAddress.text.trim(),
         countryCode: countryCode!.code.toString(),
+        nationality: nationality!.id.toString(),
         country: country!.id.toString(),
         city: city!.id.toString(),
         image: image,
@@ -401,9 +404,12 @@ class ProfileCubit extends Cubit<ProfileState> {
             countryCode = element;
           }
         }
+        if (user!.nationality != null) {
+          nationality = _countriesList.singleWhere((element) =>
+          user!.nationality != null && user!.nationality == element.id);
+        }
         if (user!.country != null) {
-          country = _countriesList
-              .singleWhere((element) => user!.country == element.id);
+          country = _countriesList.singleWhere((element) => user!.country == element.id);
           getCities(countryId: user!.country.toString());
         }
       case Failure<TitleIdModel>(networkExceptions: NetworkExceptions error):
@@ -442,6 +448,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   String selectedIdServices = "";
   String selectedService = "";
   TitleIdListModel? selectS;
+
+  void changeNationality(TitleIdListModel? val) {
+    emit(ChangeNationalityLoading());
+    nationality = val;
+    emit(ChangeNationalitySuccess(nationality: val));
+  }
 
   void changeServices(TitleIdListModel? val) {
     emit(ChangeServicesLoading());

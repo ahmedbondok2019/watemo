@@ -48,7 +48,9 @@ class MoreListTile extends StatelessWidget {
             ),
 
             showArrow
-                ? SvgPicture.asset(ImageConstants.arrowBackLeft,
+                ? SvgPicture.asset(!LocalizationBloc.get(context).isLtr
+                  ? ImageConstants.arrowBackLeft
+                  : ImageConstants.arrowBack,
                 width: 24.w,
                 height: 24.h)
                 : const SizedBox(),

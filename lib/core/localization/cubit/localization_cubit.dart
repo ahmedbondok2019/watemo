@@ -5,6 +5,7 @@ part 'localization_state.dart';
 class LocalizationBloc extends Cubit<LocalizationState> {
   LocalizationBloc() : super(LocalizationInit());
   int lang = 0;
+  bool isLtr = false;
 
   static LocalizationBloc get(context) =>
       BlocProvider.of<LocalizationBloc>(context);
@@ -13,40 +14,22 @@ class LocalizationBloc extends Cubit<LocalizationState> {
     LangModel(name: "عربي", code: "ar",image: ImageConstants.arabic),
     LangModel(name: "English", code: "en",image: ImageConstants.english),
     LangModel(name: "French", code: "fr",image: ImageConstants.france),
-    LangModel(name: "Türkiye", code: "tur",image: ImageConstants.turkiye),
-    LangModel(name: "Urdu", code: "urd",image: ImageConstants.urdu),
-    LangModel(name: "Hausa", code: "hau",image: ImageConstants.hausa),
+    LangModel(name: "Türkiye", code: "tr",image: ImageConstants.turkiye),
+    LangModel(name: "Urdu", code: "ur",image: ImageConstants.urdu),
+    LangModel(name: "Hausa", code: "hu",image: ImageConstants.hausa),
   ];
 
   void changeLanguage(int index) {
     lang = index;
+    isLtr =
+        langList[index].code != "ar" &&
+            langList[index].code != "ur";
     getIt<SharedPreferences>()
-        .setString("locale", AppLocalization.supportedLocales[index].toString());
+        .setString("locale",
+        AppLocalization.supportedLocales[index].toString());
     emit(
       LocalizationChange(
         AppLocalization.supportedLocales[index],
-      ),
-    );
-  }
-
-  void changeLanguageToArabic() {
-    lang = 0;
-    getIt<SharedPreferences>()
-        .setString("locale", AppLocalization.supportedLocales.first.toString());
-    emit(
-      LocalizationChange(
-        AppLocalization.supportedLocales.first,
-      ),
-    );
-  }
-
-  void changeLanguageToEnglish() {
-    lang = 1;
-    getIt<SharedPreferences>()
-        .setString("locale", AppLocalization.supportedLocales.last.toString());
-    emit(
-      LocalizationChange(
-        AppLocalization.supportedLocales.last,
       ),
     );
   }

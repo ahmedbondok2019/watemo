@@ -104,7 +104,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                       return null;
                     },
                     fillColor: AppColors.transparent,
-                    hint: "name",
+                    hint: "name".tr(context),
                     controller: authCubit.vendorNameController,
                     height: 48.h,
                   ),
@@ -156,6 +156,32 @@ class CreateNewVendorAccount extends StatelessWidget {
                   Gap(10.h),
 
                   /// country && city
+                  Gap(10.h),
+                  SizedBox(
+                    height: 76.h,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "original_nationality".tr(context),
+                          style: AppTextStyles.textStyle(
+                              weight: FontWeight.w700,
+                              color: AppColors.c090909,
+                              size: 14),
+                        ),
+                        Gap(5.h),
+                        CustomDropDownNat(
+                          list: authCubit.countriesList,
+                          width: 400.w,
+                          selectedItem: authCubit.nationality,
+                          onChanged: authCubit.changeNationality,
+                          label: "select_original_nationality".tr(context),
+                          isTrans: false,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(10.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -204,7 +230,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                               list: authCubit.citiesList,
                               selectedItem: authCubit.city,
                               onChanged: authCubit.changeCity,
-                              label: "select_city",
+                              label: "select_city".tr(context),
                               isTrans: false,
                             ),
                           ],
@@ -315,6 +341,30 @@ class CreateNewVendorAccount extends StatelessWidget {
                     controller: authCubit.emailAddress,
                     fillColor: AppColors.transparent,
                     hint: 'hint_email'.tr(context),
+                    height: 48.h,
+                  ),
+                  Gap(15.h),
+
+                  /// i bank
+                  Text(
+                    "bank_account_number".tr(context),
+                    style: AppTextStyles.textStyle(
+                        weight: FontWeight.w700,
+                        color: AppColors.c090909,
+                        size: 14),
+                  ),
+                  Gap(5.h),
+                  InputFormField(
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'empty_bank_account_number_validation'.tr(context);
+                      }
+                      return null;
+                    },
+                    controller: authCubit.bankNumberController,
+                    fillColor: AppColors.transparent,
+                    isNumber: true,
+                    hint: 'bank_account_number'.tr(context),
                     height: 48.h,
                   ),
                   Gap(15.h),
@@ -519,7 +569,7 @@ class CreateNewVendorAccount extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "back_side",
+                                  "back_side".tr(context),
                                   style: AppTextStyles.textStyle(
                                       weight: FontWeight.w500,
                                       color: AppColors.c090909,
@@ -619,21 +669,28 @@ class CreateNewVendorAccount extends StatelessWidget {
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text(
-                              "term_condition".tr(context),
-                              style: AppTextStyles.textStyle(
-                                  size: 14, color: AppColors.primary),
-                            ),
+                           InkWell(
+                             onTap: ()=>
+                               Navigator.pushNamed(context, AppRoutes.termConditions),
+                             child: Text(
+                               "term_condition".tr(context),
+                               style: AppTextStyles.textStyle(
+                                   size: 14, color: AppColors.primary),
+                             ),
+                           ),
                             Text(
                               "and".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text(
+                            InkWell(
+                                onTap: ()=>
+                                    Navigator.pushNamed(context, AppRoutes.privacy),
+                                child: Text(
                               'privacy_policy'.tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
-                            ),
+                            )),
                           ],
                         ),
                       ),
@@ -863,7 +920,12 @@ class CreateNewVendorAccount extends StatelessWidget {
           title: "register".tr(context),
           onTap: () async {
             if (context.read<AuthCubit>().formKey.currentState!.validate()) {
-              if (context.read<AuthCubit>().country == null) {
+              if (context.read<AuthCubit>().nationality == null) {
+                CustomMessage.showMessage(context,
+                    message: "must_select_nationality".tr(context),
+                    type: AlertType.warning);
+              }
+              else if (context.read<AuthCubit>().country == null) {
                 CustomMessage.showMessage(context,
                     message: "must_select_country".tr(context),
                     type: AlertType.warning);

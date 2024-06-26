@@ -16,6 +16,8 @@ class OrdersModel extends Equatable {
   final String? serviceDescription;
   final dynamic total;
   final String? onBehalfOf;
+  final String? dateFrom;
+  final String? dateTo;
   final String? dateToStart;
   final int? dateToStartNumber;
   final bool? accepted;
@@ -33,6 +35,8 @@ class OrdersModel extends Equatable {
     required this.total,
     required this.serviceId,
     required this.dateToStart,
+    required this.dateFrom,
+    required this.dateTo,
     required this.dateToStartNumber,
     required this.serviceType,
     required this.accepted,
@@ -57,6 +61,8 @@ class OrdersModel extends Equatable {
     serviceId,
     serviceTypeId,
     dateToStart,
+    dateFrom,
+    dateTo,
     dateToStartNumber,
     serviceType,
     hasSteps,

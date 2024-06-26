@@ -1,3 +1,4 @@
+import 'package:completed/features/checkout/presentation/screen/payment_screen.dart';
 import 'package:completed/features/media_center/presentation/screen/media_center_screen.dart';
 import 'package:completed/features/on_boarding/cubit/on_boarding_cubit.dart';
 import 'package:completed/features/orders/data/models/user_order/orders_model.dart';
@@ -17,12 +18,12 @@ import '../../features/main_layer/presentation/screen/main_layer.dart';
 import '../../features/media_center/presentation/screen/videos_screen.dart';
 import '../../features/orders/cubit/orders_cubit.dart';
 import '../../features/orders/presentation/screen/orders_screen.dart';
+import '../../features/other_page/presentation/screen/privacy_screen.dart';
 import '../../features/profile/cubit/profile_cubit.dart';
 import '../../features/profile/presentation/screen/profile_screen.dart';
 import '../../features/services/data/models/services/services_model.dart';
 import '../../features/services/presentation/screen/services_screen.dart';
 import '../../features/services/presentation/screen/service_details_screen.dart';
-import '../../features/tracking_order/cubit/tracking_order_cubit.dart';
 import '../../features/tracking_order/presentation/screen/tracking_order_screen.dart';
 import '../../features/wallet/cubit/wallet_cubit.dart';
 import '../../features/wallet/presentation/screen/add_wallet_screen.dart';
@@ -76,6 +77,13 @@ class AppRouter {
                             create: (context) => getIt<OtherPageCubit>()..getTerms()),
                       ],
                       child: TermConditionsScreen());
+                case AppRoutes.privacy:
+                  return MultiBlocProvider(
+                      providers: [
+                        BlocProvider<OtherPageCubit>(
+                            create: (context) => getIt<OtherPageCubit>()..getPrivacy()),
+                      ],
+                      child: PrivacyScreen());
                   case AppRoutes.serviceDetails:
                   List arg = settings.arguments as List;
                   HajjModel? hajj = arg[0] as HajjModel?;
@@ -154,6 +162,9 @@ class AppRouter {
                         hajj: hajj,
                           selectServicesList: selectServicesList,
                       ));
+                case AppRoutes.payment:
+                  String? url = settings.arguments as String?;
+                  return PaymentScreen(url: url ?? "");
                 case AppRoutes.aboutUs:
                   return MultiBlocProvider(
                       providers: [
@@ -233,7 +244,7 @@ class AppRouter {
                   );
                 case AppRoutes.forgotPassword:
                   return BlocProvider(
-                    create: (context) => getIt<AuthCubit>(),
+                    create: (context) => getIt<AuthCubit>()..getCountries(),
                     child: const ForgotPassword(),
                   );
                 case AppRoutes.resetPassword:

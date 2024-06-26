@@ -20,12 +20,12 @@ class HomeAppBar extends StatelessWidget {
           title: Row(
             children: [
               SizedBox(
-                  width: 220.w,
+                  width: 225.w,
                   child: Row(
                     children: [
                       Text("${"hello".tr(context)}${context.read<UserCubit>().user!.name ?? ""} ",
                         maxLines: 1,
-                        overflow: TextOverflow.clip,
+                        overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w600,
                             color: AppColors.c090909,

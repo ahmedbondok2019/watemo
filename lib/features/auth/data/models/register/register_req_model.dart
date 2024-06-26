@@ -9,6 +9,7 @@ class RegisterReqModel {
   final String? email;
   final String? password;
   final String? countryCode;
+  final String? nationality;
   final String? city;
   final String? country;
 
@@ -18,6 +19,7 @@ class RegisterReqModel {
     required this.country,
     required this.city,
     required this.password,
+    required this.nationality,
     required this.countryCode,
     required this.email,
   });

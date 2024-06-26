@@ -1,4 +1,4 @@
-final Map<String, String> arEg = {
+{
   "splash_text": "وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّه",
   "welcome": "مرحباً بكم",
   "skip": "تخطي",
@@ -23,9 +23,6 @@ final Map<String, String> arEg = {
   "register": "إنشاء حساب جديد",
   "gender": "الجنس",
   "select_gender": "اختر الجنس",
-  "original_nationality": "الجنسية",
-  "select_original_nationality": "اختر الجنسية",
-  "must_select_nationality": "يجب اختيار الجنسية",
   "male": "ذكر",
   "female": "انثي",
   "hajj": "حج",
@@ -40,8 +37,6 @@ final Map<String, String> arEg = {
   "empty_name_validation": "الرجاء ادخل الاسم رباعي",
   "empty_company_name_validation": "الرجاء ادخل اسم (الشركة / الهيئة)",
   "name_validation": "الاسم يجب ان يكون اكثر من 3 احرف",
-  "date_from": "التاريخ من : ",
-  "to": "الي : ",
   "brith_date": "تاريخ الميلاد",
   "day": "يوم",
   "must_select_day": "يجب اختيار اليوم",
@@ -238,7 +233,5 @@ final Map<String, String> arEg = {
   "must_select_vendor_lang": "يجب اختيار لغات مقدم الخدمة",
   "delete_service": "هل انت متاكد من حذف هذه الخدمة؟",
   "exit_app": "الخروج من التطبيق",
-  "subtitle_exit_app": "هل انت متاكد من انك تريد الخروج من التطبيق",
-  "must_allow_location": "يجب السماح للوصول الي موقعك الخاص",
-  "must_allow_permission_loc": "يجب فتح الموقع للوصول لهذه الصفحة",
-};
+  "subtitle_exit_app": "هل انت متاكد من انك تريد الخروج من التطبيق"
+}

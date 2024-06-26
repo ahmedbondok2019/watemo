@@ -28,6 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
   String selectedLang = "";
   String selectedId = "";
   TitleIdListModel? country;
+  TitleIdListModel? nationality;
   TitleIdListModel? countryCode;
   TitleIdListModel? city;
 
@@ -227,6 +228,12 @@ class AuthCubit extends Cubit<AuthState> {
     emit(ChangeCountrySuccess(country: val));
   }
 
+  void changeNationality(TitleIdListModel? val) {
+    emit(ChangeNationalityLoading());
+    nationality = val;
+    emit(ChangeNationalitySuccess(nationality: val));
+  }
+
   void changeCountryCode(TitleIdListModel? val) {
     emit(ChangeCountryCodeLoading());
     countryCode = val;
@@ -362,6 +369,7 @@ class AuthCubit extends Cubit<AuthState> {
       password: passwordController.text.trim(),
       email: emailAddress.text.trim(),
       countryCode: countryCode!.code.toString(),
+      nationality: nationality!.id.toString(),
       city: city!.id.toString(),
       country: country!.id.toString(),
     );
@@ -407,6 +415,7 @@ class AuthCubit extends Cubit<AuthState> {
       password: passwordController.text.trim(),
       email: emailAddress.text.trim(),
       countryCode: countryCode!.code.toString(),
+      nationality: nationality!.id.toString(),
       country: country!.id.toString(),
       city: city!.id.toString(),
       taxId: taxNumberController.text.trim(),
@@ -469,8 +478,10 @@ class AuthCubit extends Cubit<AuthState> {
         password: passwordController.text.trim(),
         email: emailAddress.text.trim(),
         countryCode: countryCode!.code.toString(),
+        nationality: nationality!.id.toString(),
         country: country!.id.toString(),
         city: city!.id.toString(),
+        ibanNumber: bankNumberController.text.trim(),
         image: imageImageVendor,
         identityFace: imageFace,
         identityBack: imageBack,
@@ -558,7 +569,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(GetCountriesSuccess());
         _countriesList = countries.listData ?? [];
 
-        /// SET DEFault counry code
+        /// SET DEFault country code
         for (var element in _countriesList) {
           if(element.code == "966"){
             countryCode = element;

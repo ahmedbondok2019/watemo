@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../../../core/common/widgets/custom_app_drawer.dart';
 import '../../../../core/common/widgets/custom_log_out_button.dart';
 import '../../../../core/src/app_export.dart';
@@ -8,6 +10,7 @@ class MoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("isLtr ====>>>>>>>>>>${context.read<LocalizationBloc>().isLtr}");
     return Scaffold(
       key: _scaffoldKey,
       drawer: const CustomAppDrawer(),

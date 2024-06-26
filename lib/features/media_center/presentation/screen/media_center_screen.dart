@@ -44,16 +44,20 @@ class MediaCenterScreen extends StatelessWidget {
                       Gap(30.h),
 
                       _typeWidget(
+                          context: context,
                           title: "hadith".tr(context),
                           onTap: () =>
                               Navigator.pushNamed(context, AppRoutes.hadith)),
 
                       _typeWidget(
+                          context: context,
                           title: "videos".tr(context),
                           onTap: () =>
                               Navigator.pushNamed(context, AppRoutes.videos)),
 
-                      _typeWidget(title: "common_questions".tr(context),
+                      _typeWidget(
+                        context: context,
+                          title: "common_questions".tr(context),
                           onTap: () => Navigator.pushNamed(context, AppRoutes.faqs)),
                     ],
                   ),
@@ -66,7 +70,10 @@ class MediaCenterScreen extends StatelessWidget {
     );
   }
 
-  Widget _typeWidget({required String title, required Function() onTap}) {
+  Widget _typeWidget({
+    required BuildContext context,
+    required String title,
+    required Function() onTap}) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -93,7 +100,9 @@ class MediaCenterScreen extends StatelessWidget {
               ),
             ),
             SvgPicture.asset(
-                ImageConstants.arrowBackLeft,
+              !LocalizationBloc.get(context).isLtr
+                  ? ImageConstants.arrowBackLeft
+                  : ImageConstants.arrowBack,
               width: 16.w,
               height: 16.h,
             ),

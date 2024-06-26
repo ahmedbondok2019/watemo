@@ -36,6 +36,7 @@ class AuthScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     "auth_subtitle".tr(context),
+                    textAlign: TextAlign.center,
                     style: AppTextStyles.textStyle(
                         size: 15,
                         weight: FontWeight.w400,

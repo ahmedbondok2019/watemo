@@ -14,6 +14,7 @@ class UserModel {
   final int? type;
   final String? token;
   final int? countryCode;
+  final int? nationality;
   final String? address;
   final int? sex;
   final int? day;
@@ -45,6 +46,7 @@ class UserModel {
     required this.password,
     required this.token,
     required this.userType,
+    required this.nationality,
     required this.active,
     required this.expectCount,
     required this.city,

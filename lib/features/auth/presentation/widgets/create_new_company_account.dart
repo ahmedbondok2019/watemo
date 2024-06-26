@@ -44,6 +44,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       return null;
                     },
                     fillColor: AppColors.transparent,
+                    textColor: AppColors.c090909,
                     hint: "company_name".tr(context),
                     controller: authCubit.companyNameController,
                     height: 48.h,
@@ -51,6 +52,32 @@ class CreateNewCompanyAccount extends StatelessWidget {
                   Gap(15.h),
 
                   /// country && city
+                  Gap(10.h),
+                  SizedBox(
+                    height: 76.h,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "original_nationality".tr(context),
+                          style: AppTextStyles.textStyle(
+                              weight: FontWeight.w700,
+                              color: AppColors.c090909,
+                              size: 14),
+                        ),
+                        Gap(5.h),
+                        CustomDropDownNat(
+                          list: authCubit.countriesList,
+                          width: 400.w,
+                          selectedItem: authCubit.nationality,
+                          onChanged: authCubit.changeNationality,
+                          label: "select_original_nationality".tr(context),
+                          isTrans: false,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(10.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -126,6 +153,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       return null;
                     },
                     fillColor: AppColors.transparent,
+                    textColor: AppColors.c090909,
                     hint: "company_address".tr(context),
                     controller: authCubit.companyAddressController,
                     height: 48.h,
@@ -148,6 +176,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       }
                       return null;
                     },
+                    textColor: AppColors.c090909,
                     fillColor: AppColors.transparent,
                     hint: 'tax_number'.tr(context),
                     controller: authCubit.taxNumberController,
@@ -179,6 +208,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                           }
                         },
                         isRTL: false,
+                        textColor: AppColors.c090909,
                         fillColor: AppColors.transparent,
                         hint: 'phone_fax'.tr(context),
                         controller: authCubit.faxNumberController,
@@ -234,6 +264,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       }
                       return null;
                     },
+                    textColor: AppColors.c090909,
                     controller: authCubit.emailAddress,
                     fillColor: AppColors.transparent,
                     hint: "hint_email".tr(context),
@@ -257,6 +288,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       }
                       return null;
                     },
+                    textColor: AppColors.c090909,
                     isNumber: true,
                     fillColor: AppColors.transparent,
                     hint: "expected_number_pilgrims".tr(context),
@@ -281,6 +313,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       }
                       return null;
                     },
+                    textColor: AppColors.c090909,
                     fillColor: AppColors.transparent,
                     hint: "bank_account_number".tr(context),
                     isNumber: true,
@@ -308,6 +341,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       return null;
                     },
                     hint: "***********",
+                    textColor: AppColors.c090909,
                     fillColor: AppColors.cF5F5F5,
                     controller: authCubit.passwordController,
                     secure: true,
@@ -338,6 +372,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                       return null;
                     },
                     fillColor: AppColors.cF5F5F5,
+                    textColor: AppColors.c090909,
                     hint: "***********",
                     secure: true,
                     height: 48.h,
@@ -525,18 +560,24 @@ class CreateNewCompanyAccount extends StatelessWidget {
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text("term_condition".tr(context),
+                            InkWell(
+                                onTap: ()=>
+                                    Navigator.pushNamed(context, AppRoutes.termConditions),
+                                child: Text("term_condition".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
-                            ),
+                            )),
                             Text("and".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.black),
                             ),
-                            Text("privacy_policy".tr(context),
+                            InkWell(
+                                onTap: ()=>
+                                    Navigator.pushNamed(context, AppRoutes.privacy),
+                                child: Text("privacy_policy".tr(context),
                               style: AppTextStyles.textStyle(
                                   size: 14, color: AppColors.primary),
-                            ),
+                            )),
                           ],
                         ),
                       ),
@@ -578,7 +619,12 @@ class CreateNewCompanyAccount extends StatelessWidget {
           title: "register".tr(context),
           onTap: () {
             if (context.read<AuthCubit>().formKey.currentState!.validate()) {
-              if (context.read<AuthCubit>().country == null) {
+              if (context.read<AuthCubit>().nationality == null) {
+                CustomMessage.showMessage(context,
+                    message: "must_select_nationality".tr(context),
+                    type: AlertType.warning);
+              }
+              else if (context.read<AuthCubit>().country == null) {
                 CustomMessage.showMessage(context,
                     message: "must_select_country".tr(context),
                     type: AlertType.warning);
@@ -588,7 +634,7 @@ class CreateNewCompanyAccount extends StatelessWidget {
                     message: "must_select_city".tr(context),
                     type: AlertType.warning);
               }
-               if (context.read<AuthCubit>().taxNoImage == null) {
+              else if (context.read<AuthCubit>().taxNoImage == null) {
                 CustomMessage.showMessage(context,
                     message: "must_upload_tax_image".tr(context),
                     type: AlertType.warning);

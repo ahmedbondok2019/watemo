@@ -11,7 +11,7 @@ class OnBoardingBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 600.h,
+      height: 680.h,
       width: double.infinity,
       child: PageView.builder(
         onPageChanged: onChange,
@@ -34,6 +34,7 @@ class OnBoardingBody extends StatelessWidget {
               Text(
                 OnBoardingCubit.get(context)
                     .onBoardingData[index].title.tr(context),
+                textAlign: TextAlign.center,
                 style: AppTextStyles.textStyle(
                   color: AppColors.c090909,
                   weight: FontWeight.w700,

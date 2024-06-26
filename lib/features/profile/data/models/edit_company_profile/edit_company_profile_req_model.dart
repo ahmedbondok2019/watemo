@@ -10,6 +10,7 @@ class EditCompanyProfileReqModel {
   final String? countryCode;
   final String? address;
   final String? taxId;
+  final String? nationality;
   final String? country;
   final String? city;
   final String? ibanNumber;
@@ -22,6 +23,7 @@ class EditCompanyProfileReqModel {
     required this.name,
     required this.phone,
     required this.email,
+    required this.nationality,
     required this.password,
     required this.image,
     required this.countryCode,

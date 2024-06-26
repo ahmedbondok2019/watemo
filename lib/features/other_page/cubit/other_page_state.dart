@@ -10,9 +10,11 @@ class OtherPageSuccess extends OtherPageState {}
 class ContactLoading extends OtherPageState {}
 class AboutUsLoading extends OtherPageState {}
 class TermsLoading extends OtherPageState {}
+class PrivacyLoading extends OtherPageState {}
 class ContactSuccess extends OtherPageState {}
 class AboutUsSuccess extends OtherPageState {}
 class TermsSuccess extends OtherPageState {}
+class PrivacySuccess extends OtherPageState {}
 class ContactInitial extends OtherPageState {}
 
 class ContactFailure extends OtherPageState {
@@ -30,6 +32,12 @@ class AboutUsFailure extends OtherPageState {
 class TermsFailure extends OtherPageState {
   final NetworkExceptions networkExceptions;
   TermsFailure({
+    required this.networkExceptions,
+  });
+}
+class PrivacyFailure extends OtherPageState {
+  final NetworkExceptions networkExceptions;
+  PrivacyFailure({
     required this.networkExceptions,
   });
 }

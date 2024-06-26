@@ -24,6 +24,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   int? orderType;
   int pageNumber = 1;
+  bool isLastStep = false;
   LatLng? kMapCenter;
   File? myVideo;
   VideoPlayerController? controller;
@@ -198,8 +199,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   List<String> titles = [];
   String? stepId;
   Future<void> serviceStepsOrderVendor({
-    required String orderId, required String serviceId
-  }) async {
+    required String orderId, required String serviceId}) async {
     emit(ServiceStepsOrderVendorLoading());
     final NetworkService<OrderStepsResModel> data =
     await _repository.serviceStepsOrderVendor(
@@ -207,7 +207,6 @@ class OrdersCubit extends Cubit<OrdersState> {
     );
     switch (data) {
       case Succeed<OrderStepsResModel>(data: OrderStepsResModel data):
-        log("error error ======>>>>> ${data.error}");
         steppers = [];
         videos = [];
         titles = [];
@@ -221,9 +220,14 @@ class OrdersCubit extends Cubit<OrdersState> {
         }
         for (var element in steppers) {
           if(element.status == false){
+            log("steppers.indexOf(element) =======>>>>>> ${steppers.indexOf(element)}");
+            log("steppers.length =======>>>>>> ${steppers.length}");
             stepId = element.id.toString();
             break;
           }
+        }
+        if(videos.length == steppers.length){
+          isLastStep = true;
         }
         emit(ServiceStepsOrderVendorSuccess());
       case Failure<OrderStepsResModel>(
@@ -278,6 +282,9 @@ class OrdersCubit extends Cubit<OrdersState> {
             stepId = element.id.toString();
             break;
           }
+        }
+        if(videos.length == steppers.length){
+          isLastStep = true;
         }
         emit(NextStepOrderVendorSuccess());
       case Failure<OrderStepsResModel>(

@@ -15,6 +15,7 @@ class EditVendorProfileReqModel {
   final String? month;
   final String? year;
   final String? languages;
+  final String? nationality;
   final String? services;
   final String? sex;
   final MultipartFile? identityFace;
@@ -33,6 +34,7 @@ class EditVendorProfileReqModel {
     required this.identityFace,
     required this.sex,
     required this.languages,
+    required this.nationality,
     required this.services,
     required this.year,
     required this.day,

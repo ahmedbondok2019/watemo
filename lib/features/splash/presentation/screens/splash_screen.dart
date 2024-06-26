@@ -138,7 +138,8 @@ class _SplashScreenState extends State<SplashScreen>
                   child: RotationTransition(
                     turns: _rotateAnimation,
                     child: Text(
-                      "splash_textِ".tr(context),
+                      "splash_text".tr(context),
+                      textAlign: TextAlign.center,
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w500,
                           color: AppColors.c090909,

@@ -22,7 +22,8 @@ class CustomVendorOrder extends StatelessWidget {
       ) {
         return context.read<OrdersCubit>().ordersVendorList.isEmpty
             ? Expanded(
-                child: Center(child: CustomNoResult(title: "no_orders".tr(context))))
+                child: Center(
+                    child: CustomNoResult(title: "no_orders".tr(context))))
             : Expanded(
                 child: SingleChildScrollView(
                     child: Padding(

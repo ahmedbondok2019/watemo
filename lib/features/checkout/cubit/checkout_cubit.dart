@@ -1,6 +1,5 @@
-import 'dart:developer';
-import '../../../core/common/models/reponse_model/response_model.dart';
 import '../../../core/src/app_export.dart';
+import '../data/models/checkout_order/checkout_model.dart';
 import '../data/models/create_order/create_order_req_model.dart';
 import '../data/repository/checkout_repository.dart';
 part 'checkout_state.dart';
@@ -11,6 +10,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   static CheckoutCubit get(BuildContext context) => BlocProvider.of<CheckoutCubit>(context);
   TextEditingController codeController = TextEditingController();
   int paymentType = 0;
+  String? urlPayment;
 
   void changePaymentType(int type) {
     emit(ChangePaymentTypeLoading());
@@ -20,12 +20,6 @@ class CheckoutCubit extends Cubit<CheckoutState> {
 
   /// <<--- create Order request --->>
   Future createOrder({required CreateOrderReqModel order}) async {
-    log("services ==========>>>>>> ${order.services}");
-    log("onBehalfOf ==========>>>>>> ${order.onBehalfOf}");
-    log("userRelation ==========>>>>>> ${order.userRelation}");
-    log("languages ==========>>>>>> ${order.languages}");
-    log("sex ==========>>>>>> ${order.sex}");
-    log("notes ==========>>>>>> ${order.notes}");
     emit(CreateOrderLoading());
     order.paymentMethod =
     paymentType == 0
@@ -33,11 +27,11 @@ class CheckoutCubit extends Cubit<CheckoutState> {
         : paymentType == 1
         ? "visa"
         : "wallet";
-    log("paymentMethod ==========>>>>>> ${order.paymentMethod}");
-    final NetworkService<ResponseModel> data =
+    final NetworkService<CheckoutModel> data =
     await _repository.createOrder(order: order);
     data.when(
       succeed: (responseData) {
+        urlPayment = responseData.checkout!.targetUrl;
         emit(CreateOrderSuccess(message: responseData.error.toString()));
       },
       failure: (error) {

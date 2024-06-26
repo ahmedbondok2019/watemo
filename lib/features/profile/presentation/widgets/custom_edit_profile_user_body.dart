@@ -47,6 +47,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                       },
                       fillColor: AppColors.cF5F5F5,
                       hint: "hint_name".tr(context),
+                      textColor: AppColors.c090909,
                       controller: profile.fullName,
                       suffixIcon: Image.asset(
                         ImageConstants.profileIcon,
@@ -78,6 +79,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                             }
                           },
                           isRTL: false,
+                          textColor: AppColors.c090909,
                           suffixIcon: Image.asset(
                             ImageConstants.phoneIcon,
                             height: 12.h,
@@ -134,6 +136,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                       },
                       controller: profile.emailAddress,
                       fillColor: AppColors.cF5F5F5,
+                      textColor: AppColors.c090909,
                       hint: 'hint_email'.tr(context),
                       suffixIcon: Image.asset(
                         ImageConstants.emailIcon,
@@ -164,6 +167,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                       },
                       hint: "***********",
                       fillColor: AppColors.cF5F5F5,
+                      textColor: AppColors.c090909,
                       controller: profile.password,
                       secure: true,
                     ),
@@ -190,6 +194,7 @@ class CustomEditProfileUserBody extends StatelessWidget {
                         return null;
                       },
                       fillColor: AppColors.cF5F5F5,
+                      textColor: AppColors.c090909,
                       hint: "***********",
                       secure: true,
                     ),

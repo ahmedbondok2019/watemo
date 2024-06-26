@@ -65,8 +65,15 @@ class CheckoutScreen extends StatelessWidget {
       } else if (state is CreateOrderSuccess) {
         CustomMessage.showMessage(context,
             message: state.message, type: AlertType.success);
-        Navigator.pushNamedAndRemoveUntil(
-            context, AppRoutes.mainLayer, (route) => false);
+        if(context.read<CheckoutCubit>().paymentType == 3){
+          Navigator.pushNamedAndRemoveUntil(
+              context, AppRoutes.mainLayer, (route) => false);
+        }else{
+          Navigator.pushReplacementNamed(context,
+              AppRoutes.payment,
+              arguments: context.read<CheckoutCubit>().urlPayment
+          );
+        }
       }
     }, builder: (context, state) {
       if (state is CreateOrderLoading) {

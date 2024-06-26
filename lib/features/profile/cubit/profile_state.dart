@@ -63,9 +63,14 @@ class GetCitiesLoading extends ProfileState {}
 class GetCountriesSuccess extends ProfileState {}
 class SpokenLanguagesLoading extends ProfileState {}
 class ChangeServicesLoading extends ProfileState {}
+class ChangeNationalityLoading extends ProfileState {}
 class ChangeServicesSuccess extends ProfileState {
   final TitleIdListModel? service;
   ChangeServicesSuccess({required this.service});
+}
+class ChangeNationalitySuccess extends ProfileState {
+  final TitleIdListModel? nationality;
+  ChangeNationalitySuccess({required this.nationality});
 }
 class ChangeCountryCodeSuccess extends ProfileState {
   final TitleIdListModel? countryCode;

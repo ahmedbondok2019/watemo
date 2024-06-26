@@ -17,6 +17,7 @@ class AppRoutes {
   static const String servicesScreen = "servicesScreen";
   static const String moreScreen = "moreScreen";
   static const String termConditions = "termConditions";
+  static const String privacy = "privacy";
   static const String aboutUs = "aboutUs";
   static const String contactUs = "contactUs";
   static const String notifications = "notifications";
@@ -35,4 +36,5 @@ class AppRoutes {
   static const String videos = "videos";
   static const String trackingOrder = "trackingOrder";
   static const String orderAllVideos = "orderAllVideos";
+  static const String payment = "paymentScreen";
 }

@@ -13,6 +13,7 @@ FormData _$RegisterReqModelToJson(RegisterReqModel instance) =>
           'password': instance.password,
           'email': instance.email,
           'country_code': instance.countryCode,
+          'original_nationality': instance.nationality,
           'country': instance.country,
           'city': instance.city,
     });

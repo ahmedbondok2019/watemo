@@ -64,6 +64,11 @@ class ChangeCountrySuccess extends AuthState {
 
   ChangeCountrySuccess({required this.country});
 }
+class ChangeNationalitySuccess extends AuthState {
+  final TitleIdListModel? nationality;
+
+  ChangeNationalitySuccess({required this.nationality});
+}
 class ChangeGenderSuccess extends AuthState {
   final TitleIdListModel? gender;
 
@@ -80,6 +85,7 @@ class ChangeServicesSuccess extends AuthState {
   ChangeServicesSuccess({required this.service});
 }
 class ChangeCountryLoading extends AuthState {}
+class ChangeNationalityLoading extends AuthState {}
 class ChangeCountryCodeLoading extends AuthState {}
 class ChangeCitySuccess extends AuthState {
   final TitleIdListModel? city;

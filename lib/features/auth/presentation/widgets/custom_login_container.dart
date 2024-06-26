@@ -48,6 +48,7 @@ class CustomLoginContainer extends StatelessWidget {
                       ),
                       isNumber: true,
                       hint: "0566569527",
+                      textColor: AppColors.c090909,
                       width: 220.w,
                       controller: authCubit.phoneNumberController,
                       inputFormatters: [
@@ -88,6 +89,7 @@ class CustomLoginContainer extends StatelessWidget {
                   },
                   hint: "***********",
                   fillColor: AppColors.cF5F5F5,
+                  textColor: AppColors.c090909,
                   controller: authCubit.passwordController,
                   secure: true,
                 ),
