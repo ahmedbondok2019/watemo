@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" version "4.4.1" apply false
 }
 
 def localProperties = new Properties()
@@ -23,7 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.completed.completed"
+    namespace "com.watemo.watemo"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
@@ -41,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.completed.completed"
+        applicationId "com.watemo.watemo"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -59,4 +60,15 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation('com.google.android.exoplayer:exoplayer:2.19.1')
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "androidx.activity:activity:1.9.0"
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'androidx.window:window:1.2.0'
+    implementation 'androidx.window:window-java:1.2.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+    implementation "androidx.activity:activity:1.9.0"
+}

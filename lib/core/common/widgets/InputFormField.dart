@@ -64,7 +64,7 @@ class InputFormField extends StatefulWidget {
     this.verticalMargin = 7,
     this.multiLine = false,
     this.fillColor,
-    this.textColor = Colors.grey,
+    this.textColor = AppColors.c090909,
     this.labelColor,
     this.radius = 10,
     this.iconColor = Colors.white,
@@ -103,8 +103,7 @@ class _InputFormFieldState extends State<InputFormField> {
           onTap: widget.onTap,
           readOnly: widget.readOnly!,
           initialValue: widget.initialValue,
-          textDirection:
-          widget.isRTL! ? TextDirection.rtl : TextDirection.ltr,
+          textDirection: widget.isRTL! ? TextDirection.rtl : TextDirection.ltr,
           controller: widget.controller,
           obscureText: _showPassword ?? false,
           onSaved: widget.onSave,
@@ -137,7 +136,7 @@ class _InputFormFieldState extends State<InputFormField> {
               filled: true,
               hintStyle: AppTextStyles.textStyle(
                   color: widget.hintColor ?? AppColors.c9A9A9A,
-                  size: 12,weight: FontWeight.w400),
+                  size: 12,weight: FontWeight.w700),
               labelStyle: AppTextStyles.textStyle(
                   color: widget.labelColor ?? AppColors.c7A808A,
                   size: 15),

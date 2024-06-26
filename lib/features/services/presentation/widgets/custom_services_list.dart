@@ -1,11 +1,14 @@
+import '../../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../../core/common/widgets/custom_network_image.dart';
 import '../../../../core/src/app_export.dart';
 import '../../data/models/services/services_model.dart';
 
 class CustomServicesList extends StatelessWidget {
   final List<ServicesModel> servicesList;
+  final TitleIdListModel titleId;
   const CustomServicesList({super.key,
     required this.servicesList,
+    required this.titleId,
   });
 
   @override
@@ -23,9 +26,9 @@ class CustomServicesList extends StatelessWidget {
           margin: EdgeInsets.symmetric(
             vertical: 8.h,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 8.r),
-          width: 361.h,
-          height: 92.w,
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          width: 365.w,
+          height: 92.h,
           decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(8.r),
@@ -45,11 +48,11 @@ class CustomServicesList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0.r),
+                      borderRadius: BorderRadius.circular(8.r),
                       child: CustomNetworkImage(
-                        imageUrl: EndPoints.baseServicesUrl + service.image!,
+                        imageUrl: service.image!,
                         fit: BoxFit.cover,
-                        width: 72.w,
+                        width: 65.w,
                         height: 76.h,
                       ),
                     ),
@@ -58,12 +61,17 @@ class CustomServicesList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          service.title ?? "",
-                          style: AppTextStyles.textStyle(
-                              weight: FontWeight.w500,
-                              color: AppColors.c090909,
-                              size: 16),
+                        SizedBox(
+                          width: 185.w,
+                          child: Text(
+                            service.title ?? "",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTextStyles.textStyle(
+                                weight: FontWeight.w500,
+                                color: AppColors.c090909,
+                                size: 16),
+                          ),
                         ),
                         Gap(10.h),
                         Row(
@@ -74,16 +82,14 @@ class CustomServicesList extends StatelessWidget {
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w700,
                                   color: AppColors.c090909,
-                                  // color: AppColors.c2CB67D,
                                   size: 16),
                             ),
                             Gap(5.w),
                             Text(
-                              "ريال ",
+                              "rial".tr(context),
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w400,
                                   color: AppColors.c090909,
-                                  // color: AppColors.c9A9A9A,
                                   size: 13),
                             ),
                           ],
@@ -94,13 +100,13 @@ class CustomServicesList extends StatelessWidget {
 
               CustomButtonInternet(
                 height: 34,
-                width: 103,
+                width: 90,
                 horizontal: 0,
-                title: "اطلب الان",
+                title: "request_now".tr(context),
+                size: 14,
                 onTap: ()=>Navigator.pushNamed(
-                    context,
-                    AppRoutes.serviceDetails,
-                    arguments: service
+                    context, AppRoutes.serviceDetails,
+                    arguments: [null, titleId, service]
                 ),
               ),
             ],

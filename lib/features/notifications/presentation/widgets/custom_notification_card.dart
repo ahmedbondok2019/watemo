@@ -40,7 +40,7 @@ class CustomNotificationCard extends StatelessWidget {
                     clipBehavior: Clip.antiAlias,
                     decoration: const BoxDecoration(shape: BoxShape.circle),
                     child: CustomNetworkImage(
-                      imageUrl: EndPoints.baseImageUrl + image,
+                      imageUrl: image,
                       fit: BoxFit.fill,
                         width: 32.w, height: 32.h
                     ),
@@ -86,7 +86,8 @@ class CustomNotificationCard extends StatelessWidget {
             Text(
               date,
               style: AppTextStyles.textStyle(
-                  weight: FontWeight.w400, color: AppColors.c9A9A9A, size: 12),
+                  weight: FontWeight.w400,
+                  color: AppColors.c9A9A9A, size: 12),
             ),
           ],
         ),

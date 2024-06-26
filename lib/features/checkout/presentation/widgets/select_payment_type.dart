@@ -13,7 +13,7 @@ class SelectPaymentType extends StatelessWidget {
           children: [
             PaymentType(
               image: ImageConstants.mada,
-              title: "بطاقة مدي البنكية",
+              title: "meda".tr(context),
               borderColor: checkoutCubit.paymentType == 0
                   ? AppColors.primary
                   : AppColors.cECECEC,
@@ -25,7 +25,7 @@ class SelectPaymentType extends StatelessWidget {
             ),
             PaymentType(
               image: ImageConstants.visa,
-              title: "فيزا او ماستر كارد",
+              title: "visa".tr(context),
               borderColor: checkoutCubit.paymentType == 1
                   ? AppColors.primary
                   : AppColors.cECECEC,
@@ -37,7 +37,7 @@ class SelectPaymentType extends StatelessWidget {
             ),
             PaymentType(
               image: ImageConstants.wallet,
-              title: "المحفظة",
+              title: "wallet".tr(context),
               borderColor: checkoutCubit.paymentType == 3
                   ? AppColors.primary
                   : AppColors.cECECEC,

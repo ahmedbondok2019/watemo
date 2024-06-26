@@ -17,9 +17,9 @@ class AppLocalization {
     'ar': arEg,
     'en': enUs,
     'fr': frFr,
-    'tur': turTur,
-    'urd': urdUrd,
-    'hau': hauHau,
+    'tr': turTur,
+    'ur': urdUrd,
+    'hu': hauHau,
   };
 
   static AppLocalization of(BuildContext context) {
@@ -30,9 +30,9 @@ class AppLocalization {
     Locale('ar'),
     Locale('en'),
     Locale('fr'),
-    Locale('tur'),
-    Locale('urd'),
-    Locale('hau'),
+    Locale('tr'),
+    Locale('ur'),
+    Locale('hu'),
   ];
 
   static List<String> languages() => _localizedValues.keys.toList();

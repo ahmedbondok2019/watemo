@@ -25,7 +25,7 @@ class CustomSeeAll extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'عرض الكل',
+                  'see_all'.tr(context),
                   style: AppTextStyles.textStyle(
                       weight: FontWeight.w400,
                       size: 14,

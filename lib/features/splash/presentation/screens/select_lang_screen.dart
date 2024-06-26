@@ -1,12 +1,19 @@
+import '../../../../core/common/widgets/custom_app_drawer.dart';
 import '../../../../core/src/app_export.dart';
 
 class SelectLangScreen extends StatelessWidget {
   final bool isEdit;
-  const SelectLangScreen({super.key,this.isEdit = false});
+  SelectLangScreen({super.key,this.isEdit = false});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: AppConstants.userType == AppConstants.user ||
+          AppConstants.userType == AppConstants.company
+          ? null
+          : const CustomAppDrawer(),
       body: BackgroundComponent(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -14,11 +21,18 @@ class SelectLangScreen extends StatelessWidget {
           children: [
 
             isEdit
-                ? const CustomAppBar(
-              title: "تعديل لغة التطبيق",
+                ? CustomAppBar(
+              title: "edit_lang".tr(context),
               titleSize: 16,
-              leading: CustomBackButton(),
-              actions: [NotificationIcon()],
+              leading: const CustomBackButton(),
+              actions: [
+                AppConstants.userType == AppConstants.user ||
+                    AppConstants.userType == AppConstants.company
+                    ? const NotificationIcon()
+                    : CustomDrawerIcon(
+                  onTap: ()=> _scaffoldKey.currentState?.openDrawer(),
+                ),
+              ],
             )
                 : const SizedBox(),
 
@@ -36,7 +50,7 @@ class SelectLangScreen extends StatelessWidget {
             Gap(30.h),
             Center(
               child: Text(
-                "اختر لغتك المفضلة",
+                "select_lang".tr(context),
                 style: AppTextStyles.textStyle(
                     size: 24,
                   weight: FontWeight.w700,
@@ -47,7 +61,8 @@ class SelectLangScreen extends StatelessWidget {
             Gap(10.h),
             Center(
               child: Text(
-                "من فضلك اختر لغتك المفضله حتي يمكنك المتابعه للتطبيق",
+                "please_select_lang".tr(context),
+                textAlign: TextAlign.center,
                 style: AppTextStyles.textStyle(
                     size: 14,
                     weight: FontWeight.w400,
@@ -61,8 +76,8 @@ class SelectLangScreen extends StatelessWidget {
             const Spacer(),
             CustomButtonInternet(
               title: isEdit
-                  ? "حفظ التعديل"
-                  : "التالي",
+                  ? "save_edit".tr(context)
+                  : "next".tr(context),
               width: MediaQuery.of(context).size.width,
               onTap: ()=> isEdit
                   ? Navigator.pop(context)

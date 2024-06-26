@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:completed/core/constants/image_constants.dart';
 import 'package:flutter/material.dart';
+import '../../network/end_points.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageUrl;
@@ -14,7 +15,7 @@ class CustomNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return buildImage(
-      imageUrl: imageUrl,
+      imageUrl: EndPoints.baseImageUrl + imageUrl,
       fit: fit,
       width: width,
       height: height,

@@ -8,13 +8,17 @@ class TransactionsModel extends Equatable{
   final String? paymentMethod;
   final String? transRef;
   final String? date;
-  final int? isPluse;
+  final String? title;
+  final String? description;
+  final int? isPlus;
   final String? percentage;
 
   const TransactionsModel({
     required this.date,
-    required this.isPluse,
+    required this.isPlus,
     required this.id,
+    required this.title,
+    required this.description,
     required this.paymentMethod,
     required this.percentage,
     required this.transRef,
@@ -24,5 +28,5 @@ class TransactionsModel extends Equatable{
       _$TransactionsModelFromJson(json);
 
   @override
-  List<Object?> get props => [id,date,isPluse,paymentMethod,percentage,transRef];
+  List<Object?> get props => [id,date,title,description,isPlus,paymentMethod,percentage,transRef];
 }

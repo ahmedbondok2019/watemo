@@ -15,12 +15,13 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   List<NotificationModel> notificationsList = [];
 
   Future<void> getNotifications() async {
-    log("message ======================>>>>>>>>>>>>333");
+    log("get Notifications ======================>>>>>>>>>>>>333");
     emit(NotificationsLoading());
     final NetworkService<NotificationResModel> data = await _repository.getNotifications();
     switch (data) {
       case Succeed<NotificationResModel>(data: NotificationResModel data):
         emit(NotificationsSuccess());
+        notificationsList = [];
         notificationsList.addAll(data.notifications);
       case Failure<NotificationResModel>(
           networkExceptions: NetworkExceptions error

@@ -1,19 +1,24 @@
-import '../../../../core/common/widgets/animated_custom_dialog.dart';
-import '../../../../core/common/widgets/my_dialog.dart';
+import 'dart:developer';
+
+import '../../../../core/common/widgets/custom_app_drawer.dart';
+import '../../../../core/common/widgets/custom_log_out_button.dart';
 import '../../../../core/src/app_export.dart';
-import '../../../../core/utils/custom_message.dart';
 
 class MoreScreen extends StatelessWidget {
-  const MoreScreen({super.key});
+  MoreScreen({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    log("isLtr ====>>>>>>>>>>${context.read<LocalizationBloc>().isLtr}");
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomAppDrawer(),
       body: BackgroundComponent(
         opacity: 0.2,
         child: Column(
           children: [
-            const HomeAppBar(),
+            HomeAppBar(scaffoldKey: _scaffoldKey),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -23,13 +28,13 @@ class MoreScreen extends StatelessWidget {
                     children: [
                       Gap(30.h),
                       MoreListTile(
-                        title: "تعديل حسابي",
+                        title: "edit_profile".tr(context),
                         icon: ImageConstants.person,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "لغة التطبيق",
+                        title: "app_lang".tr(context),
                         icon: ImageConstants.lang,
                         onTap: () => Navigator.pushNamed(context,
                             AppRoutes.selectLang,
@@ -38,7 +43,7 @@ class MoreScreen extends StatelessWidget {
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "المحفظة",
+                        title: "wallet".tr(context),
                         icon: ImageConstants.walletMoney,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.wallet),
                       ),
@@ -46,7 +51,7 @@ class MoreScreen extends StatelessWidget {
 
                       /// don't wear ui
                       MoreListTile(
-                        title: "الشهادات",
+                        title: "certificates".tr(context),
                         icon: ImageConstants.certifications,
                         onTap: () {},
                       ),
@@ -54,32 +59,32 @@ class MoreScreen extends StatelessWidget {
 
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "دعوة صديق",
+                        title: "invite_friend".tr(context),
                         icon: ImageConstants.certifications,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.invitationFriend),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "عن التطبيق",
+                        title: "about_app".tr(context),
                         icon: ImageConstants.aboutApp,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.aboutUs),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "الشروط والاحكام",
+                        title: "term&&condition".tr(context),
                         icon: ImageConstants.info,
                         onTap: () => Navigator.pushNamed(context, AppRoutes.termConditions),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
                       MoreListTile(
-                        title: "الدعم الفني",
+                        title: "technical_support".tr(context),
                         icon: ImageConstants.support,
                         onTap: () =>
                             Navigator.pushNamed(context, AppRoutes.contactUs),
                       ),
                       Divider(color: AppColors.cC4C4C4.withOpacity(0.5)),
 
-                      logOutButtonWidget(),
+                      const CustomLogOutButton(),
                     ],
                   ),
                 ),
@@ -89,94 +94,5 @@ class MoreScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  BlocConsumer<AuthCubit, AuthState> logOutButtonWidget() {
-    return BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
-      if (state is LogoutFailure) {
-        CustomMessage.showMessage(context,
-            message: NetworkExceptions.getErrorMessage(
-              state.networkExceptions,
-            ),
-            type: AlertType.failed);
-      }
-      else if (state is LogoutSuccess) {
-        CustomMessage.showMessage(context,
-            message: state.message, type: AlertType.success);
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            AppRoutes.initScreen, (route) => false);
-      }
-    }, builder: (context, state) {
-      if (state is LogOutInitial) {
-        return MoreListTile(
-          title: "تسجيل خروج",
-          icon: ImageConstants.logOut,
-          onTap: () async {
-            showAnimatedDialog(context,
-                BlocBuilder<AuthCubit,
-                    AuthState>(
-                    builder: (context, state) {
-                      return MyDialog(
-                        description: "هل انت متاكد من انك تريد تسجيل خروج",
-                        isFailed: false,
-                        image: ImageConstants.said,
-                        onTapConfirm: () {
-                          context.read<AuthCubit>().logout();
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRoutes.initScreen, (route) => false);
-                        },
-                      );
-                    }),
-                dismissible: true, isFlip: true);
-          },
-        );
-      } else if (state is LogOutLoading) {
-        return MoreListTile(
-          title: "تسجيل خروج",
-          icon: ImageConstants.logOut,
-          onTap: () async {
-            showAnimatedDialog(context,
-                BlocBuilder<AuthCubit,
-                    AuthState>(
-                    builder: (context, state) {
-                      return MyDialog(
-                        description: "هل انت متاكد من انك تريد تسجيل خروج",
-                        isFailed: false,
-                        image: ImageConstants.said,
-                        onTapConfirm: () {
-                          context.read<AuthCubit>().logout();
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRoutes.initScreen, (route) => false);
-                        },
-                      );
-                    }),
-                dismissible: true, isFlip: true);
-          },
-        );
-      } else {
-        return MoreListTile(
-          title: "تسجيل خروج",
-          icon: ImageConstants.logOut,
-          onTap: () async {
-            showAnimatedDialog(context,
-                BlocBuilder<AuthCubit,
-                    AuthState>(
-                    builder: (context, state) {
-                      return MyDialog(
-                        description: "هل انت متاكد من انك تريد تسجيل خروج",
-                        isFailed: false,
-                        image: ImageConstants.said,
-                        onTapConfirm: () {
-                          context.read<AuthCubit>().logout();
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              AppRoutes.initScreen, (route) => false);
-                        },
-                      );
-                    }),
-                dismissible: true, isFlip: true);
-          },
-        );
-      }
-    });
   }
 }

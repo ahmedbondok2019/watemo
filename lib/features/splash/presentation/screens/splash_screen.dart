@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen>
       PageTransition(
         type: PageTransitionType.fade,
         duration: const Duration(seconds: 1),
-        child: const SelectLangScreen(),
+        child: SelectLangScreen(),
       ),
     );
   }
@@ -138,11 +138,12 @@ class _SplashScreenState extends State<SplashScreen>
                   child: RotationTransition(
                     turns: _rotateAnimation,
                     child: Text(
-                      "وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ",
+                      "splash_text".tr(context),
+                      textAlign: TextAlign.center,
                       style: AppTextStyles.textStyle(
                           weight: FontWeight.w500,
                           color: AppColors.c090909,
-                          size: 24),
+                          size: 24.sp),
                     ),
                   ),
                 ),

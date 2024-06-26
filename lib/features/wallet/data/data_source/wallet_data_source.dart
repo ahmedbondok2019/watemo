@@ -22,4 +22,20 @@ class WalletDataSource {
     );
     return response;
   }
+
+  /// <<--- add Amount To wallet --->>
+  Future<Response> addAmountToWallet({
+    required String paymentMethod,
+    required String amount,
+  }) async {
+    final Response response = await baseDioHelper.post(
+        endPoint: EndPoints.addBalance,
+        data: {
+          "payment_method": paymentMethod,
+          "amount": amount,
+        },
+        token: getIt<SharedPreferences>().getString(AppConstants.token)
+    );
+    return response;
+  }
 }

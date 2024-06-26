@@ -3,11 +3,13 @@ import '../../../../core/src/app_export.dart';
 class MoreListTile extends StatelessWidget {
   final String icon;
   final String title;
+  final bool showArrow;
   final Function() onTap;
   const MoreListTile({super.key,
   required this.icon,
   required this.title,
   required this.onTap,
+    this.showArrow = true,
   });
 
   @override
@@ -29,7 +31,7 @@ class MoreListTile extends StatelessWidget {
                   height: 30.h,
                   padding: EdgeInsets.all(2.w),
                   decoration: BoxDecoration(
-                      color: AppColors.primary,
+                      color: showArrow ? AppColors.primary : null,
                       borderRadius: BorderRadius.circular(6.r)
                   ),
                   child: SvgPicture.asset(icon, width: 24.w,
@@ -45,9 +47,13 @@ class MoreListTile extends StatelessWidget {
               ],
             ),
 
-            SvgPicture.asset(ImageConstants.arrowBackLeft,
+            showArrow
+                ? SvgPicture.asset(!LocalizationBloc.get(context).isLtr
+                  ? ImageConstants.arrowBackLeft
+                  : ImageConstants.arrowBack,
                 width: 24.w,
-                height: 24.h),
+                height: 24.h)
+                : const SizedBox(),
           ],
         ),
       ),

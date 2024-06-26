@@ -1,6 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import '../../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../../core/src/app_export.dart';
-import '../../data/models/support/contact_type_model.dart';
 import 'custom_dropDown_contact_type_bt.dart';
 
 class CustomDropDownContactType extends StatelessWidget {
@@ -16,9 +16,9 @@ class CustomDropDownContactType extends StatelessWidget {
     this.rightPadding,
     this.height});
 
-  final List<ContactTypeModel> list;
-  final ContactTypeModel selectedItem;
-  final Function(ContactTypeModel? value) onChanged;
+  final List<TitleIdListModel> list;
+  final TitleIdListModel selectedItem;
+  final Function(TitleIdListModel? value) onChanged;
   final String label;
   final double? buttonWidth;
   final double? dropDownWidth;
@@ -29,17 +29,17 @@ class CustomDropDownContactType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
-      child: DropdownButton2<ContactTypeModel>(
+      child: DropdownButton2<TitleIdListModel>(
         customButton: CustomDropDownContactTypeBt(
           width:buttonWidth,label: label,
             selectedValue: selectedItem),
         isExpanded: true,
         barrierColor: AppColors.black.withOpacity(0.25),
-        items: list.map((ContactTypeModel item) => DropdownMenuItem<
-            ContactTypeModel>(
+        items: list.map((TitleIdListModel item) => DropdownMenuItem<
+            TitleIdListModel>(
           value: item,
           child: Text(
-            item.nameAr,
+            item.title.tr(context),
             style: AppTextStyles.textStyle(
               color: AppColors.c00243C,
             ),

@@ -5,38 +5,26 @@ class CustomAboutUsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OtherPageCubit, OtherPageState>(
-      builder: (context, state) {
-        if (state is AboutUsLoading) {
-          return const Center(
-            child: CustomLoading(),
-          );
-        }
-        if (state is AboutUsSuccess) {
-          return Column(
-            children: [
-              Gap(8.h),
-              Image.asset(ImageConstants.logoSplash,
-                  width: 89.w,height: 49.h),
-              Gap(25.h),
-              Text(
-                context.read<OtherPageCubit>().aboutUsContent ?? "",
-                textAlign: TextAlign.center,
-                style: AppTextStyles.textStyle(
-                    weight: FontWeight.w400,
-                    color: AppColors.c9A9A9A,
-                    height: 1.8,
-                    size: 16),
-              ),
-            ],
-          );
-        }
-        else {
-          return const Center(
-            child: CustomLoading(),
-          );
-        }
-      },
+    return Column(
+      children: [
+        Gap(8.h),
+        Image.asset(ImageConstants.logoSplash,
+          width: 132.w,
+          height: 73.h,
+        ),
+        Gap(25.h),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Text(
+          context.read<OtherPageCubit>().aboutUsContent ?? "",
+          textAlign: TextAlign.center,
+          style: AppTextStyles.textStyle(
+              weight: FontWeight.w500,
+              color: AppColors.c9A9A9A,
+              height: 1.5,
+              size: 16),
+        ),)
+      ],
     );
   }
 }

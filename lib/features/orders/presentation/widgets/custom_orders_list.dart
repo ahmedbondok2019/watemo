@@ -1,5 +1,5 @@
 import '../../../../core/src/app_export.dart';
-import '../../data/models/orders_model.dart';
+import '../../data/models/user_order/orders_model.dart';
 
 class CustomOrdersList extends StatelessWidget {
   final List<String> ordersDateList;
@@ -41,15 +41,9 @@ class CustomOrdersList extends StatelessWidget {
               ),
 
               Column(
-                children: orders.map((order) => CustomOrderCard(
-                  title: order.serviceText,
-                  image: order.image,
-                  price: order.total.toString(),
-                  date: date,
-                  statusName: order.statusText,
-                  status: order.statusId,
-                )).toList(),
-              )
+                children: orders.map((order) => CustomOrderCard(order: order),
+                ).toList(),
+              ),
             ],
           ),
         );

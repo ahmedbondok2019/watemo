@@ -7,11 +7,11 @@ class TrackingOrderRepository {
 
   TrackingOrderRepository(this._dataSource);
 
-  /// <<<---- get Order Location --->>>
-  Future<NetworkService<TrackingDataModel>> getOrderLocation(
+  /// <<<---- get Order Tracking --->>>
+  Future<NetworkService<TrackingDataModel>> getOrderTracking(
       String orderId) async {
     try {
-      Response response = await _dataSource.getOrderLocation(orderId);
+      Response response = await _dataSource.getOrderTracking(orderId);
       TrackingDataModel trackingDataModel = TrackingDataModel.fromJson(response.data);
       return NetworkService.succeed(trackingDataModel);
     } catch (error) {

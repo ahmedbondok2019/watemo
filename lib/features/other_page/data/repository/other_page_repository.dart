@@ -46,4 +46,16 @@ class OtherPageRepository {
           NetworkExceptions.getDioException(error));
     }
   }
+
+  /// <<--- get Privacy request --->>
+  Future<NetworkService<AboutModel>> getPrivacy() async {
+    try {
+      Response response = await _dataSource.getPrivacy();
+      AboutModel about = AboutModel.fromJson(response.data);
+      return NetworkService.succeed(about);
+    } catch (error) {
+      return NetworkService.failure(
+          NetworkExceptions.getDioException(error));
+    }
+  }
 }

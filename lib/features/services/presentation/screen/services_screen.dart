@@ -1,9 +1,11 @@
+import '../../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../../core/src/app_export.dart';
 import '../../cubit/services_cubit.dart';
 import '../widgets/custom_services_list.dart';
 
 class ServicesScreen extends StatelessWidget {
-  const ServicesScreen({super.key});
+  final TitleIdListModel titleId;
+  const ServicesScreen({super.key,required this.titleId});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +14,11 @@ class ServicesScreen extends StatelessWidget {
         opacity: 0.2,
         child: Column(
           children: [
-            const CustomAppBar(
-              title: "الخدمات",
+            CustomAppBar(
+              title: titleId.title,
               titleSize: 16,
-              leading: CustomBackButton(),
-              actions: [NotificationIcon()],
+              leading: const CustomBackButton(),
+              actions: const [NotificationIcon()],
             ),
 
             BlocBuilder<ServicesCubit, ServicesState>(
@@ -31,7 +33,8 @@ class ServicesScreen extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.w),
                         child: CustomServicesList(
-                            servicesList: context.read<ServicesCubit>().servicesList
+                            servicesList: context.read<ServicesCubit>().servicesList,
+                            titleId: titleId
                         ),
                       ),
                     ),

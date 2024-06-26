@@ -10,9 +10,11 @@ class OtherPageSuccess extends OtherPageState {}
 class ContactLoading extends OtherPageState {}
 class AboutUsLoading extends OtherPageState {}
 class TermsLoading extends OtherPageState {}
+class PrivacyLoading extends OtherPageState {}
 class ContactSuccess extends OtherPageState {}
 class AboutUsSuccess extends OtherPageState {}
 class TermsSuccess extends OtherPageState {}
+class PrivacySuccess extends OtherPageState {}
 class ContactInitial extends OtherPageState {}
 
 class ContactFailure extends OtherPageState {
@@ -33,6 +35,12 @@ class TermsFailure extends OtherPageState {
     required this.networkExceptions,
   });
 }
+class PrivacyFailure extends OtherPageState {
+  final NetworkExceptions networkExceptions;
+  PrivacyFailure({
+    required this.networkExceptions,
+  });
+}
 class OtherPageError extends OtherPageState {
   final NetworkExceptions networkExceptions;
   OtherPageError({
@@ -42,7 +50,7 @@ class OtherPageError extends OtherPageState {
 
 class ChangeContactTypeLoading extends OtherPageState {}
 class ChangeContactType extends OtherPageState {
-  final ContactTypeModel? type;
+  final TitleIdListModel? type;
   ChangeContactType({
     required this.type,
   });

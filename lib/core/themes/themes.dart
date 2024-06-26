@@ -4,7 +4,7 @@ import 'colors.dart';
 
 class AppThemes {
   static final lightTheme = ThemeData(
-    fontFamily: 'Helvetica',
+    fontFamily: 'NeoSansArabic',
     colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
       onPrimary: AppColors.c192D47,

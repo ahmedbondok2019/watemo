@@ -49,7 +49,7 @@ class CustomInviteBody extends StatelessWidget {
           height: 48,
           width: 361,
           horizontal: 0,
-          title: "شارك التطبيق الان",
+          title: "share_app".tr(context),
           onTap: () async {
             await Share.shareUri(
               Uri.parse(EndPoints.baseUrl),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../common/models/error/error_model.dart';
+import '../common/models/error/errors_list_model.dart';
 part 'network_exceptions.freezed.dart';
 
 @freezed
@@ -49,10 +50,35 @@ abstract class NetworkExceptions with _$NetworkExceptions {
     log("message =======>>>>> }");
     ErrorModel listOfErrors = ErrorModel.fromJson(response?.data);
     String allErrors = "";
-    if(listOfErrors.error != null){
-      allErrors = listOfErrors.error!;
+    if (listOfErrors.errors != null) {
+      ErrorsListModel errors = ErrorsListModel.fromJson(listOfErrors.errors!);
+      if (errors.password != null) {
+        allErrors += allErrors.isNotEmpty
+            ? "\n${errors.password!.first}"
+            : errors.password!.first;
+      }
+      if (errors.email != null) {
+        allErrors += allErrors.isNotEmpty
+            ? "\n${errors.email!.first}"
+            : errors.email!.first;
+      }
+      if (errors.phone != null) {
+        allErrors += allErrors.isNotEmpty
+            ? "\n${errors.phone!.first}"
+            : errors.phone!.first;
+      }
+      if (errors.name != null) {
+        allErrors += allErrors.isNotEmpty
+            ? "\n${errors.name!.first}"
+            : errors.name!.first;
+      }
     }
-    log("message =======>>>>> ${allErrors}");
+    if (listOfErrors.error != null) {
+      allErrors = allErrors.isNotEmpty
+          ? "\n${listOfErrors.error!}"
+          : listOfErrors.error!;
+    }
+    log("message 11====>>> $allErrors");
     int statusCode = response?.statusCode ?? 0;
     if (response != null) {
       switch (statusCode) {

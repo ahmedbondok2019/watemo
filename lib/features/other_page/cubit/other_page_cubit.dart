@@ -1,9 +1,8 @@
 import 'dart:developer';
-
+import '../../../core/common/models/title_id_model/title_id_list_model.dart';
 import '../../../core/src/app_export.dart';
 import '../data/models/about/about_model.dart';
 import '../data/models/support/contact_model.dart';
-import '../data/models/support/contact_type_model.dart';
 part 'other_page_state.dart';
 
 class OtherPageCubit extends Cubit<OtherPageState> {
@@ -15,42 +14,42 @@ class OtherPageCubit extends Cubit<OtherPageState> {
   static OtherPageCubit get(context) =>
       BlocProvider.of<OtherPageCubit>(context);
 
+  var formKey = GlobalKey<FormState>();
   TextEditingController messageController = TextEditingController();
-  ContactTypeModel? type;
+  TitleIdListModel type = TitleIdListModel(
+    id: 1,
+    title: "website_error",
+  );
   String? aboutUsContent;
   String? termsContent;
+  String? privacyContent;
 
-  List<ContactTypeModel> contactTypeList = [
-    const ContactTypeModel(
+  List<TitleIdListModel> contactTypeList = [
+    TitleIdListModel(
       id: 1,
-      nameAr: "خطأ في الموقع",
-      nameEn: "website error",
+      title: "website_error",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 2,
-      nameAr: "طلب الشريك",
-      nameEn: "partner request",
+      title: "partner_request",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 3,
-      nameAr: "شكوى",
-      nameEn: "complaint",
+      title: "complaint",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 4,
-      nameAr: "سؤال",
-      nameEn: "inqury",
+      title: "question",
     ),
-    const ContactTypeModel(
+    TitleIdListModel(
       id: 5,
-      nameAr: "اتصال",
-      nameEn: "contact",
+      title: "contact",
     ),
   ];
 
-  void changeContactType(ContactTypeModel? ty) {
+  void changeContactType(TitleIdListModel? ty) {
     emit(ChangeContactTypeLoading());
-    type = ty;
+    type = ty!;
     emit(ChangeContactType(type: ty));
   }
 
@@ -58,7 +57,7 @@ class OtherPageCubit extends Cubit<OtherPageState> {
   Future sendContact() async {
     emit(ContactLoading());
     final NetworkService<ContactModel> data = await _repository.sendContact(
-      type: type!.id.toString(),
+      type: type.id.toString(),
       message: messageController.text.isEmpty
           ? " "
           : messageController.text.trim(),
@@ -102,6 +101,22 @@ class OtherPageCubit extends Cubit<OtherPageState> {
           networkExceptions: NetworkExceptions error
       ):
         emit(TermsFailure(networkExceptions: error));
+    }
+  }
+
+  /// <<--- get privacy --->>
+  Future<void> getPrivacy() async {
+    log("getPrivacy ======================>>>>>>>>>>>>333");
+    emit(PrivacyLoading());
+    final NetworkService<AboutModel> data = await _repository.getPrivacy();
+    switch (data) {
+      case Succeed<AboutModel>(data: AboutModel data):
+        emit(PrivacySuccess());
+        privacyContent = data.data.content;
+      case Failure<AboutModel>(
+          networkExceptions: NetworkExceptions error
+      ):
+        emit(PrivacyFailure(networkExceptions: error));
     }
   }
 }

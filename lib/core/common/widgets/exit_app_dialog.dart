@@ -30,7 +30,7 @@ class ExitPopUp extends StatelessWidget {
                   ),
                   const Gap(5),
                   Text(
-                    "الخروج من التطبيق",
+                    "exit_app".tr(context),
                     style: AppTextStyles.textStyle(
                       color: AppColors.c090909,
                       weight: FontWeight.w600,
@@ -40,7 +40,7 @@ class ExitPopUp extends StatelessWidget {
                 ],
               ),
               content: Text(
-                "هل انت متاكد من انك تريد الخروج من التطبيق",
+                "subtitle_exit_app".tr(context),
                 style: AppTextStyles.textStyle(
                   color: AppColors.c090909,
                   weight: FontWeight.w400,
@@ -53,7 +53,7 @@ class ExitPopUp extends StatelessWidget {
                   width: 112.5,
                   horizontal: 0,
                   vertical: 0,
-                  title: "تأكيد",
+                  title: "confirm".tr(context),
                   onTap: (){
                     exit(0);
                   },
@@ -67,7 +67,7 @@ class ExitPopUp extends StatelessWidget {
                   colorBg: AppColors.transparent,
                   borderColor: AppColors.c090909,
                   txtColor: AppColors.c090909,
-                  title: "الغاء",
+                  title: "cancel".tr(context),
                   onTap: ()=>Navigator.pop(context),
                 ),
               ],

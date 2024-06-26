@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">354945003441461</string>
+    <string name="facebook_client_token">419feaef57a7ec8a8ab91d7828334b44</string>
+    <string name="app_name">dr.Math</string>
+</resources>

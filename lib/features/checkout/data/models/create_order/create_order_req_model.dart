@@ -1,27 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
 import '../../../../../core/src/app_export.dart';
 part 'create_order_req_model.g.dart';
 
 @JsonSerializable()
 class CreateOrderReqModel {
-  final String? serviceId;
+  List<List<String>>? services;
   final String? onBehalfOf;
   final String? userRelation;
-  final String? requiredDate;
-  String? code;
-  String? paymentMethod;
-  String? vendorId;
   final String? notes;
+  String? sex;
+  String? paymentMethod;
+  String? languages;
 
   CreateOrderReqModel({
-    required this.serviceId,
+    this.services,
     required this.onBehalfOf,
-    required this.userRelation,
-    this.paymentMethod,
-    required this.requiredDate,
-     this.code,
-    this.vendorId,
     required this.notes,
+    required this.userRelation,
+    this.sex,
+    this.languages,
+    this.paymentMethod,
   });
 
   FormData toJson() => _$CreateOrderReqModelToJson(this);

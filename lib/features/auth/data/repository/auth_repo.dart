@@ -4,6 +4,8 @@ import '../../../../core/src/app_export.dart';
 import '../models/auth/auth_model.dart';
 import '../models/forget_password/forget_password_model.dart';
 import '../models/register/register_req_model.dart';
+import '../models/register_company/register_company_req_model.dart';
+import '../models/register_vendor/register_vendor_req_model.dart';
 
 class AuthRepo {
   final AuthDataSource _authDataSource;
@@ -32,6 +34,27 @@ class AuthRepo {
     }
   }
 
+  /// <<--- social login request --->>
+  Future<NetworkService<AuthModel>> socialLogin({
+    required String name,
+    required String email,
+    required String phone,
+    }) async {
+    try {
+      Response? responseData =
+      await _authDataSource.socialLogin(
+        name: name,
+        email: email,
+        phone: phone,
+      );
+      AuthModel authModel = AuthModel.fromJson(responseData.data);
+      return NetworkService.succeed(authModel);
+    } on DioException catch (error) {
+      log("first step =====>>>>>>>$error");
+      return NetworkService.failure(NetworkExceptions.getDioException(error));
+    }
+  }
+
   /// <<--- register request --->>
   Future<NetworkService<AuthModel>> register(
       {required RegisterReqModel registerReqModel}) async {
@@ -47,6 +70,37 @@ class AuthRepo {
     }
   }
 
+  /// <<--- register Company request --->>
+  Future<NetworkService<AuthModel>> registerCompany(
+      {required RegisterCompanyReqModel registerReqModel}) async {
+    try {
+      Response? responseData =
+      await _authDataSource.registerCompany(
+          registerReqModel: registerReqModel);
+      AuthModel authModel = AuthModel.fromJson(responseData.data);
+      authModel.user!.password = registerReqModel.password;
+      return NetworkService.succeed(authModel);
+    } on DioException catch (error) {
+      log("first step =====>>>>>>>$error");
+      return NetworkService.failure(NetworkExceptions.getDioException(error));
+    }
+  }
+
+  /// <<--- register Vendor request --->>
+  Future<NetworkService<AuthModel>> registerVendor(
+      {required RegisterVendorReqModel registerReqModel}) async {
+    try {
+      Response? responseData =
+      await _authDataSource.registerVendor(registerReqModel: registerReqModel);
+      AuthModel authModel = AuthModel.fromJson(responseData.data);
+      authModel.user!.password = registerReqModel.password;
+      return NetworkService.succeed(authModel);
+    } on DioException catch (error) {
+      log("error =====>>>>>>>$error");
+      return NetworkService.failure(NetworkExceptions.getDioException(error));
+    }
+  }
+
   /// <<--- forget Password request --->>
   Future<NetworkService<ForgetPasswordModel>> forgetPassword(
       {required String phone}) async {
@@ -55,6 +109,25 @@ class AuthRepo {
           await _authDataSource.forgetPassword(phone: phone);
       ForgetPasswordModel authModel =
           ForgetPasswordModel.fromJson(responseData.data);
+      log("otp =====>>>>>>>${authModel.date!.code}");
+      return NetworkService.succeed(authModel);
+    } on DioException catch (error) {
+      return NetworkService.failure(NetworkExceptions.getDioException(error));
+    }
+  }
+
+  /// <<--- valid Code request --->>
+  Future<NetworkService<ForgetPasswordModel>> validCode({
+    required String phone,
+    required String code}) async {
+    try {
+      Response? responseData =
+      await _authDataSource.validCode(
+          phone: phone,
+          code: code,
+      );
+      ForgetPasswordModel authModel =
+      ForgetPasswordModel.fromJson(responseData.data);
       log("otp =====>>>>>>>${authModel.date!.code}");
       return NetworkService.succeed(authModel);
     } on DioException catch (error) {
@@ -75,24 +148,35 @@ class AuthRepo {
     }
   }
 
-  /// <<--- get Nationality request --->>
-  Future<NetworkService<TitleIdModel>> getNationality() async {
+  /// <<--- get Countries request --->>
+  Future<NetworkService<TitleIdModel>> getCountries() async {
     try {
-      Response response = await _authDataSource.getNationality();
-      TitleIdModel nationalityModel =
-      TitleIdModel.fromJson(response.data);
-      return NetworkService.succeed(nationalityModel);
+      Response response = await _authDataSource.getCountries();
+      TitleIdModel countries = TitleIdModel.fromJson(response.data);
+      return NetworkService.succeed(countries);
     } catch (error) {
       return NetworkService.failure(NetworkExceptions.getDioException(error));
     }
   }
 
-  /// <<--- get Residence request --->>
-  Future<NetworkService<TitleIdModel>> getResidence() async {
+  /// <<--- get Cities request --->>
+  Future<NetworkService<TitleIdModel>> getCities(
+      {required String countryId}) async {
     try {
-      Response response = await _authDataSource.getResidence();
-      TitleIdModel residenceModel = TitleIdModel.fromJson(response.data);
-      return NetworkService.succeed(residenceModel);
+      Response response = await _authDataSource.getCities(countryId: countryId);
+      TitleIdModel cities = TitleIdModel.fromJson(response.data);
+      return NetworkService.succeed(cities);
+    } catch (error) {
+      return NetworkService.failure(NetworkExceptions.getDioException(error));
+    }
+  }
+
+  /// <<--- get Spoken Languages request --->>
+  Future<NetworkService<TitleIdModel>> getSpokenLanguages() async {
+    try {
+      Response response = await _authDataSource.getSpokenLanguages();
+      TitleIdModel lang = TitleIdModel.fromJson(response.data);
+      return NetworkService.succeed(lang);
     } catch (error) {
       return NetworkService.failure(NetworkExceptions.getDioException(error));
     }

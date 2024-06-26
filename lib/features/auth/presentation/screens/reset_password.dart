@@ -6,15 +6,15 @@ class ResetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: BackgroundComponent(
         opacity: 0.2,
         child: Column(
           children: [
             CustomAppBar(
-              title: "كلمة مرور جديدة",
+              title: "new_password".tr(context),
             ),
-            Expanded(
+            const Expanded(
               child: EnterNewPassword(),
             ),
           ],

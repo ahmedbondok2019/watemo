@@ -35,7 +35,7 @@ class OnBoarding extends StatelessWidget {
                               AppRoutes.authScreen,
                             ),
                             child: Text(
-                              "تخطي",
+                              "skip".tr(context),
                               style: AppTextStyles.textStyle(
                                 color: AppColors.c090909,
                                 weight: FontWeight.w700,
@@ -55,23 +55,24 @@ class OnBoarding extends StatelessWidget {
                     }),
                   ],
                 ),
+
                 Gap(38.h),
+
                 OnBoardingBody(
                     onChange: onBoardingCubit.updateIndex,
                     pageController: onBoardingCubit.pageController),
-                Gap(20.h),
+
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         onBoardingCubit.pageController.previousPage(
                             duration: const Duration(microseconds: 200),
                             curve: Curves.bounceIn);
                       },
-                      child: Text(
-                        "السابق",
+                      child: Text("previous".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
                             color: onBoardingCubit.currentIndex == 0
@@ -82,14 +83,14 @@ class OnBoarding extends StatelessWidget {
                     ),
                     CustomSmoothIndicator(
                         controller: onBoardingCubit.pageController),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         onBoardingCubit.pageController.nextPage(
                             duration: const Duration(microseconds: 200),
                             curve: Curves.bounceIn);
                       },
                       child: Text(
-                        "التالي",
+                        "next".tr(context),
                         style: AppTextStyles.textStyle(
                             weight: FontWeight.w700,
                             color: onBoardingCubit.currentIndex ==
@@ -105,7 +106,9 @@ class OnBoarding extends StatelessWidget {
                 onBoardingCubit.currentIndex ==
                         onBoardingCubit.onBoardingData.length - 1
                     ? CustomButtonInternet(
-                        title: "ابدأ الاستخدام الان",
+                        title: AppConstants.userType ==  AppConstants.user
+                            ? "onBoardButton".tr(context)
+                            : "Start_using_now".tr(context),
                         horizontal: 0,
                         vertical: 10,
                         width: MediaQuery.of(context).size.width,

@@ -12,12 +12,7 @@ HomeDataModel _$HomeDataModelFromJson(Map<String, dynamic> json) =>
           ? List<SliderModel>.from(json["slider"].map((x) =>
             SliderModel.fromJson(x)))
           : [],
-          hadith: json['hadeeth'] != null
-              ? List<HadithModel>.from(json["hadeeth"].map((x) =>
-                 HadithModel.fromJson(x)))
-              : [],
-          services: json['services'] != null
-              ? List<ServicesModel>.from(json["services"].map((x) =>
-                ServicesModel.fromJson(x)))
-              : [],
+      hajj: json['hajj'] != null
+          ? HajjModel.fromJson(json["hajj"])
+          : null
     );

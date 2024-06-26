@@ -25,7 +25,7 @@ class _MainLayerState extends State<MainLayer>
   final iconList = <String>[
     ImageConstants.home,
     ImageConstants.orders,
-    ImageConstants.offers,
+    ImageConstants.emptyWallet,
     ImageConstants.setting,
   ];
 
@@ -97,11 +97,14 @@ class _MainLayerState extends State<MainLayer>
             onNotification: onScrollNotification,
             child: MainTabs(index: _bottomNavIndex),
           ),
-          floatingActionButton: Image.asset(
-            ImageConstants.logo,
-            width: 100.w,
-            height: 110.h,
-            fit: BoxFit.fill,
+          floatingActionButton: GestureDetector(
+            onTap: ()=>Navigator.pushNamed(context, AppRoutes.mediaCenter),
+            child: Image.asset(
+              ImageConstants.logo,
+              width: 100.w,
+              height: 110.h,
+              fit: BoxFit.fill,
+            ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: AnimatedBottomNavigationBar.builder(
@@ -112,12 +115,12 @@ class _MainLayerState extends State<MainLayer>
                     ? AppColors.primary
                     : AppColors.c090909,
                 label: index == 0
-                    ? "الرئيسيه"
+                    ? "main".tr(context)
                     : index == 1
-                       ? "الطلبات"
+                       ? "orders".tr(context)
                        : index == 2
-                          ? "العروض"
-                          : "المزيد",
+                          ? "wallet".tr(context)
+                          : "more".tr(context),
                 icon: iconList[index],
               );
             },

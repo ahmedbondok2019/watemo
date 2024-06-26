@@ -1,12 +1,16 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../../core/exceptions/network_exceptions.dart';
+part of 'tracking_order_cubit.dart';
 
-abstract class TrackingOrderState {}
+class TrackingOrderState {}
 
-class InitialMapState extends TrackingOrderState {}
-class OrderLocationLoading extends TrackingOrderState {}
+class TrackingOrderIdle extends TrackingOrderState {}
+class SetMarkerLoading extends TrackingOrderState {}
+class SetMarkerSuccess extends TrackingOrderState {}
+class SetMarkerFailure extends TrackingOrderState {}
+class GetOrderTrackingLoading extends TrackingOrderState {}
+class ClearDataLoading extends TrackingOrderState {}
+class ClearDataSuccess extends TrackingOrderState {}
 class ImageVideosLoading extends TrackingOrderState {}
-class OrderLocationSuccess extends TrackingOrderState {}
+class GetOrderTrackingSuccess extends TrackingOrderState {}
 class ImageVideosSuccess extends TrackingOrderState {}
 
 class LoadedMapState extends TrackingOrderState {
@@ -14,9 +18,9 @@ class LoadedMapState extends TrackingOrderState {
 
   LoadedMapState(this.initialPosition);
 }
-class OrderLocationFailed extends TrackingOrderState {
+class GetOrderTrackingFailed extends TrackingOrderState {
   final NetworkExceptions networkExceptions;
-  OrderLocationFailed({
+  GetOrderTrackingFailed({
     required this.networkExceptions,
   });
 }

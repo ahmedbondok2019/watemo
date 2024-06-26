@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../../../../core/src/app_export.dart';
 import '../../data/models/transactions_model.dart';
 
@@ -9,7 +7,6 @@ class CustomWalletList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("message =======>>>>>>>> ${transactionsList.length}");
     return ListView.builder(
       scrollDirection: Axis.vertical,
       clipBehavior: Clip.none,
@@ -38,12 +35,12 @@ class CustomWalletList extends StatelessWidget {
                           width: 40.w,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: transaction.isPluse == 0
+                              color: transaction.isPlus == 0
                                   ? AppColors.c392F09
                                   : AppColors.primary
                           ),
                           child: SvgPicture.asset(
-                            transaction.isPluse == 0
+                            transaction.isPlus == 0
                                 ? ImageConstants.walletDown
                                 : ImageConstants.walletUp,
                             height: 24.h,
@@ -56,7 +53,7 @@ class CustomWalletList extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              transaction.paymentMethod ?? "",
+                              transaction.title ?? "",
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w600,
                                   color: AppColors.c090909,
@@ -64,7 +61,7 @@ class CustomWalletList extends StatelessWidget {
                             ),
                             Gap(5.h),
                             Text(
-                              "(${transaction.transRef})",
+                              transaction.description ?? "",
                               textDirection: TextDirection.ltr,
                               style: AppTextStyles.textStyle(
                                   weight: FontWeight.w400,

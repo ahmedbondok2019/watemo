@@ -1,4 +1,6 @@
+import 'package:completed/features/auth/presentation/widgets/create_new_company_account.dart';
 import '../../../../core/src/app_export.dart';
+import '../widgets/create_new_vendor_account.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -23,7 +25,7 @@ class AuthScreen extends StatelessWidget {
                 Gap(20.h),
                 Center(
                   child: Text(
-                    "مرحباً بكم",
+                    "welcome".tr(context),
                     style: AppTextStyles.textStyle(
                         size: 28,
                         weight: FontWeight.w700,
@@ -33,7 +35,8 @@ class AuthScreen extends StatelessWidget {
                 Gap(10.h),
                 Center(
                   child: Text(
-                    "في تطبيق عمرة للغير لكل من هو غير قادر علي ادائها",
+                    "auth_subtitle".tr(context),
+                    textAlign: TextAlign.center,
                     style: AppTextStyles.textStyle(
                         size: 15,
                         weight: FontWeight.w400,
@@ -61,7 +64,7 @@ class AuthScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         CustomButtonInternet(
-                          title: "تسجيل الدخول",
+                          title: "logIn".tr(context),
                           horizontal: 0,
                           size: 16,
                           vertical: 0,
@@ -75,12 +78,14 @@ class AuthScreen extends StatelessWidget {
                           onTap: authCubit.changeStatusAuth,
                         ),
                         CustomButtonInternet(
-                          title: "انشاء حساب جديد",
+                          title: "register".tr(context),
                           horizontal: 0,
                           vertical: 0,
                           height: 40,
                           width: 172,
-                          colorBg: authCubit.isLogin ? AppColors.white : null,
+                          colorBg: authCubit.isLogin
+                              ? AppColors.white
+                              : null,
                           txtColor:
                               authCubit.isLogin
                                   ? AppColors.c090909
@@ -98,7 +103,12 @@ class AuthScreen extends StatelessWidget {
               return Expanded(
                   child: authCubit.isLogin
                       ? const CustomLoginContainer()
-                      : const CreateNewAccount());
+                      : AppConstants.userType ==  AppConstants.user
+                        ? const CreateNewUserAccount()
+                        : AppConstants.userType ==  AppConstants.vendor
+                            ? const CreateNewVendorAccount()
+                            : const CreateNewCompanyAccount()
+              );
             }),
           ],
         ),

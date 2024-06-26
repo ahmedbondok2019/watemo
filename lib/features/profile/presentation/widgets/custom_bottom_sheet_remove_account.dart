@@ -1,5 +1,5 @@
 import '../../../../core/common/widgets/animated_custom_dialog.dart';
-import '../../../../core/common/widgets/my_dialog.dart';
+import '../../../../core/common/widgets/confirm_order_dialog.dart';
 import '../../../../core/src/app_export.dart';
 import '../../cubit/profile_cubit.dart';
 
@@ -51,7 +51,7 @@ class CustomBottomSheetRemoveAccount extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "برجاء قراءة الاحكام والشروط قبل حذف الحساب.",
+                  "read_term".tr(context),
                   textAlign: TextAlign.center,
                   style: AppTextStyles.textStyle(
                     color: AppColors.c090909,
@@ -63,7 +63,7 @@ class CustomBottomSheetRemoveAccount extends StatelessWidget {
                 ),
                 Gap(20.h),
                 Text(
-                  "ماهي اسبابك اللتي تدفعك لحذف الحساب؟",
+                  "reason_remove_account".tr(context),
                   textAlign: TextAlign.center,
                   style: AppTextStyles.textStyle(
                     color: AppColors.c090909,
@@ -95,7 +95,7 @@ class CustomBottomSheetRemoveAccount extends StatelessWidget {
                                   profileCubit.changeReason(index);
                                 }),
                             Text(
-                              profileCubit.reasons[index],
+                              profileCubit.reasons[index].tr(context),
                               textAlign: TextAlign.center,
                               style: AppTextStyles.textStyle(
                                 color: AppColors.c969AA0,
@@ -111,7 +111,7 @@ class CustomBottomSheetRemoveAccount extends StatelessWidget {
                   height: 48,
                   width: 361,
                   horizontal: 0,
-                  title: "الغاء",
+                  title: "cancel".tr(context),
                   onTap: () => Navigator.pop(context),
                 ),
                 CustomButtonInternet(
@@ -122,19 +122,17 @@ class CustomBottomSheetRemoveAccount extends StatelessWidget {
                     colorBg: AppColors.transparent,
                     borderColor: AppColors.transparent,
                     txtColor: AppColors.cE74C3C,
-                    title: "حذف الحساب",
+                    title: "remove_account".tr(context),
                     onTap: () {
                       Navigator.pop(context);
                       showAnimatedDialog(context,
                           BlocBuilder<ProfileCubit, ProfileState>(
                               builder: (context, state) {
-                        return MyDialog(
-                          description: "هل انت متاكد من انك تريد حذف الحساب",
+                        return ConfirmOrderDialog(
+                          description: "confirm_remove_account".tr(context),
                           isFailed: false,
                           image: ImageConstants.said,
-                          onTapConfirm: () {
-                            context.read<ProfileCubit>().removeAccount();
-                          },
+                          onTapConfirm: context.read<ProfileCubit>().removeAccount
                         );
                       }),
                           dismissible: false, isFlip: true);

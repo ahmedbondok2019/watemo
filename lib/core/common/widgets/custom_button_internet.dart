@@ -1,8 +1,8 @@
 import '../../src/app_export.dart';
 
 class CustomButtonInternet extends StatelessWidget {
-  final void Function()? onTap;
-  final String? title;
+  final void Function() onTap;
+  final String title;
   final double? width;
   final double? height;
   final double? vertical;
@@ -14,8 +14,8 @@ class CustomButtonInternet extends StatelessWidget {
   final Color? borderColor;
 
   const CustomButtonInternet(
-      {super.key, this.onTap,this.weight,
-        this.title, this.width,this.horizontal,this.vertical,
+      {super.key, required this.onTap,this.weight,
+        required this.title, this.width,this.horizontal,this.vertical,
         this.txtColor, this.colorBg,this.borderColor,
         this.height, this.size});
 
@@ -38,9 +38,9 @@ class CustomButtonInternet extends StatelessWidget {
               : Border.all(color: borderColor!)
         ),
         child: Text(
-          title ?? 'إعادة المحاولة',
+          title,
           style: AppTextStyles.textStyle(
-            color: txtColor ?? AppColors.white,
+            color: txtColor ?? AppColors.c090909,
             size: size ?? 16,
             weight: weight ?? FontWeight.w700,
           ),
